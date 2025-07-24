@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="pt-PT" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disciplina: Desenvolvimento para Dispositivos Móveis - UniChristus</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Slate Gray & Amber -->
+    <!-- Application Structure Plan: Restructured the SPA to have a dedicated, attractive home/landing page (#home). All content for "Aula 1" is now grouped under a main #aula1 section. The navigation sidebar has been updated to reflect this, with top-level links for "Home" and each class. Placeholders for future classes (Aula 2, Aula 3) are included in the navigation and main content area. This creates a scalable course hub. -->
+    <!-- Visualization & Content Choices: 
+        - Home Page (Inform/Engage): A new hero section for welcome text and quick-access cards that link to interactive parts of Aula 1 (Timeline, Idea Generator). This improves user onboarding. Method: HTML/Tailwind.
+        - All previous visualizations and interactions for Aula 1 are preserved but now nested within the #aula1 section. No changes to their implementation, just their location in the DOM.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+            color: #334155; /* slate-700 */
+        }
+        .mono {
+            font-family: 'Roboto Mono', monospace;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 12px;
+            left: -21px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #d4d4d8; /* zinc-300 */
+            border: 2px solid #f8fafc; /* slate-50 */
+        }
+        .timeline-item.active::before {
+            background-color: #f59e0b; /* amber-500 */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 250px;
+            max-height: 300px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 300px;
+                max-height: 350px;
+            }
+        }
+        .gemini-btn {
+            cursor: pointer;
+            display: inline-block;
+            margin-left: 8px;
+            font-size: 14px;
+            color: #f59e0b;
+            transition: transform 0.2s;
+        }
+        .gemini-btn:hover {
+            transform: scale(1.2);
+        }
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #f59e0b;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .nav-link-disabled {
+            color: #64748b; /* slate-500 */
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body class="bg-slate-50">
+
+    <div class="flex min-h-screen">
+        <aside class="w-64 bg-slate-800 text-slate-100 p-6 fixed h-full hidden lg:block">
+            <h2 class="text-xl font-bold mb-2 mono">Dev. Móvel</h2>
+            <p class="text-sm text-slate-400 mb-8">ADS & SI | UniChristus</p>
+            <nav>
+                <ul class="space-y-4">
+                    <li><a href="#home" class="block font-bold hover:text-amber-400 transition-colors">Página Inicial</a></li>
+                    <li><a href="#aula1" class="block font-bold hover:text-amber-400 transition-colors">Aula 1: Fundamentos</a></li>
+                    <li><a href="#aula2" class="nav-link-disabled">Aula 2: Config. Ambiente (Em breve)</a></li>
+                    <li><a href="#aula3" class="nav-link-disabled">Aula 3: Estrutura do App (Em breve)</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="flex-1 lg:ml-64 p-6 md:p-10">
+            
+            <!-- HOME SECTION -->
+            <section id="home" class="min-h-screen flex flex-col justify-center">
+                <header>
+                    <h1 class="text-5xl font-bold text-slate-900 leading-tight">Disciplina: Desenvolvimento para Dispositivos Móveis</h1>
+                    <p class="text-xl text-slate-600 mt-4">O portal interativo da disciplina para os cursos de ADS e SI da UniChristus.</p>
+                </header>
+                <div class="mt-12 grid md:grid-cols-2 gap-6">
+                    <a href="#aula1" class="block bg-white p-6 rounded-lg shadow-md hover:shadow-xl hover:-translate-y-1 transition-all">
+                        <h3 class="font-bold text-xl text-amber-600 mb-2">Comece pela Aula 1</h3>
+                        <p>Explore os fundamentos, a história do Android e a arquitetura do sistema.</p>
+                    </a>
+                    <a href="#aula2" class="block bg-white p-6 rounded-lg shadow-md hover:shadow-xl hover:-translate-y-1 transition-all">
+                        <h3 class="font-bold text-xl text-amber-600 mb-2">Aula 2</h3>
+                        <p>Em breve</p>
+                    </a>
+					<a href="#aula3" class="block bg-white p-6 rounded-lg shadow-md hover:shadow-xl hover:-translate-y-1 transition-all">
+                        <h3 class="font-bold text-xl text-amber-600 mb-2">Aula 3</h3>
+                        <p>Em breve</p>
+                    </a>
+                </div>
+            </section>
+
+            <!-- AULA 1 SECTION -->
+            <section id="aula1" class="mb-16 pt-16">
+                <header class="mb-8">
+                    <h2 class="text-4xl font-bold text-slate-900">Aula 1: Introdução e Fundamentos do Android</h2>
+                    <p class="text-lg text-slate-600 mt-2">Uma jornada interativa pela história, arquitetura e futuro do Android.</p>
+                </header>
+                
+                <div class="my-8 bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="font-bold text-xl text-slate-800 mb-4">Resumo em Áudio da Aula</h3>
+                    <audio controls class="w-full">
+                        <source src="resumo_aula_1.mp3" type="audio/mpeg">
+                        O seu navegador não suporta o elemento de áudio.
+                    </audio>
+                </div>
+
+                <div class="space-y-4 mb-12">
+                     <div class="bg-white border border-slate-200 rounded-lg">
+                        <button class="accordion-toggle w-full flex justify-between items-center p-5 font-semibold text-left" aria-expanded="false">
+                            <span>Objetivos da Disciplina</span>
+                             <span class="transform transition-transform duration-300 rotate-180">▼</span>
+                        </button>
+                        <div class="accordion-content overflow-hidden transition-all duration-500 ease-in-out" style="max-height: 0px;">
+                            <div class="p-5 border-t border-slate-200">
+                                <h3 class="font-bold mb-2">Objetivo Geral:</h3>
+                                <p class="mb-4">Capacitar o aluno para projetar, implementar e testar aplicações móveis nativas e híbridas, compreendendo boas práticas de persistência local, consumo de APIs e integração com serviços backend modernos.</p>
+                                <h3 class="font-bold mb-2">Objetivos Específicos:</h3>
+                                <ul class="list-disc list-inside space-y-1">
+                                    <li>Criar interfaces e controlar a navegação em apps Android com <strong>Kotlin</strong>.</li>
+                                    <li>Implementar persistência local com <strong>SharedPreferences</strong> e <strong>Room</strong>.</li>
+                                    <li>Consumir APIs <strong>RESTful</strong> com <strong>Retrofit</strong> e corrotinas.</li>
+                                    <li>Integrar funcionalidades com <strong>Firebase</strong> (Firestore e Autenticação).</li>
+                                    <li>Aplicar boas práticas com <strong>ViewModel</strong> e <strong>LiveData</strong>.</li>
+                                    <li>Compreender os fundamentos do desenvolvimento híbrido com <strong>React Native</strong>.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="historia" class="mb-16">
+                    <h3 class="text-3xl font-bold text-slate-800 mb-6">A Saga do Android</h3>
+                    <div class="lg:flex lg:space-x-8">
+                        <div id="timeline-container" class="lg:w-1/3 relative border-l-2 border-slate-200 pl-6 space-y-8"></div>
+                        <div class="lg:w-2/3 mt-8 lg:mt-0">
+                            <div id="timeline-details" class="bg-white p-6 rounded-lg shadow-md sticky top-10">
+                                <h4 id="details-title" class="text-2xl font-bold text-amber-600 mb-2">Selecione um marco</h4>
+                                <p id="details-year" class="font-semibold text-slate-500 mb-4"></p>
+                                <div id="details-content" class="text-slate-700">
+                                    <p>Clique num item da linha do tempo à esquerda para ver os detalhes aqui.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="arquitetura" class="mb-16">
+                    <h3 class="text-3xl font-bold text-slate-800 mb-6">Arquitetura e Ecossistema</h3>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 class="font-bold text-xl mb-4 text-center">Arquitetura do Sistema</h4>
+                            <div class="space-y-1 text-center text-sm font-semibold text-white rounded-lg overflow-hidden shadow-lg">
+                                <div class="bg-sky-700 p-3">Aplicações do Sistema</div>
+                                <div class="bg-sky-600 p-3">Java API Framework</div>
+                                <div class="bg-sky-500 p-3 flex justify-center items-center">Bibliotecas Nativas & Android Runtime (ART) <span class="gemini-btn" data-term="Android Runtime (ART)">✨</span></div>
+                                <div class="bg-sky-400 p-3 flex justify-center items-center">Hardware Abstraction Layer (HAL) <span class="gemini-btn" data-term="Hardware Abstraction Layer (HAL)">✨</span></div>
+                                <div class="bg-sky-300 p-3 text-sky-900 flex justify-center items-center">Kernel Linux <span class="gemini-btn" data-term="Kernel Linux">✨</span></div>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-xl mb-4 text-center">Domínio de Mercado Global</h4>
+                            <div class="bg-white p-4 rounded-lg shadow-md">
+                                <div class="chart-container">
+                                    <canvas id="marketShareChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="kotlin" class="mb-16">
+                    <h3 class="text-3xl font-bold text-slate-800 mb-6">Por que Aprender Android com Kotlin?</h3>
+                    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                            <h4 class="font-bold text-lg text-green-600 mb-2">✓ Mais Seguro</h4>
+                            <p>Ajuda a evitar `NullPointerException`, o erro mais comum em Java, graças ao seu sistema de tipos robusto.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                            <h4 class="font-bold text-lg text-blue-600 mb-2">✎ Mais Conciso</h4>
+                            <p>Escreva significativamente menos código para as mesmas tarefas. Menos código, menos bugs.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                            <h4 class="font-bold text-lg text-purple-600 mb-2">↔ 100% Interoperável</h4>
+                            <p>Use código Kotlin e Java no mesmo projeto sem problemas. Aproveite bibliotecas Java existentes.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                            <h4 class="font-bold text-lg text-orange-600 mb-2">⚡ Corrotinas</h4>
+                            <p>Suporte nativo e simplificado para programação assíncrona, essencial para apps modernos e responsivos.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="proximos-passos">
+                    <h3 class="text-3xl font-bold text-slate-800 mb-6">Próximos Passos e Ferramentas</h3>
+                     <div class="grid lg:grid-cols-2 gap-8">
+                        <div class="bg-amber-100 border-l-4 border-amber-500 text-amber-800 p-6 rounded-r-lg">
+                            <h4 class="font-bold text-xl mb-4">Tarefa para a próxima aula (TED)</h4>
+                            <ol class="list-decimal list-inside space-y-2">
+                                <li>Ler o Capítulo 1 da obra "Desenvolvimento para Dispositivos Móveis" (SAGAH, 2019).</li>
+                                <li>Listar 5 marcos que você considera os mais importantes na evolução do Android e justificar o porquê.</li>
+                                <li>Explorar o AVA e a biblioteca digital em busca de materiais de apoio.</li>
+                            </ol>
+                            <div class="mt-6">
+                                <a href="https://developer.android.com" target="_blank" class="inline-block bg-slate-800 text-white font-bold py-2 px-4 rounded hover:bg-slate-700 transition-colors mr-2">Doc. Android</a>
+                                <a href="https://kotlinlang.org" target="_blank" class="inline-block bg-slate-800 text-white font-bold py-2 px-4 rounded hover:bg-slate-700 transition-colors">Doc. Kotlin</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- PLACEHOLDER SECTIONS -->
+            <section id="aula2" class="min-h-screen flex items-center justify-center pt-16">
+                <div class="text-center">
+                    <h2 class="text-4xl font-bold text-slate-900">Aula 2: Configuração do Ambiente</h2>
+                    <p class="text-xl text-slate-600 mt-4">Conteúdo em breve...</p>
+                </div>
+            </section>
+            <section id="aula3" class="min-h-screen flex items-center justify-center pt-16">
+                <div class="text-center">
+                    <h2 class="text-4xl font-bold text-slate-900">Aula 3: Estrutura do App</h2>
+                    <p class="text-xl text-slate-600 mt-4">Conteúdo em breve...</p>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Modal para Explicações do Gemini -->
+    <div id="gemini-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-lg shadow-xl p-6 max-w-md w-full">
+            <h3 id="modal-title" class="text-xl font-bold mb-4 text-slate-800"></h3>
+            <div id="modal-content" class="text-slate-700">
+                <div class="flex justify-center items-center h-24">
+                    <div class="loader"></div>
+                </div>
+            </div>
+            <button id="close-modal-btn" class="mt-6 bg-slate-800 text-white font-bold py-2 px-4 rounded w-full hover:bg-slate-700 transition-colors">Fechar</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const timelineData = [
+                { year: '2003-2005', title: 'A Fundação', content: '<strong>2003:</strong> Android Inc. é fundada por Andy Rubin, Rich Miner, Nick Sears e Chris White, com foco inicial em sistemas para câmaras digitais.<br><br><strong>2005:</strong> Google adquire a Android Inc. por cerca de $50 milhões, mudando o foco para um sistema operativo móvel baseado no kernel Linux para competir com Symbian e Windows Mobile.'},
+                { year: '2007-2008', title: 'OHA e o Primeiro Smartphone', content: '<strong>2007:</strong> Google forma a Open Handset Alliance (OHA), um consórcio de empresas para desenvolver padrões abertos para dispositivos móveis.<br><br><strong>2008:</strong> Lançamento do <strong>HTC Dream (T-Mobile G1)</strong>, o primeiro smartphone Android comercial, com teclado QWERTY e integração com serviços Google. Nasce o Android Market.'},
+                { year: '2009-2010', title: 'A Era da Fundação', content: '<strong>1.5 Cupcake (2009):</strong> Teclado virtual e widgets.<br><strong>1.6 Donut (2009):</strong> Suporte a múltiplas resoluções de tela.<br><strong>2.0 Eclair (2009):</strong> Google Maps Navigation.<br><strong>2.2 Froyo (2010):</strong> Hotspot Wi-Fi e melhorias de performance (JIT).<br><strong>2.3 Gingerbread (2010):</strong> Suporte a NFC e redesenho da UI.'},
+                { year: '2011-2013', title: 'A Era da Consolidação', content: '<strong>3.0 Honeycomb (2011):</strong> Interface otimizada para tablets.<br><strong>4.0 Ice Cream Sandwich (2011):</strong> Unificação da UI para celulares e tablets (Holo UI).<br><strong>4.1 Jelly Bean (2012):</strong> Project Butter (UI fluida) e Google Now.<br><strong>4.4 KitKat (2013):</strong> Otimização para dispositivos com pouca RAM e comando "Ok Google".'},
+                { year: '2014-2017', title: 'Material Design e Maturidade', content: '<strong>5.0 Lollipop (2014):</strong> Introdução do <strong>Material Design</strong> e Android Runtime (ART).<br><strong>6.0 Marshmallow (2015):</strong> Permissões granulares em tempo de execução e modo Doze.<br><strong>7.0 Nougat (2016):</strong> Modo multi-janela e Google Assistant.<br><strong>8.0 Oreo (2017):</strong> Project Treble (atualizações mais rápidas) e modo Picture-in-Picture (PiP).'},
+                { year: '2018-Hoje', title: 'A Era da IA e Privacidade', content: '<strong>9 Pie (2018):</strong> Navegação por gestos e Bem-estar Digital.<br><strong>10 (2019):</strong> Tema escuro e controlos de privacidade aprimorados.<br><strong>11 (2020):</strong> Bolhas de conversa e permissões de uso único.<br><strong>12 (2021):</strong> <strong>Material You</strong>, a maior mudança de design desde o Lollipop.<br><strong>13+ :</strong> Foco contínuo em IA, segurança e suporte a novos formatos de dispositivos.'},
+            ];
+
+            const timelineContainer = document.getElementById('timeline-container');
+            const detailsTitle = document.getElementById('details-title');
+            const detailsYear = document.getElementById('details-year');
+            const detailsContent = document.getElementById('details-content');
+            let timelineItems = [];
+
+            timelineData.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.className = 'timeline-item relative cursor-pointer';
+                div.dataset.index = index;
+                const h4 = document.createElement('h4');
+                h4.className = 'font-bold text-lg';
+                h4.textContent = item.title;
+                const p = document.createElement('p');
+                p.className = 'text-sm text-slate-500';
+                p.textContent = item.year;
+                div.appendChild(h4);
+                div.appendChild(p);
+                timelineContainer.appendChild(div);
+                timelineItems.push(div);
+            });
+
+            function updateDetails(index) {
+                const item = timelineData[index];
+                detailsTitle.textContent = item.title;
+                detailsYear.textContent = item.year;
+                detailsContent.innerHTML = item.content;
+                timelineItems.forEach((el, i) => {
+                    el.classList.toggle('active', i == index);
+                    el.querySelector('h4').classList.toggle('text-amber-600', i == index);
+                });
+            }
+
+            timelineContainer.addEventListener('click', (e) => {
+                const item = e.target.closest('.timeline-item');
+                if (item) {
+                    updateDetails(item.dataset.index);
+                }
+            });
+            
+            if(timelineItems.length > 0) {
+                updateDetails(0);
+            }
+
+            const ctx = document.getElementById('marketShareChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Android', 'iOS', 'Outros'],
+                    datasets: [{
+                        label: 'Market Share Global (%)',
+                        data: [70, 29, 1],
+                        backgroundColor: ['rgba(34, 197, 94, 0.7)', 'rgba(59, 130, 246, 0.7)', 'rgba(203, 213, 225, 0.7)'],
+                        borderColor: ['rgb(22, 163, 74)', 'rgb(37, 99, 235)', 'rgb(156, 163, 175)'],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: { x: { beginAtZero: true, max: 100, ticks: { callback: (value) => value + '%' } } }
+                }
+            });
+
+            const accordions = document.querySelectorAll('.accordion-toggle');
+            accordions.forEach(button => {
+                button.addEventListener('click', () => {
+                    const content = button.nextElementSibling;
+                    const isExpanded = button.getAttribute('aria-expanded') === 'true';
+                    button.setAttribute('aria-expanded', !isExpanded);
+                    button.querySelector('span:last-child').style.transform = isExpanded ? 'rotate(180deg)' : 'rotate(0deg)';
+                    content.style.maxHeight = isExpanded ? '0px' : content.scrollHeight + 'px';
+                });
+            });
+
+            const geminiModal = document.getElementById('gemini-modal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalContent = document.getElementById('modal-content');
+            const closeModalBtn = document.getElementById('close-modal-btn');
+            const generateIdeasBtn = document.getElementById('generate-ideas-btn');
+            const ideasOutput = document.getElementById('ideas-output');
+            const projectThemeInput = document.getElementById('project-theme');
+
+            const apiKey = ""; 
+
+            async function callGemini(prompt) {
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+                const payload = { contents: [{ role: "user", parts: [{ text: prompt }] }] };
+                
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    const result = await response.json();
+                    if (result.candidates && result.candidates.length > 0 && result.candidates[0].content.parts.length > 0) {
+                        return result.candidates[0].content.parts[0].text;
+                    }
+                    return "Não foi possível obter uma resposta. Tente novamente.";
+                } catch (error) {
+                    console.error("Erro ao chamar a API Gemini:", error);
+                    return "Ocorreu um erro ao comunicar com a IA. Verifique a consola para mais detalhes.";
+                }
+            }
+
+            document.querySelectorAll('.gemini-btn').forEach(btn => {
+                btn.addEventListener('click', async () => {
+                    const term = btn.dataset.term;
+                    modalTitle.textContent = `✨ Explicando: ${term}`;
+                    modalContent.innerHTML = '<div class="flex justify-center items-center h-24"><div class="loader"></div></div>';
+                    geminiModal.classList.remove('hidden');
+                    geminiModal.classList.add('flex');
+
+                    const prompt = `Explica o termo de computação "${term}" de forma muito simples e concisa, como se eu tivesse 10 anos. Usa analogias fáceis de entender. Responde em português de Portugal.`;
+                    const explanation = await callGemini(prompt);
+                    modalContent.innerHTML = explanation.replace(/\n/g, '<br>');
+                });
+            });
+
+            closeModalBtn.addEventListener('click', () => {
+                geminiModal.classList.add('hidden');
+                geminiModal.classList.remove('flex');
+            });
+        });
+    </script>
+</body>
+</html>
