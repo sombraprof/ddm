@@ -46,7 +46,9 @@ function loadAula(file) {
       requestAnimationFrame(() => {
         initMarketShareChart();
       });
-      conteudo.scrollIntoView({ behavior: "smooth", block: "start" });
+      requestAnimationFrame(() => {
+        conteudo.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
     })
     .catch((err) => console.error("Erro ao carregar aula:", err));
 }
