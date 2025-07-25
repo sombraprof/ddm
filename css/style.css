@@ -1,97 +1,26 @@
-/* Fonte e cores globais */
 body {
   font-family: "Inter", sans-serif;
   background-color: #f8fafc; /* slate-50 */
   color: #334155; /* slate-700 */
 }
-
 .mono {
   font-family: "Roboto Mono", monospace;
 }
-
 .nav-link-disabled {
   color: #64748b; /* slate-500 */
   cursor: not-allowed;
 }
-
-/* Callouts */
 .callout {
   padding: 1.25rem;
   border-left-width: 4px;
   border-radius: 0.5rem;
   margin-top: 1.5rem;
 }
-
 .callout-good-practice {
   background-color: #f0fdf4; /* green-50 */
   border-color: #22c55e; /* green-500 */
   color: #15803d; /* green-800 */
 }
-
 .callout-good-practice h5 {
   color: #166534; /* green-900 */
-}
-
-/* Loader animado */
-.loader {
-  border: 4px solid #f3f3f3;
-  border-top: 4px solid #f59e0b;
-  border-radius: 50%;
-  width: 32px;
-  height: 32px;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-/* Timeline */
-.timeline-item::before {
-  content: '';
-  position: absolute;
-  top: 12px;
-  left: -21px;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background-color: #d4d4d8; /* zinc-300 */
-  border: 2px solid #f8fafc; /* slate-50 */
-}
-
-.timeline-item.active::before {
-  background-color: #f59e0b; /* amber-500 */
-}
-
-/* Botão Gemini */
-.gemini-btn {
-  cursor: pointer;
-  display: inline-block;
-  margin-left: 8px;
-  font-size: 14px;
-  color: #f59e0b;
-  transition: transform 0.2s;
-}
-
-.gemini-btn:hover {
-  transform: scale(1.2);
-}
-
-/* Charts responsivos */
-.chart-container {
-  position: relative;
-  width: 100%;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-  height: 250px;
-  max-height: 300px;
-}
-
-@media (min-width: 768px) {
-  .chart-container {
-    height: 300px;
-    max-height: 350px;
-  }
 }
