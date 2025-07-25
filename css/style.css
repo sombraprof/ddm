@@ -24,3 +24,66 @@ body {
 .callout-good-practice h5 {
   color: #166534; /* green-900 */
 }
+.callout-info {
+  background-color: #eff6ff; /* blue-50 */
+  border-color: #3b82f6; /* blue-500 */
+  color: #1e40af; /* blue-800 */
+}
+.callout-info h5 {
+  color: #1e3a8a; /* blue-900 */
+}
+.callout-task {
+  background-color: #fefce8; /* yellow-50 */
+  border-color: #eab308; /* yellow-500 */
+  color: #854d0e; /* yellow-800 */
+}
+.callout-task h5 {
+  color: #713f12; /* yellow-900 */
+}
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  top: 12px;
+  left: -21px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #d4d4d8;
+  border: 2px solid #f8fafc;
+}
+.timeline-item.active::before {
+  background-color: #f59e0b;
+}
+.chart-container {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 300px;
+  max-height: 350px;
+}
+.code-comparison {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+@media (min-width: 768px) {
+  .code-comparison {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.code-block {
+  background-color: #1e293b;
+  color: #e2e8f0;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+}
+.code-block h5 {
+  color: #cbd5e1;
+  font-weight: bold;
+  border-bottom: 1px solid #475569;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}

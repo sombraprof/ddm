@@ -1,385 +1,368 @@
-<!DOCTYPE html>
-<html lang="pt-PT" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aula 1: Fundamentos do Android</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f8fafc;
-            color: #334155;
-        }
-        .mono {
-            font-family: 'Roboto Mono', monospace;
-        }
-        .callout {
-            padding: 1.25rem;
-            border-left-width: 4px;
-            border-radius: 0.5rem;
-            margin-top: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-        .callout-info {
-            background-color: #eff6ff; /* blue-50 */
-            border-color: #3b82f6; /* blue-500 */
-            color: #1e40af; /* blue-800 */
-        }
-        .callout-info h5 {
-            color: #1e3a8a; /* blue-900 */
-        }
-        .callout-task {
-            background-color: #fefce8; /* yellow-50 */
-            border-color: #eab308; /* yellow-500 */
-            color: #854d0e; /* yellow-800 */
-        }
-        .callout-task h5 {
-            color: #713f12; /* yellow-900 */
-        }
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            top: 12px;
-            left: -21px;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background-color: #d4d4d8;
-            border: 2px solid #f8fafc;
-        }
-        .timeline-item.active::before {
-            background-color: #f59e0b;
-        }
-        .chart-container {
-            position: relative;
-            width: 100%;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            height: 300px;
-            max-height: 350px;
-        }
-        .code-comparison {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1rem;
-        }
-        @media (min-width: 768px) {
-            .code-comparison {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-        .code-block {
-            background-color: #1e293b;
-            color: #e2e8f0;
-            padding: 1rem;
-            border-radius: 0.5rem;
-            overflow-x: auto;
-        }
-        .code-block h5 {
-            color: #cbd5e1;
-            font-weight: bold;
-            border-bottom: 1px solid #475569;
-            padding-bottom: 0.5rem;
-            margin-bottom: 1rem;
-        }
-    </style>
-</head>
-<body class="p-6 md:p-10">
+<section id="aula1" class="mb-16 pt-16">
+  <header class="mb-12 border-b pb-8">
+    <h2 class="text-4xl font-bold text-slate-900">
+      Aula 1: Unidade I – Fundamentos do Android
+    </h2>
+    <p class="text-lg text-slate-600 mt-2">
+      Apresentação da disciplina, seus objetivos, métodos e a importância do
+      Android no mercado.
+    </p>
+  </header>
 
-    <section id="aula1" class="mb-16 pt-16">
-        <header class="mb-12 border-b pb-8">
-            <h2 class="text-4xl font-bold text-slate-900">
-                Aula 1: Unidade I – Fundamentos do Android
-            </h2>
-            <p class="text-lg text-slate-600 mt-2">
-                Apresentação da disciplina, seus objetivos, métodos e a importância do Android no mercado.
+  <div class="bg-white p-6 rounded-lg shadow-md mb-12">
+    <h3 class="font-bold text-2xl text-slate-800 mb-4">
+      Plano de Voo da Aula (1h 40min)
+    </h3>
+    <ul class="list-disc list-inside space-y-2 text-slate-700">
+      <li>
+        <strong>(15 min) Check-in e Apresentação da Disciplina:</strong>
+        Discussão sobre o plano de ensino, metodologia, avaliação e expectativas
+        da turma.
+      </li>
+      <li>
+        <strong>(40 min) A Revolução Móvel e a História do Android:</strong> Uma
+        viagem interativa desde a fundação da Android Inc. até aos dias de hoje.
+      </li>
+      <li>
+        <strong>(30 min) O Ecossistema Android:</strong> Análise da dominância
+        de mercado, o modelo de negócio (AOSP vs GMS) e a importância do Kotlin.
+      </li>
+      <li>
+        <strong>(15 min) Encerramento e Próximos Passos:</strong> Explicação da
+        tarefa (TED), apresentação da bibliografia e espaço para dúvidas.
+      </li>
+    </ul>
+  </div>
+
+  <div class="space-y-4 mb-12">
+    <div class="callout callout-info">
+      <h5 class="font-bold mb-2">Check-in Inicial: Vamos Conversar!</h5>
+      <p>
+        Antes de começarmos, vamos aquecer os motores. Qual foi a aplicação que
+        mais usaram hoje? O que vos fascinou nela? A vossa experiência como
+        utilizadores é o ponto de partida para se tornarem excelentes
+        desenvolvedores.
+      </p>
+    </div>
+    <div class="bg-white border border-slate-200 rounded-lg">
+      <button
+        class="accordion-toggle w-full flex justify-between items-center p-5 font-semibold text-left"
+        aria-expanded="false"
+      >
+        <span>Plano de Ensino e Objetivos</span>
+        <span class="transform transition-transform duration-300 rotate-180"
+          >▼</span
+        >
+      </button>
+      <div
+        class="accordion-content overflow-hidden transition-all duration-500 ease-in-out"
+        style="max-height: 0px"
+      >
+        <div class="p-5 border-t border-slate-200">
+          <h4 class="font-bold mb-2 text-indigo-700">Objetivo Geral:</h4>
+          <p class="mb-4">
+            Capacitar o aluno para projetar, implementar e testar aplicações
+            móveis nativas e híbridas, compreendendo boas práticas de
+            persistência local, consumo de APIs e integração com serviços
+            backend modernos.
+          </p>
+          <h4 class="font-bold mb-2 text-indigo-700">Objetivos Específicos:</h4>
+          <ul class="list-disc list-inside space-y-1">
+            <li>
+              Criar interfaces e controlar a navegação em apps Android com
+              <strong>Kotlin</strong>.
+            </li>
+            <li>
+              Implementar persistência local com
+              <strong>SharedPreferences</strong> e <strong>Room</strong>.
+            </li>
+            <li>
+              Consumir APIs <strong>RESTful</strong> com
+              <strong>Retrofit</strong> e corrotinas.
+            </li>
+            <li>
+              Integrar funcionalidades com <strong>Firebase</strong> (Firestore
+              e Autenticação).
+            </li>
+            <li>
+              Aplicar boas práticas com <strong>ViewModel</strong> e
+              <strong>LiveData</strong>.
+            </li>
+            <li>
+              Compreender os fundamentos do desenvolvimento híbrido com
+              <strong>React Native</strong>.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="bg-white border border-slate-200 rounded-lg">
+      <button
+        class="accordion-toggle w-full flex justify-between items-center p-5 font-semibold text-left"
+        aria-expanded="false"
+      >
+        <span>Metodologia e Avaliação</span>
+        <span class="transform transition-transform duration-300 rotate-180"
+          >▼</span
+        >
+      </button>
+      <div
+        class="accordion-content overflow-hidden transition-all duration-500 ease-in-out"
+        style="max-height: 0px"
+      >
+        <div class="p-5 border-t border-slate-200">
+          <h4 class="font-bold mb-2 text-indigo-700">Metodologia:</h4>
+          <p>
+            Aulas expositivas e dialogadas com apoio de slides, exploração do
+            ambiente institucional (AVA/Moodle, biblioteca digital) e abertura
+            para perguntas. A participação ativa é fundamental!
+          </p>
+          <h4 class="font-bold mt-4 mb-2 text-indigo-700">
+            Critérios de Avaliação:
+          </h4>
+          <ul class="list-disc list-inside space-y-2 font-mono">
+            <li><strong>NP1:</strong> (Trabalho + Prova * 2) / 3</li>
+            <li><strong>NP2:</strong> (Trabalho + Prova * 2) / 3</li>
+            <li><strong>NP3:</strong> 10,0</li>
+            <li><strong>NF:</strong> (NP1 + NP2 + NP3) / 3</li>
+          </ul>
+          <h5 class="font-semibold mt-4 mb-2">
+            Para aprovação, o aluno deve atender a três condições:
+          </h5>
+          <ol class="list-decimal list-inside space-y-1">
+            <li>Mínimo de 75% de presença na disciplina.</li>
+            <li>Nota Final (NF) maior ou igual a 5,0.</li>
+            <li>Nota da NP3 maior ou igual a 4,0.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="revolucao" class="mb-16">
+    <h3 class="text-3xl font-bold text-slate-800 mb-6">
+      O Palco da Revolução Móvel
+    </h3>
+    <div class="bg-white p-8 rounded-lg shadow-md">
+      <p class="text-lg mb-4">
+        Antes do Android e do iPhone, o mundo dos telemóveis era muito
+        diferente. Era dominado por sistemas como o
+        <strong>Symbian</strong> (Nokia), <strong>BlackBerry OS</strong> e
+        <strong>Windows Mobile</strong>. Cada um era um "jardim murado", com
+        pouca flexibilidade para desenvolvedores e uma experiência de utilização
+        limitada.
+      </p>
+      <p>
+        A chegada do Android em 2008 foi um terramoto. A sua natureza aberta e
+        gratuita democratizou o acesso à tecnologia, permitindo que qualquer
+        fabricante criasse um smartphone. Isso deu início a uma era de inovação
+        e competição sem precedentes, que nos trouxe até ao mundo hiperconectado
+        em que vivemos hoje.
+      </p>
+    </div>
+  </div>
+
+  <div id="historia" class="mb-16">
+    <h3 class="text-3xl font-bold text-slate-800 mb-6">
+      A História do Android
+    </h3>
+    <div class="lg:flex lg:space-x-8">
+      <div
+        id="timeline-container"
+        class="lg:w-1/3 relative border-l-2 border-slate-200 pl-6 space-y-8"
+      >
+        <!-- Conteúdo da timeline será gerado via JS -->
+      </div>
+      <div class="lg:w-2/3 mt-8 lg:mt-0">
+        <div
+          id="timeline-details"
+          class="bg-white p-6 rounded-lg shadow-md sticky top-10"
+        >
+          <h4 id="details-title" class="text-2xl font-bold text-amber-600 mb-2">
+            Selecione um marco
+          </h4>
+          <p id="details-year" class="font-semibold text-slate-500 mb-4"></p>
+          <div id="details-content" class="text-slate-700">
+            <p>
+              Clique num item da linha do tempo à esquerda para ver os detalhes
+              aqui.
             </p>
-        </header>
-
-        <div class="bg-white p-6 rounded-lg shadow-md mb-12">
-            <h3 class="font-bold text-2xl text-slate-800 mb-4">Plano de Voo da Aula (1h 40min)</h3>
-            <ul class="list-disc list-inside space-y-2 text-slate-700">
-                <li><strong>(15 min) Check-in e Apresentação da Disciplina:</strong> Discussão sobre o plano de ensino, metodologia, avaliação e expectativas da turma.</li>
-                <li><strong>(40 min) A Revolução Móvel e a História do Android:</strong> Uma viagem interativa desde a fundação da Android Inc. até aos dias de hoje.</li>
-                <li><strong>(30 min) O Ecossistema Android:</strong> Análise da dominância de mercado, o modelo de negócio (AOSP vs GMS) e a importância do Kotlin.</li>
-                <li><strong>(15 min) Encerramento e Próximos Passos:</strong> Explicação da tarefa (TED), apresentação da bibliografia e espaço para dúvidas.</li>
-            </ul>
+          </div>
         </div>
+      </div>
+    </div>
+  </div>
 
-        <div class="space-y-4 mb-12">
-            <div class="callout callout-info">
-                <h5 class="font-bold mb-2">Check-in Inicial: Vamos Conversar!</h5>
-                <p>Antes de começarmos, vamos aquecer os motores. Qual foi a aplicação que mais usaram hoje? O que vos fascinou nela? A vossa experiência como utilizadores é o ponto de partida para se tornarem excelentes desenvolvedores.</p>
-            </div>
-            <div class="bg-white border border-slate-200 rounded-lg">
-                <button class="accordion-toggle w-full flex justify-between items-center p-5 font-semibold text-left" aria-expanded="false">
-                    <span>Plano de Ensino e Objetivos</span>
-                    <span class="transform transition-transform duration-300 rotate-180">▼</span>
-                </button>
-                <div class="accordion-content overflow-hidden transition-all duration-500 ease-in-out" style="max-height: 0px;">
-                    <div class="p-5 border-t border-slate-200">
-                        <h4 class="font-bold mb-2 text-indigo-700">Objetivo Geral:</h4>
-                        <p class="mb-4">Capacitar o aluno para projetar, implementar e testar aplicações móveis nativas e híbridas, compreendendo boas práticas de persistência local, consumo de APIs e integração com serviços backend modernos.</p>
-                        <h4 class="font-bold mb-2 text-indigo-700">Objetivos Específicos:</h4>
-                        <ul class="list-disc list-inside space-y-1">
-                            <li>Criar interfaces e controlar a navegação em apps Android com <strong>Kotlin</strong>.</li>
-                            <li>Implementar persistência local com <strong>SharedPreferences</strong> e <strong>Room</strong>.</li>
-                            <li>Consumir APIs <strong>RESTful</strong> com <strong>Retrofit</strong> e corrotinas.</li>
-                            <li>Integrar funcionalidades com <strong>Firebase</strong> (Firestore e Autenticação).</li>
-                            <li>Aplicar boas práticas com <strong>ViewModel</strong> e <strong>LiveData</strong>.</li>
-                            <li>Compreender os fundamentos do desenvolvimento híbrido com <strong>React Native</strong>.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="bg-white border border-slate-200 rounded-lg">
-                <button class="accordion-toggle w-full flex justify-between items-center p-5 font-semibold text-left" aria-expanded="false">
-                    <span>Metodologia e Avaliação</span>
-                    <span class="transform transition-transform duration-300 rotate-180">▼</span>
-                </button>
-                <div class="accordion-content overflow-hidden transition-all duration-500 ease-in-out" style="max-height: 0px;">
-                    <div class="p-5 border-t border-slate-200">
-                        <h4 class="font-bold mb-2 text-indigo-700">Metodologia:</h4>
-                        <p>Aulas expositivas e dialogadas com apoio de slides, exploração do ambiente institucional (AVA/Moodle, biblioteca digital) e abertura para perguntas. A participação ativa é fundamental!</p>
-                        <h4 class="font-bold mt-4 mb-2 text-indigo-700">Critérios de Avaliação:</h4>
-                        <ul class="list-disc list-inside space-y-2 font-mono">
-                            <li><strong>NP1:</strong> (Trabalho + Prova * 2) / 3</li>
-                            <li><strong>NP2:</strong> (Trabalho + Prova * 2) / 3</li>
-                            <li><strong>NP3:</strong> 10,0</li>
-                            <li><strong>NF:</strong> (NP1 + NP2 + NP3) / 3</li>
-                        </ul>
-                        <h5 class="font-semibold mt-4 mb-2">Para aprovação, o aluno deve atender a três condições:</h5>
-                        <ol class="list-decimal list-inside space-y-1">
-                            <li>Mínimo de 75% de presença na disciplina.</li>
-                            <li>Nota Final (NF) maior ou igual a 5,0.</li>
-                            <li>Nota da NP3 maior ou igual a 4,0.</li>
-                        </ol>
-                    </div>
-                </div>
-            </div>
+  <div id="importancia" class="mb-16">
+    <h3 class="text-3xl font-bold text-slate-800 mb-6">
+      Importância e Ecossistema do Android
+    </h3>
+    <div class="bg-white p-8 rounded-lg shadow-md">
+      <p class="text-lg mb-4">
+        O domínio do Android no mercado global é inegável, detendo a maior fatia
+        do mercado de sistemas operativos móveis. Mas o que isso significa na
+        prática?
+      </p>
+      <div class="chart-container my-8">
+        <canvas id="marketShareChart"></canvas>
+      </div>
+
+      <h4 class="font-bold text-2xl text-slate-800 mt-8 mb-4">
+        AOSP vs. GMS: O Coração Aberto e a Mente do Google
+      </h4>
+      <p class="mb-4">
+        Esta é uma das distinções mais importantes no mundo Android. Não são a
+        mesma coisa!
+      </p>
+      <div class="mt-4 grid md:grid-cols-2 gap-6">
+        <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+          <h5 class="font-bold text-lg mb-2">
+            AOSP (Android Open Source Project)
+          </h5>
+          <p>
+            É a base, o "coração" do Android. Um sistema operativo de código
+            aberto e gratuito que qualquer fabricante pode modificar e usar nos
+            seus dispositivos. Inclui o kernel Linux, as bibliotecas base e uma
+            interface de utilizador simples.
+          </p>
+          <p class="mt-2 text-sm">
+            <strong>Exemplo:</strong> O sistema Fire OS da Amazon é baseado no
+            AOSP, mas não inclui os serviços da Google.
+          </p>
         </div>
-        
-        <div id="revolucao" class="mb-16">
-            <h3 class="text-3xl font-bold text-slate-800 mb-6">O Palco da Revolução Móvel</h3>
-            <div class="bg-white p-8 rounded-lg shadow-md">
-                <p class="text-lg mb-4">Antes do Android e do iPhone, o mundo dos telemóveis era muito diferente. Era dominado por sistemas como o <strong>Symbian</strong> (Nokia), <strong>BlackBerry OS</strong> e <strong>Windows Mobile</strong>. Cada um era um "jardim murado", com pouca flexibilidade para desenvolvedores e uma experiência de utilização limitada.</p>
-                <p>A chegada do Android em 2008 foi um terramoto. A sua natureza aberta e gratuita democratizou o acesso à tecnologia, permitindo que qualquer fabricante criasse um smartphone. Isso deu início a uma era de inovação e competição sem precedentes, que nos trouxe até ao mundo hiperconectado em que vivemos hoje.</p>
-            </div>
+        <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+          <h5 class="font-bold text-lg mb-2">GMS (Google Mobile Services)</h5>
+          <p>
+            É a camada de software proprietária da Google que roda por cima do
+            AOSP. Inclui as aplicações e APIs que a maioria dos utilizadores
+            associa ao Android: Google Play Store, Gmail, Google Maps, YouTube,
+            e serviços essenciais como o Firebase Cloud Messaging.
+          </p>
+          <p class="mt-2 text-sm">
+            <strong>Importância:</strong> Para um fabricante ter acesso à Play
+            Store, precisa de licenciar o GMS e seguir as regras da Google.
+          </p>
         </div>
+      </div>
+      <div class="callout callout-info">
+        <h5 class="font-bold mb-2">Para o Desenvolvedor</h5>
+        <p>
+          Saber esta diferença é crucial. Se a sua aplicação depende de uma API
+          do Google Maps, por exemplo, ela não funcionará num dispositivo que só
+          tem o AOSP. Pode aprender mais na
+          <a
+            href="https://source.android.com/"
+            target="_blank"
+            class="font-semibold underline"
+            >página oficial do AOSP</a
+          >.
+        </p>
+      </div>
 
-        <div id="historia" class="mb-16">
-            <h3 class="text-3xl font-bold text-slate-800 mb-6">A História do Android</h3>
-            <div class="lg:flex lg:space-x-8">
-                <div id="timeline-container" class="lg:w-1/3 relative border-l-2 border-slate-200 pl-6 space-y-8">
-                    <!-- Conteúdo da timeline será gerado via JS -->
-                </div>
-                <div class="lg:w-2/3 mt-8 lg:mt-0">
-                    <div id="timeline-details" class="bg-white p-6 rounded-lg shadow-md sticky top-10">
-                        <h4 id="details-title" class="text-2xl font-bold text-amber-600 mb-2">Selecione um marco</h4>
-                        <p id="details-year" class="font-semibold text-slate-500 mb-4"></p>
-                        <div id="details-content" class="text-slate-700">
-                            <p>Clique num item da linha do tempo à esquerda para ver os detalhes aqui.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="importancia" class="mb-16">
-            <h3 class="text-3xl font-bold text-slate-800 mb-6">Importância e Ecossistema do Android</h3>
-            <div class="bg-white p-8 rounded-lg shadow-md">
-                 <p class="text-lg mb-4">O domínio do Android no mercado global é inegável, detendo a maior fatia do mercado de sistemas operativos móveis. Mas o que isso significa na prática?</p>
-                 <div class="chart-container my-8">
-                    <canvas id="marketShareChart"></canvas>
-                </div>
-                
-                <h4 class="font-bold text-2xl text-slate-800 mt-8 mb-4">AOSP vs. GMS: O Coração Aberto e a Mente do Google</h4>
-                <p class="mb-4">Esta é uma das distinções mais importantes no mundo Android. Não são a mesma coisa!</p>
-                <div class="mt-4 grid md:grid-cols-2 gap-6">
-                    <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
-                        <h5 class="font-bold text-lg mb-2">AOSP (Android Open Source Project)</h5>
-                        <p>É a base, o "coração" do Android. Um sistema operativo de código aberto e gratuito que qualquer fabricante pode modificar e usar nos seus dispositivos. Inclui o kernel Linux, as bibliotecas base e uma interface de utilizador simples.</p>
-                        <p class="mt-2 text-sm"><strong>Exemplo:</strong> O sistema Fire OS da Amazon é baseado no AOSP, mas não inclui os serviços da Google.</p>
-                    </div>
-                     <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
-                        <h5 class="font-bold text-lg mb-2">GMS (Google Mobile Services)</h5>
-                        <p>É a camada de software proprietária da Google que roda por cima do AOSP. Inclui as aplicações e APIs que a maioria dos utilizadores associa ao Android: Google Play Store, Gmail, Google Maps, YouTube, e serviços essenciais como o Firebase Cloud Messaging.</p>
-                         <p class="mt-2 text-sm"><strong>Importância:</strong> Para um fabricante ter acesso à Play Store, precisa de licenciar o GMS e seguir as regras da Google.</p>
-                    </div>
-                </div>
-                 <div class="callout callout-info">
-                    <h5 class="font-bold mb-2">Para o Desenvolvedor</h5>
-                    <p>Saber esta diferença é crucial. Se a sua aplicação depende de uma API do Google Maps, por exemplo, ela não funcionará num dispositivo que só tem o AOSP. Pode aprender mais na <a href="https://source.android.com/" target="_blank" class="font-semibold underline">página oficial do AOSP</a>.</p>
-                </div>
-
-                <h4 class="font-bold text-2xl text-slate-800 mt-12 mb-4">Kotlin-First: A Evolução da Programação Android</h4>
-                <p class="mb-4">Em 2019, a Google anunciou que o desenvolvimento Android seria "Kotlin-first". Mas porquê abandonar o Java, que foi a linguagem principal durante tantos anos?</p>
-                <div class="code-comparison mt-4">
-                    <div class="code-block">
-                        <h5 class="mono">Java (O Clássico)</h5>
-                        <pre><code class="language-java">button.setOnClickListener(new View.OnClickListener() {
+      <h4 class="font-bold text-2xl text-slate-800 mt-12 mb-4">
+        Kotlin-First: A Evolução da Programação Android
+      </h4>
+      <p class="mb-4">
+        Em 2019, a Google anunciou que o desenvolvimento Android seria
+        "Kotlin-first". Mas porquê abandonar o Java, que foi a linguagem
+        principal durante tantos anos?
+      </p>
+      <div class="code-comparison mt-4">
+        <div class="code-block">
+          <h5 class="mono">Java (O Clássico)</h5>
+          <pre><code class="language-java">button.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
         System.out.println("Botão clicado!");
     }
 });</code></pre>
-                    </div>
-                    <div class="code-block">
-                        <h5 class="mono">Kotlin (O Moderno)</h5>
-                        <pre><code class="language-kotlin">button.setOnClickListener { 
+        </div>
+        <div class="code-block">
+          <h5 class="mono">Kotlin (O Moderno)</h5>
+          <pre><code class="language-kotlin">button.setOnClickListener { 
     println("Botão clicado!")
 }</code></pre>
-                    </div>
-                </div>
-                <p class="mt-6">Como o exemplo acima ilustra, o Kotlin é muito mais <strong>conciso</strong>. Mas as vantagens vão além:</p>
-                <ul class="list-disc list-inside space-y-2 mt-4">
-                    <li><strong>Segurança contra Nulos (Null Safety):</strong> O sistema de tipos do Kotlin ajuda a eliminar os `NullPointerException`, os erros mais temidos pelos desenvolvedores Java.</li>
-                    <li><strong>Interoperabilidade:</strong> Pode ter código Kotlin e Java a coexistir no mesmo projeto sem qualquer problema, permitindo uma migração gradual.</li>
-                    <li><strong>Corrotinas:</strong> Simplificam drasticamente a programação assíncrona (tarefas que rodam em segundo plano, como chamadas de rede), tornando o código mais legível e menos propenso a erros.</li>
-                </ul>
-                <p class="mt-4">Pode explorar mais sobre a linguagem no <a href="https://kotlinlang.org/" target="_blank" class="text-indigo-600 hover:underline font-semibold">site oficial do Kotlin</a>.</p>
-
-            </div>
         </div>
+      </div>
+      <p class="mt-6">
+        Como o exemplo acima ilustra, o Kotlin é muito mais
+        <strong>conciso</strong>. Mas as vantagens vão além:
+      </p>
+      <ul class="list-disc list-inside space-y-2 mt-4">
+        <li>
+          <strong>Segurança contra Nulos (Null Safety):</strong> O sistema de
+          tipos do Kotlin ajuda a eliminar os `NullPointerException`, os erros
+          mais temidos pelos desenvolvedores Java.
+        </li>
+        <li>
+          <strong>Interoperabilidade:</strong> Pode ter código Kotlin e Java a
+          coexistir no mesmo projeto sem qualquer problema, permitindo uma
+          migração gradual.
+        </li>
+        <li>
+          <strong>Corrotinas:</strong> Simplificam drasticamente a programação
+          assíncrona (tarefas que rodam em segundo plano, como chamadas de
+          rede), tornando o código mais legível e menos propenso a erros.
+        </li>
+      </ul>
+      <p class="mt-4">
+        Pode explorar mais sobre a linguagem no
+        <a
+          href="https://kotlinlang.org/"
+          target="_blank"
+          class="text-indigo-600 hover:underline font-semibold"
+          >site oficial do Kotlin</a
+        >.
+      </p>
+    </div>
+  </div>
 
-        <div id="tarefa" class="mb-16">
-            <h3 class="text-3xl font-bold text-slate-800 mb-6">Encerramento e Próximos Passos</h3>
-            <div class="callout callout-task">
-                <h5 class="font-bold mb-2">Tarefa para a próxima aula (TED)</h5>
-                <p class="mb-4">Para aprofundar o nosso conhecimento sobre a evolução do Android e refletir sobre a disciplina, a tarefa é a seguinte:</p>
-                <ol class="list-decimal list-inside space-y-2">
-                    <li>Ler o Capítulo 1 da obra "Desenvolvimento para Dispositivos Móveis" (SAGAH, 2019).</li>
-                    <li>Listar pelo menos 5 marcos importantes da evolução do Android para discutirmos na próxima aula.</li>
-                    <li>Aceder ao Moodle e postar no fórum da "Aula 1" um parágrafo respondendo: <strong>“Como espero usar programação no meu futuro profissional?”</strong>.</li>
-                </ol>
-            </div>
-             <div class="bg-white p-6 rounded-lg shadow-md mt-8">
-                <h4 class="font-bold text-xl text-slate-800 mb-4">Bibliografia Recomendada</h4>
-                <ul class="list-disc list-inside space-y-2">
-                   <li>OLIVEIRA, Diego Bittencourt de et al. <strong>Desenvolvimento para Dispositivos Móveis</strong>. Porto Alegre: SAGAH, 2019. v. 1.</li>
-                   <li>URMA, Raoul-Gabriel; WARBURTON, Richard. <strong>Desenvolvimento Real de Software: Um Guia de Projetos para Fundamentos em Java</strong>. Alta Books, 2021.</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <script>
-        // O script é executado após o HTML ser completamente analisado,
-        // garantindo que todos os elementos (`#timeline-container`, etc.) já existem.
-        
-        function initAccordions() {
-            const accordions = document.querySelectorAll('.accordion-toggle');
-            accordions.forEach(button => {
-                button.addEventListener('click', () => {
-                    const content = button.nextElementSibling;
-                    const isExpanded = button.getAttribute('aria-expanded') === 'true';
-                    button.setAttribute('aria-expanded', !isExpanded);
-                    button.querySelector('span:last-child').style.transform = isExpanded ? 'rotate(180deg)' : 'rotate(0deg)';
-                    content.style.maxHeight = isExpanded ? '0px' : content.scrollHeight + 'px';
-                });
-            });
-        }
-
-        function initTimeline() {
-            const timelineContainer = document.getElementById('timeline-container');
-            if (!timelineContainer) return;
-
-            const timelineData = [
-                { year: '2003-2005', title: 'A Fundação', content: '<strong>2003:</strong> Android Inc. é fundada por Andy Rubin e equipa, com a visão de criar sistemas operativos mais inteligentes para dispositivos móveis, inicialmente focados em câmaras digitais.<br><br><strong>2005:</strong> Google adquire a Android Inc. e a equipa continua o desenvolvimento sob a nova alçada, mudando o foco para smartphones.'},
-                { year: '2007-2008', title: 'Aliança e Lançamento', content: '<strong>2007:</strong> É anunciada a Open Handset Alliance (OHA), um consórcio de empresas de tecnologia dedicadas a desenvolver padrões abertos para mobilidade.<br><br><strong>2008:</strong> Lançamento do <strong>HTC Dream (T-Mobile G1)</strong>, o primeiro smartphone comercial a correr Android, marcando o início de uma nova era.'},
-                { year: '2009-2010', title: 'Os Primeiros "Doces"', content: '<strong>1.5 Cupcake (2009):</strong> Revolucionou a interação com a introdução do teclado virtual na tela e suporte para widgets.<br><strong>2.2 Froyo (2010):</strong> Trouxe melhorias de performance significativas e funcionalidades como o hotspot Wi-Fi portátil.'},
-                { year: '2011-2013', title: 'Consolidação e Design', content: '<strong>4.0 Ice Cream Sandwich (2011):</strong> Unificou a experiência de UI entre telemóveis e tablets com a introdução do design "Holo".<br><strong>4.1 Jelly Bean (2012):</strong> Focou-se na fluidez e performance da interface com o "Project Butter" e introduziu o Google Now.'},
-                { year: '2014-Hoje', title: 'Maturidade e Inteligência', content: '<strong>5.0 Lollipop (2014):</strong> Introduziu o <strong>Material Design</strong>, uma linguagem visual que redefiniu a aparência do Android.<br><strong>9 Pie (2018):</strong> Incorporou inteligência artificial para otimizar a bateria e o brilho do ecrã, e introduziu a navegação por gestos.<br><strong>Hoje:</strong> O Android continua a evoluir com foco em IA, privacidade e suporte para novos formatos de dispositivos, como os dobráveis.'},
-            ];
-
-            const detailsTitle = document.getElementById('details-title');
-            const detailsYear = document.getElementById('details-year');
-            const detailsContent = document.getElementById('details-content');
-            let timelineItems = [];
-
-            timelineContainer.innerHTML = "";
-
-            timelineData.forEach((item, index) => {
-                const div = document.createElement('div');
-                div.className = 'timeline-item relative cursor-pointer';
-                div.dataset.index = index;
-                const h4 = document.createElement('h4');
-                h4.className = 'font-bold text-lg';
-                h4.textContent = item.title;
-                const p = document.createElement('p');
-                p.className = 'text-sm text-slate-500';
-                p.textContent = item.year;
-                div.appendChild(h4);
-                div.appendChild(p);
-                timelineContainer.appendChild(div);
-                timelineItems.push(div);
-            });
-
-            function updateDetails(index) {
-                const item = timelineData[index];
-                detailsTitle.textContent = item.title;
-                detailsYear.textContent = item.year;
-                detailsContent.innerHTML = item.content;
-                timelineItems.forEach((el, i) => {
-                    el.classList.toggle('active', i == index);
-                    el.querySelector('h4').classList.toggle('text-amber-600', i == index);
-                });
-            }
-
-            timelineContainer.addEventListener('click', (e) => {
-                const item = e.target.closest('.timeline-item');
-                if (item) {
-                    updateDetails(item.dataset.index);
-                }
-            });
-            
-            if (timelineItems.length > 0) {
-                updateDetails(0);
-            }
-        }
-
-        function initMarketShareChart() {
-            const ctx = document.getElementById('marketShareChart');
-            if (!ctx) return;
-
-            new Chart(ctx.getContext('2d'), {
-                type: 'bar',
-                data: {
-                    labels: ['Android', 'iOS', 'Outros'],
-                    datasets: [{
-                        label: 'Market Share Global (%)',
-                        data: [74, 25, 1],
-                        backgroundColor: ['#34d399', '#60a5fa', '#94a3b8'],
-                        borderColor: ['#059669', '#2563eb', '#475569'],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    indexAxis: 'y',
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: { legend: { display: false } },
-                    scales: {
-                        x: {
-                            beginAtZero: true,
-                            max: 100,
-                            ticks: { callback: (value) => value + '%' }
-                        }
-                    }
-                }
-            });
-        }
-
-        // Inicializar todos os componentes
-        initAccordions();
-        initTimeline();
-        initMarketShareChart();
-    </script>
-</body>
-</html>
+  <div id="tarefa" class="mb-16">
+    <h3 class="text-3xl font-bold text-slate-800 mb-6">
+      Encerramento e Próximos Passos
+    </h3>
+    <div class="callout callout-task">
+      <h5 class="font-bold mb-2">Tarefa para a próxima aula (TED)</h5>
+      <p class="mb-4">
+        Para aprofundar o nosso conhecimento sobre a evolução do Android e
+        refletir sobre a disciplina, a tarefa é a seguinte:
+      </p>
+      <ol class="list-decimal list-inside space-y-2">
+        <li>
+          Ler o Capítulo 1 da obra "Desenvolvimento para Dispositivos Móveis"
+          (SAGAH, 2019).
+        </li>
+        <li>
+          Listar pelo menos 5 marcos importantes da evolução do Android para
+          discutirmos na próxima aula.
+        </li>
+        <li>
+          Aceder ao Moodle e postar no fórum da "Aula 1" um parágrafo
+          respondendo:
+          <strong
+            >“Como espero usar programação no meu futuro profissional?”</strong
+          >.
+        </li>
+      </ol>
+    </div>
+    <div class="bg-white p-6 rounded-lg shadow-md mt-8">
+      <h4 class="font-bold text-xl text-slate-800 mb-4">
+        Bibliografia Recomendada
+      </h4>
+      <ul class="list-disc list-inside space-y-2">
+        <li>
+          OLIVEIRA, Diego Bittencourt de et al.
+          <strong>Desenvolvimento para Dispositivos Móveis</strong>. Porto
+          Alegre: SAGAH, 2019. v. 1.
+        </li>
+        <li>
+          URMA, Raoul-Gabriel; WARBURTON, Richard.
+          <strong
+            >Desenvolvimento Real de Software: Um Guia de Projetos para
+            Fundamentos em Java</strong
+          >. Alta Books, 2021.
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
