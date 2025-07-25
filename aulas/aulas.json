@@ -1,0 +1,37 @@
+[
+  {
+    "id": "aula1",
+    "titulo": "Aula 1: Introdução e Fundamentos do Android",
+    "descricao": "História, arquitetura e panorama do Android. Ambientação na disciplina e primeiros conceitos.",
+    "arquivo": "aula1.html",
+    "ativo": true
+  },
+  {
+    "id": "aula2",
+    "titulo": "Aula 2: Configuração do Ambiente de Desenvolvimento",
+    "descricao": "Instalação e configuração do Android Studio, criação do primeiro projeto.",
+    "arquivo": "aula2.html",
+    "ativo": false
+  },
+  {
+    "id": "aula3",
+    "titulo": "Aula 3: Layouts e Componentes de Interface",
+    "descricao": "Criação de layouts com XML, uso de Views e ViewGroups.",
+    "arquivo": "aula3.html",
+    "ativo": false
+  },
+  {
+    "id": "aula4",
+    "titulo": "Aula 4: Ciclo de Vida de Atividades",
+    "descricao": "Entendimento do ciclo de vida das atividades e como gerenciar estados.",
+    "arquivo": "aula4.html",
+    "ativo": false
+  },
+  {
+    "id": "aula5",
+    "titulo": "Aula 5: Intents e Navegação entre Atividades",
+    "descricao": "Uso de intents para comunicação entre atividades e navegação.",
+    "arquivo": "aula5.html",
+    "ativo": false
+  }
+]

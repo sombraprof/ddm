@@ -1,0 +1,237 @@
+<!-- AULA 1 SECTION -->
+<section id="aula1" class="mb-16 pt-16">
+  <header class="mb-8">
+    <h2 class="text-4xl font-bold text-slate-900">
+      Aula 1: Introdução e Fundamentos do Android
+    </h2>
+    <p class="text-lg text-slate-600 mt-2">
+      Uma jornada interativa pela história, arquitetura e futuro do Android.
+    </p>
+  </header>
+
+  <div class="my-8 bg-white p-6 rounded-lg shadow-md">
+    <h3 class="font-bold text-xl text-slate-800 mb-4">
+      Resumo em Áudio da Aula
+    </h3>
+    <audio controls class="w-full">
+      <source src="/assets/resumo_aula_1.mp3" type="audio/mpeg" />
+      O seu navegador não suporta o elemento de áudio.
+    </audio>
+  </div>
+
+  <div class="space-y-4 mb-12">
+    <div class="bg-white border border-slate-200 rounded-lg">
+      <button
+        class="accordion-toggle w-full flex justify-between items-center p-5 font-semibold text-left"
+        aria-expanded="false"
+      >
+        <span>Objetivos da Disciplina</span>
+        <span class="transform transition-transform duration-300 rotate-180"
+          >▼</span
+        >
+      </button>
+      <div
+        class="accordion-content overflow-hidden transition-all duration-500 ease-in-out"
+        style="max-height: 0px"
+      >
+        <div class="p-5 border-t border-slate-200">
+          <h3 class="font-bold mb-2">Objetivo Geral:</h3>
+          <p class="mb-4">
+            Capacitar o aluno para projetar, implementar e testar aplicações
+            móveis nativas e híbridas, compreendendo boas práticas de
+            persistência local, consumo de APIs e integração com serviços
+            backend modernos.
+          </p>
+          <h3 class="font-bold mb-2">Objetivos Específicos:</h3>
+          <ul class="list-disc list-inside space-y-1">
+            <li>
+              Criar interfaces e controlar a navegação em apps Android com
+              <strong>Kotlin</strong>.
+            </li>
+            <li>
+              Implementar persistência local com
+              <strong>SharedPreferences</strong> e <strong>Room</strong>.
+            </li>
+            <li>
+              Consumir APIs <strong>RESTful</strong> com
+              <strong>Retrofit</strong> e corrotinas.
+            </li>
+            <li>
+              Integrar funcionalidades com <strong>Firebase</strong> (Firestore
+              e Autenticação).
+            </li>
+            <li>
+              Aplicar boas práticas com <strong>ViewModel</strong> e
+              <strong>LiveData</strong>.
+            </li>
+            <li>
+              Compreender os fundamentos do desenvolvimento híbrido com
+              <strong>React Native</strong>.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="historia" class="mb-16">
+    <h3 class="text-3xl font-bold text-slate-800 mb-6">A Saga do Android</h3>
+    <div class="lg:flex lg:space-x-8">
+      <div
+        id="timeline-container"
+        class="lg:w-1/3 relative border-l-2 border-slate-200 pl-6 space-y-8"
+      ></div>
+      <div class="lg:w-2/3 mt-8 lg:mt-0">
+        <div
+          id="timeline-details"
+          class="bg-white p-6 rounded-lg shadow-md sticky top-10"
+        >
+          <h4 id="details-title" class="text-2xl font-bold text-amber-600 mb-2">
+            Selecione um marco
+          </h4>
+          <p id="details-year" class="font-semibold text-slate-500 mb-4"></p>
+          <div id="details-content" class="text-slate-700">
+            <p>
+              Clique num item da linha do tempo à esquerda para ver os detalhes
+              aqui.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="arquitetura" class="mb-16">
+    <h3 class="text-3xl font-bold text-slate-800 mb-6">
+      Arquitetura e Ecossistema
+    </h3>
+    <div class="grid md:grid-cols-2 gap-8">
+      <div>
+        <h4 class="font-bold text-xl mb-4 text-center">
+          Arquitetura do Sistema
+        </h4>
+        <div
+          class="space-y-1 text-center text-sm font-semibold text-white rounded-lg overflow-hidden shadow-lg"
+        >
+          <div class="bg-sky-700 p-3">Aplicações do Sistema</div>
+          <div class="bg-sky-600 p-3">Java API Framework</div>
+          <div class="bg-sky-500 p-3 flex justify-center items-center">
+            Bibliotecas Nativas & Android Runtime (ART)
+            <span class="gemini-btn" data-term="Android Runtime (ART)">✨</span>
+          </div>
+          <div class="bg-sky-400 p-3 flex justify-center items-center">
+            Hardware Abstraction Layer (HAL)
+            <span
+              class="gemini-btn"
+              data-term="Hardware Abstraction Layer (HAL)"
+              >✨</span
+            >
+          </div>
+          <div
+            class="bg-sky-300 p-3 text-sky-900 flex justify-center items-center"
+          >
+            Kernel Linux
+            <span class="gemini-btn" data-term="Kernel Linux">✨</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h4 class="font-bold text-xl mb-4 text-center">
+          Domínio de Mercado Global
+        </h4>
+        <div class="bg-white p-4 rounded-lg shadow-md">
+          <div class="chart-container">
+            <canvas id="marketShareChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="kotlin" class="mb-16">
+    <h3 class="text-3xl font-bold text-slate-800 mb-6">
+      Por que Aprender Android com Kotlin?
+    </h3>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div
+        class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow"
+      >
+        <h4 class="font-bold text-lg text-green-600 mb-2">✓ Mais Seguro</h4>
+        <p>
+          Ajuda a evitar `NullPointerException`, o erro mais comum em Java,
+          graças ao seu sistema de tipos robusto.
+        </p>
+      </div>
+      <div
+        class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow"
+      >
+        <h4 class="font-bold text-lg text-blue-600 mb-2">✎ Mais Conciso</h4>
+        <p>
+          Escreva significativamente menos código para as mesmas tarefas. Menos
+          código, menos bugs.
+        </p>
+      </div>
+      <div
+        class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow"
+      >
+        <h4 class="font-bold text-lg text-purple-600 mb-2">
+          ↔ 100% Interoperável
+        </h4>
+        <p>
+          Use código Kotlin e Java no mesmo projeto sem problemas. Aproveite
+          bibliotecas Java existentes.
+        </p>
+      </div>
+      <div
+        class="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow"
+      >
+        <h4 class="font-bold text-lg text-orange-600 mb-2">⚡ Corrotinas</h4>
+        <p>
+          Suporte nativo e simplificado para programação assíncrona, essencial
+          para apps modernos e responsivos.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div id="proximos-passos">
+    <h3 class="text-3xl font-bold text-slate-800 mb-6">
+      Próximos Passos e Ferramentas
+    </h3>
+    <div class="grid lg:grid-cols-2 gap-8">
+      <div
+        class="bg-amber-100 border-l-4 border-amber-500 text-amber-800 p-6 rounded-r-lg"
+      >
+        <h4 class="font-bold text-xl mb-4">Tarefa para a próxima aula (TED)</h4>
+        <ol class="list-decimal list-inside space-y-2">
+          <li>
+            Ler o Capítulo 1 da obra "Desenvolvimento para Dispositivos Móveis"
+            (SAGAH, 2019).
+          </li>
+          <li>
+            Listar 5 marcos que você considera os mais importantes na evolução
+            do Android e justificar o porquê.
+          </li>
+          <li>
+            Explorar o AVA e a biblioteca digital em busca de materiais de
+            apoio.
+          </li>
+        </ol>
+        <div class="mt-6">
+          <a
+            href="https://developer.android.com"
+            target="_blank"
+            class="inline-block bg-slate-800 text-white font-bold py-2 px-4 rounded hover:bg-slate-700 transition-colors mr-2"
+            >Doc. Android</a
+          >
+          <a
+            href="https://kotlinlang.org"
+            target="_blank"
+            class="inline-block bg-slate-800 text-white font-bold py-2 px-4 rounded hover:bg-slate-700 transition-colors"
+            >Doc. Kotlin</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
