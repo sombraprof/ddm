@@ -9,6 +9,16 @@
     </p>
   </header>
 
+  <div class="my-8 bg-white p-6 rounded-lg shadow-md">
+    <h3 class="font-bold text-xl text-slate-800 mb-4">
+      Resumo em Áudio da Aula
+    </h3>
+    <audio controls class="w-full">
+      <source src="assets/resumo_aula_1.mp3" type="audio/mpeg" />
+      O seu navegador não suporta o elemento de áudio.
+    </audio>
+  </div>
+
   <div class="bg-white p-6 rounded-lg shadow-md mb-12">
     <h3 class="font-bold text-2xl text-slate-800 mb-4">
       Plano de Voo da Aula (1h 40min)
@@ -39,8 +49,8 @@
       <h5 class="font-bold mb-2">Check-in Inicial: Vamos Conversar!</h5>
       <p>
         Antes de começarmos, vamos aquecer os motores. Qual foi a aplicação que
-        mais usaram hoje? O que vos fascinou nela? A vossa experiência como
-        utilizadores é o ponto de partida para se tornarem excelentes
+        mais usaram hoje? O que te fascinou nela? A sua experiência como
+        usuário é o ponto de partida para se tornarem excelentes
         desenvolvedores.
       </p>
     </div>
@@ -61,7 +71,9 @@
         <div class="p-5 border-t border-slate-200">
           <h4 class="font-bold mb-2 text-indigo-700">Objetivo Geral:</h4>
           <p class="mb-4">
-            Capacitar o aluno para projetar, implementar e testar aplicações
+            Capacitar o aluno para projetar, implementar e testar aplicativos
+            móveis Android, utilizando a linguagem <strong>Kotlin</strong> e
+            ferramentas modernas do ecossistema Android. O curso abrange tanto
             móveis nativas e híbridas, compreendendo boas práticas de
             persistência local, consumo de APIs e integração com serviços
             backend modernos.
@@ -139,26 +151,76 @@
     </div>
   </div>
 
+  <div id="anatomia" class="mb-16">
+    <h3 class="text-3xl font-bold text-slate-800 mb-6">
+      A Anatomia de uma Aplicação Móvel
+    </h3>
+    <div class="bg-white p-8 rounded-lg shadow-md">
+      <p class="text-lg mb-6">
+        Antes de mergulharmos nos detalhes, é útil ter um mapa mental de como
+        qualquer aplicação funciona. Podemos pensar numa app como sendo composta
+        por três pilares fundamentais. Ao longo da disciplina, vamos construir
+        cada uma destas partes.
+      </p>
+      <div class="grid md:grid-cols-3 gap-6 text-center">
+        <div class="bg-blue-100 p-6 rounded-lg">
+          <h4 class="font-bold text-xl text-blue-800">
+            1. Interface do Usuário (UI)
+          </h4>
+          <p class="mt-2">
+            É a parte visual, com a qual o usuário interage: os botões,
+            textos, imagens e telas. Vamos construir isto com XML e, mais tarde,
+            com Jetpack Compose.
+          </p>
+        </div>
+        <div class="bg-green-100 p-6 rounded-lg">
+          <h4 class="font-bold text-xl text-green-800">2. Lógica de Negócio</h4>
+          <p class="mt-2">
+            É o "cérebro" da aplicação. Onde as regras, os cálculos e as
+            decisões acontecem. É aqui que o nosso código
+            <strong>Kotlin</strong> vai brilhar.
+          </p>
+        </div>
+        <div class="bg-purple-100 p-6 rounded-lg">
+          <h4 class="font-bold text-xl text-purple-800">3. Dados</h4>
+          <p class="mt-2">
+            É a informação que a nossa app manipula. Pode ser armazenada
+            localmente no dispositivo (com <strong>Room</strong>) ou na nuvem
+            (com <strong>Firebase</strong>).
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div id="revolucao" class="mb-16">
     <h3 class="text-3xl font-bold text-slate-800 mb-6">
-      O Palco da Revolução Móvel
+      O Palco da Revolução Móvel: O Mundo Pré-Android
     </h3>
     <div class="bg-white p-8 rounded-lg shadow-md">
       <p class="text-lg mb-4">
-        Antes do Android e do iPhone, o mundo dos telemóveis era muito
-        diferente. Era dominado por sistemas como o
+        Antes do Android e do iPhone, o mundo dos celulares era muito
+        diferente. Era dominado por sistemas como
         <strong>Symbian</strong> (Nokia), <strong>BlackBerry OS</strong> e
         <strong>Windows Mobile</strong>. Cada um era um "jardim murado", com
-        pouca flexibilidade para desenvolvedores e uma experiência de utilização
-        limitada.
+        desafios significativos:
       </p>
-      <p>
-        A chegada do Android em 2008 foi um terramoto. A sua natureza aberta e
-        gratuita democratizou o acesso à tecnologia, permitindo que qualquer
-        fabricante criasse um smartphone. Isso deu início a uma era de inovação
-        e competição sem precedentes, que nos trouxe até ao mundo hiperconectado
-        em que vivemos hoje.
-      </p>
+      <ul class="list-disc list-inside space-y-3 mt-4">
+        <li>
+          <strong>Para o Usuário:</strong> A experiência era fragmentada. A
+          "loja de apps" de um Nokia era completamente diferente da de um
+          BlackBerry. Instalar uma aplicação era muitas vezes um processo
+          complicado e pouco intuitivo.
+        </li>
+        <li>
+          <strong>Para o Desenvolvedor:</strong> Este era o maior obstáculo. O
+          desenvolvimento era caro e complexo. Para lançar uma aplicação, era
+          preciso criar e manter versões completamente diferentes para cada
+          sistema operativo. O Android propôs uma plataforma unificada, de
+          código aberto e gratuita, o que foi absolutamente revolucionário e
+          democratizou o desenvolvimento de apps.
+        </li>
+      </ul>
     </div>
   </div>
 
@@ -170,9 +232,7 @@
       <div
         id="timeline-container"
         class="lg:w-1/3 relative border-l-2 border-slate-200 pl-6 space-y-8"
-      >
-        <!-- Conteúdo da timeline será gerado via JS -->
-      </div>
+      ></div>
       <div class="lg:w-2/3 mt-8 lg:mt-0">
         <div
           id="timeline-details"
@@ -200,7 +260,7 @@
     <div class="bg-white p-8 rounded-lg shadow-md">
       <p class="text-lg mb-4">
         O domínio do Android no mercado global é inegável, detendo a maior fatia
-        do mercado de sistemas operativos móveis. Mas o que isso significa na
+        do mercado de sistemas operacionais móveis. Mas o que isso significa na
         prática?
       </p>
       <div class="chart-container my-8">
@@ -223,7 +283,7 @@
             É a base, o "coração" do Android. Um sistema operativo de código
             aberto e gratuito que qualquer fabricante pode modificar e usar nos
             seus dispositivos. Inclui o kernel Linux, as bibliotecas base e uma
-            interface de utilizador simples.
+            interface de usuário simples.
           </p>
           <p class="mt-2 text-sm">
             <strong>Exemplo:</strong> O sistema Fire OS da Amazon é baseado no
@@ -234,7 +294,9 @@
           <h5 class="font-bold text-lg mb-2">GMS (Google Mobile Services)</h5>
           <p>
             É a camada de software proprietária da Google que roda por cima do
-            AOSP. Inclui as aplicações e APIs que a maioria dos utilizadores
+            AOSP. Inclui as aplicativos
+            móveis Android, utilizando a linguagem <strong>Kotlin</strong> e
+            ferramentas modernas do ecossistema Android. O curso abrange tanto e APIs que a maioria dos usuários
             associa ao Android: Google Play Store, Gmail, Google Maps, YouTube,
             e serviços essenciais como o Firebase Cloud Messaging.
           </p>
@@ -291,7 +353,7 @@
       <ul class="list-disc list-inside space-y-2 mt-4">
         <li>
           <strong>Segurança contra Nulos (Null Safety):</strong> O sistema de
-          tipos do Kotlin ajuda a eliminar os `NullPointerException`, os erros
+          tipos do Kotlin ajuda a eliminar os <code-text>NullPointerException</code-text>, os erros
           mais temidos pelos desenvolvedores Java.
         </li>
         <li>
@@ -304,16 +366,62 @@
           assíncrona (tarefas que rodam em segundo plano, como chamadas de
           rede), tornando o código mais legível e menos propenso a erros.
         </li>
+        <li>
+          <strong>Preparado para o Futuro:</strong> O Kotlin é a base para as
+          tecnologias mais modernas do ecossistema, como o
+          <strong>Jetpack Compose</strong>, o novo toolkit declarativo para a
+          construção de interfaces de usuário.
+        </li>
       </ul>
-      <p class="mt-4">
-        Pode explorar mais sobre a linguagem no
-        <a
-          href="https://kotlinlang.org/"
-          target="_blank"
-          class="text-indigo-600 hover:underline font-semibold"
-          >site oficial do Kotlin</a
-        >.
+      <div class="callout callout-info">
+        <h5 class="font-bold mb-2">Assista ao Anúncio!</h5>
+        <p>
+          A decisão de tornar o Kotlin a linguagem principal foi um marco. Pode
+          ver mais sobre a visão da Google no
+          <a
+            href="https://youtu.be/ldM6QZy9e0s"
+            target="_blank"
+            class="font-semibold underline"
+            >anúncio oficial durante o Google I/O 2019</a
+          >.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div id="nosso-projeto" class="mb-16">
+    <h3 class="text-3xl font-bold text-slate-800 mb-6">
+      O Nosso Primeiro Projeto: O Que Vamos Construir?
+    </h3>
+    <div class="bg-white p-8 rounded-lg shadow-md">
+      <p class="text-lg mb-4">
+        Para que a teoria não fique abstrata, vamos ter um objetivo prático
+        desde o início. Ao longo das próximas aulas da Unidade I, vamos aplicar
+        os conceitos que aprendemos para construir uma aplicação simples de
+        "Boas-vindas".
       </p>
+      <div
+        class="bg-slate-50 border border-slate-200 p-6 mt-4 rounded-lg flex flex-col md:flex-row items-center gap-6"
+      >
+        <img
+          src="https://placehold.co/200x400/e0e7ff/3730a3?text=App+Ol%C3%A1+Mundo"
+          alt="Mockup da aplicação Olá Mundo"
+          class="rounded-lg shadow-md"
+        />
+        <div class="text-center md:text-left">
+          <h4 class="font-bold text-xl text-indigo-700">App "Olá, [Nome]!"</h4>
+          <p class="mt-2">
+            A nossa meta será criar um tela onde o usuário pode inserir o seu
+            nome num campo de texto. Ao clicar num botão, a aplicação irá exibir
+            uma mensagem de saudação personalizada, como "Olá, Tiago!".
+          </p>
+          <p class="mt-2">
+            Com este projeto simples, vamos aprender na prática a usar
+            componentes de UI, manipular eventos de clique e gerir dados
+            básicos.
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -337,7 +445,7 @@
           discutirmos na próxima aula.
         </li>
         <li>
-          Aceder ao Moodle e postar no fórum da "Aula 1" um parágrafo
+          Acesse ao Moodle e postar no fórum da "Aula 1" um parágrafo
           respondendo:
           <strong
             >“Como espero usar programação no meu futuro profissional?”</strong

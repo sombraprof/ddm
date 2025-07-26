@@ -1,21 +1,29 @@
+/* === Base === */
 body {
   font-family: "Inter", sans-serif;
   background-color: #f8fafc; /* slate-50 */
   color: #334155; /* slate-700 */
 }
+
 .mono {
   font-family: "Roboto Mono", monospace;
 }
+
+/* === Navegação === */
 .nav-link-disabled {
   color: #64748b; /* slate-500 */
   cursor: not-allowed;
 }
+
+/* === Callouts === */
 .callout {
   padding: 1.25rem;
   border-left-width: 4px;
   border-radius: 0.5rem;
   margin-top: 1.5rem;
+  margin-bottom: 1.5rem; /* do primeiro style */
 }
+
 .callout-good-practice {
   background-color: #f0fdf4; /* green-50 */
   border-color: #22c55e; /* green-500 */
@@ -24,6 +32,7 @@ body {
 .callout-good-practice h5 {
   color: #166534; /* green-900 */
 }
+
 .callout-info {
   background-color: #eff6ff; /* blue-50 */
   border-color: #3b82f6; /* blue-500 */
@@ -32,6 +41,7 @@ body {
 .callout-info h5 {
   color: #1e3a8a; /* blue-900 */
 }
+
 .callout-task {
   background-color: #fefce8; /* yellow-50 */
   border-color: #eab308; /* yellow-500 */
@@ -40,6 +50,8 @@ body {
 .callout-task h5 {
   color: #713f12; /* yellow-900 */
 }
+
+/* === Timeline === */
 .timeline-item::before {
   content: "";
   position: absolute;
@@ -54,6 +66,8 @@ body {
 .timeline-item.active::before {
   background-color: #f59e0b;
 }
+
+/* === Chart Container === */
 .chart-container {
   position: relative;
   width: 100%;
@@ -63,6 +77,31 @@ body {
   height: 300px;
   max-height: 350px;
 }
+
+/* === Code Blocks === */
+.code-block-wrapper {
+  position: relative;
+  margin-top: 1.5rem; /* do primeiro style */
+}
+
+.code-block {
+  background-color: #1e293b;
+  color: #e2e8f0;
+  padding: 1.5rem 1rem 1rem 1rem; /* padding maior do primeiro style */
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  font-size: 0.875rem;
+}
+
+.code-block h5 {
+  color: #cbd5e1;
+  font-weight: bold;
+  border-bottom: 1px solid #475569;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+/* === Code Comparison Layout === */
 .code-comparison {
   display: grid;
   grid-template-columns: 1fr;
@@ -73,17 +112,66 @@ body {
     grid-template-columns: 1fr 1fr;
   }
 }
-.code-block {
-  background-color: #1e293b;
-  color: #e2e8f0;
-  padding: 1rem;
+
+/* === File Tree === */
+.file-tree {
+  background-color: #f1f5f9;
+  padding: 1.5rem;
   border-radius: 0.5rem;
-  overflow-x: auto;
+  border: 1px solid #e2e8f0;
 }
-.code-block h5 {
-  color: #cbd5e1;
+.file-tree-item {
+  padding: 0.5rem;
+  margin-left: 1.5rem;
+  border-left: 2px solid #cbd5e1;
+}
+
+/* === Log === */
+.log-tag {
   font-weight: bold;
-  border-bottom: 1px solid #475569;
-  padding-bottom: 0.5rem;
-  margin-bottom: 1rem;
+}
+.log-v {
+  color: #bbbbbb;
+} /* Verbose */
+.log-d {
+  color: #4285f4;
+} /* Debug */
+.log-i {
+  color: #0f9d58;
+} /* Info */
+.log-w {
+  color: #f4b400;
+} /* Warning */
+.log-e {
+  color: #db4437;
+} /* Error */
+
+/* === Copy Button === */
+.copy-button {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background-color: transparent;
+  color: #94a3b8; /* slate-400 */
+  border: 1px solid #64748b; /* slate-500 */
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  font-size: 0.75rem;
+  transition: all 0.2s;
+}
+.copy-button:hover {
+  background-color: #334155; /* slate-700 */
+  color: #e2e8f0; /* slate-200 */
+}
+
+/* === Code === */
+code-text {
+  background-color: #e2e8f0; /* slate-200 */
+  padding: 0.125rem 0.375rem;
+  border-radius: 0.25rem;
+  font-family: "Roboto Mono", monospace;
+  font-size: 0.9em;
+  color: #1e293b; /* slate-800 */
+  font-style: italic;
 }

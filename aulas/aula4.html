@@ -1,151 +1,517 @@
 <!-- Seção da Aula 4 -->
 <section id="aula4" class="mb-16 pt-16">
-    <header class="mb-12">
-        <h2 class="text-4xl font-bold text-slate-900">Aula 4: Do Pseudocódigo ao Primeiro Programa em C</h2>
-        <p class="text-lg text-slate-600 mt-2">A transição do planeamento em Portugol para a implementação em Linguagem C.</p>
-    </header>
+  <header class="mb-12 border-b pb-8">
+    <h2 class="text-4xl font-bold text-slate-900">
+      Aula 4: Unidade I – Componentes de UI
+    </h2>
+    <p class="text-lg text-slate-600 mt-2">
+      Apresentar os principais componentes de interface gráfica no Android e
+      demonstrar como utilizá-los na construção de telas simples.
+    </p>
+  </header>
 
-    <div class="bg-white p-8 rounded-lg shadow-md mb-12">
-        <h3 class="font-bold text-2xl text-slate-800 mb-4">Plano de Voo da Aula de Hoje</h3>
-        <ul class="list-disc list-inside space-y-2 text-slate-700">
-<li>O que é Pseudocódigo (Portugol) e por que é uma ferramenta essencial.</li>
-<li>Estrutura e comandos básicos de um algoritmo em Portugol.</li>
-<li>Introdução à Linguagem C: a sintaxe e a estrutura de um programa básico.</li>
-<li>Comparativo lado a lado: traduzindo um algoritmo de Portugol para C.</li>
-<li>Atividade prática em duplas: criar e traduzir pequenos algoritmos.</li>
-<li>Apresentação da tarefa (TED) da Aula 4.</li>
+  <div class="bg-white p-6 rounded-lg shadow-md mb-12">
+    <h3 class="font-bold text-2xl text-slate-800 mb-4">Plano de Voo da Aula</h3>
+    <ul class="list-disc list-inside space-y-2 text-slate-700">
+      <li>
+        <strong>Recapitulação:</strong> O que são a pasta <code-text>res</code-text> e o arquivo
+        <code-text>activity_main.xml</code-text>?
+      </li>
+      <li>
+        <strong>Os Blocos de Construção da Interface:</strong> Introdução ao
+        conceito de <code-text>View</code-text>.
+      </li>
+      <li>
+        <strong>Análise dos Componentes Essenciais:</strong> Um olhar detalhado
+        sobre <code-text>TextView</code-text>, <code-text>EditText</code-text>, <code-text>Button</code-text>, <code-text>ImageView</code-text>, <code-text>CheckBox</code-text> e
+        <code-text>RadioButton</code-text>.
+      </li>
+      <li>
+        <strong>Atividade Prática:</strong> Mãos à obra! Vamos construir nossa
+        primeira interface de usuário no Android Studio.
+      </li>
+      <li>
+        <strong>Próximos Passos:</strong> Como daremos "vida" a esta interface
+        na próxima aula.
+      </li>
+      <li>
+        <strong>Tarefa (TED):</strong> Desafio para consolidar o aprendizado.
+      </li>
+    </ul>
+  </div>
+
+  <div id="views" class="mb-16">
+    <h3 class="text-3xl font-bold text-slate-800 mb-6">
+      Os Blocos de Construção: O que é uma <code-text>View</code-text>?
+    </h3>
+    <div class="bg-white p-8 rounded-lg shadow-md">
+      <p class="text-lg mb-4">
+        No Android, todo componente de interface que você vê na tela é uma
+        subclasse de uma classe chamada <strong><code-text>View</code-text></strong>. Pense nas
+        <code-text>Views</code-text> como os "blocos de Lego" da nossa interface.
+      </p>
+      <p>
+        Um <code-text>TextView</code-text> (para mostrar texto) é um tipo de <code-text>View</code-text>. Um <code-text>Button</code-text>
+        (para cliques) é outro tipo de <code-text>View</code-text>. Um <code-text>EditText</code-text> (para inserir
+        texto) também é um tipo de <code-text>View</code-text>. Hoje, vamos aprender a usar alguns
+        desses blocos fundamentais para construir nossa primeira estrutura.
+      </p>
+    </div>
+  </div>
+
+  <div class="space-y-8 mb-16">
+    <h3 class="text-3xl font-bold text-slate-800 mb-6">
+      Componentes Essenciais de UI
+    </h3>
+
+    <!-- TextView -->
+    <div class="bg-white p-8 rounded-lg shadow-md">
+      <h4 class="font-bold text-2xl text-slate-800 mb-2">1. TextView</h4>
+      <p class="mb-4">
+        <strong>O que é e para que serve?</strong> É o componente mais básico
+        para exibir texto na tela. Use-o para mostrar títulos, parágrafos,
+        rótulos e qualquer informação estática para o usuário.
+      </p>
+      <img
+        src="https://placehold.co/600x100/e0e7ff/3730a3?text=Este+é+um+TextView"
+        alt="Exemplo de um TextView"
+        class="my-4 rounded-lg shadow-sm mx-auto"
+      />
+      <div class="code-block">
+        <h5 class="mono">&lt;-- Exemplo de TextView em XML --&gt;</h5>
+        <pre><code>&lt;TextView
+    android:id="@+id/textViewTitulo"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Bem-vindo ao Meu App"
+    android:textSize="24sp"
+    android:textColor="@color/black" /&gt;</code></pre>
+      </div>
+      <div class="callout callout-info">
+        <h5 class="font-bold mb-2">Atributos Importantes</h5>
+        <ul class="list-disc list-inside">
+          <li>
+            <code>android:id="@+id/..."</code>: Um identificador único para este
+            componente. É como o "CPF" da View, essencial para podermos
+            referenciá-la no código Kotlin mais tarde.
+          </li>
+          <li>
+            <code>android:layout_width</code> e
+            <code>android:layout_height</code>: Definem a largura e altura.
+            <code>wrap_content</code> faz o componente ter o tamanho exato do
+            seu conteúdo.
+          </li>
+          <li>
+            <code>android:text</code>: O texto que será exibido.
+            <strong>Boa prática:</strong> use referências a recursos de string
+            (<code>@string/meu_texto</code>) em vez de texto fixo.
+          </li>
+          <li>
+            <code>android:textSize</code>: O tamanho do texto (use a unidade
+            <code-text>sp</code-text> para escalabilidade).
+          </li>
         </ul>
-    </div>
-    
-    <div class="mb-16">
-        <h3 class="text-3xl font-bold text-slate-800 mb-6">Pseudocódigo: A Ponte Entre a Lógica e o Código</h3>
-        <div class="bg-white p-8 rounded-lg shadow-md">
-<p class="text-lg mb-4">Até agora, planeámos os nossos algoritmos usando a linguagem do dia a dia. Isso é ótimo para a lógica, mas os computadores precisam de mais estrutura. É aqui que entra o <strong>Pseudocódigo</strong> (que chamaremos de <strong>Portugol</strong>).</p>
-<p class="mb-4">O Portugol é uma linguagem intermediária. Não é tão informal como o português, mas também não é tão rígida e cheia de regras como uma linguagem de programação real (como C). Ele permite-nos escrever a nossa lógica de forma estruturada, focando no "o quê" fazer, sem nos preocuparmos com os detalhes técnicos do "como".</p>
-<div class="callout callout-good-practice">
-    <h5 class="font-bold mb-2">Por que usar Portugol?</h5>
-    <p>Ele força-nos a organizar o pensamento em variáveis, comandos de entrada, processamento e saída, tornando a tradução para qualquer linguagem de programação (C, Python, Java, etc.) uma tarefa muito mais simples e direta.</p>
-</div>
-        </div>
+        <p class="mt-4">
+          Explore todos os atributos na
+          <a
+            href="https://developer.android.com/reference/android/widget/TextView"
+            target="_blank"
+            class="font-semibold underline"
+            >documentação oficial do TextView</a
+          >.
+        </p>
+      </div>
     </div>
 
-    <div class="mb-16">
-        <h3 class="text-3xl font-bold text-slate-800 mb-6">Estrutura e Comandos Básicos do Portugol</h3>
-        <div class="bg-white p-8 rounded-lg shadow-md">
-<p class="mb-4">Um algoritmo em Portugol tem uma estrutura bem definida:</p>
-<div class="bg-slate-800 text-white p-4 rounded-md mono text-sm">
-    <pre><code>ALGORITMO "nome_do_algoritmo"
-// Seção de Declaração de Variáveis
-VAR
-  nome_variavel_1 : TIPO_DE_DADO
-  nome_variavel_2 : TIPO_DE_DADO
-
-// Seção de Comandos
-INICIO
-  // Comandos de entrada, processamento e saída
-FIM_ALGORITMO</code></pre>
-</div>
-<h4 class="font-semibold text-xl text-indigo-700 mt-6 mb-3">Comandos Essenciais:</h4>
-<ul class="list-disc list-inside space-y-3 mt-4">
-    <li><code>LEIA(variavel)</code>: Lê um valor digitado pelo utilizador e guarda-o na variável especificada.</li>
-    <li><code>ESCREVA("texto", variavel)</code>: Mostra uma mensagem ou o conteúdo de uma variável no ecrã.</li>
-    <li><code>variavel &lt;- valor_ou_expressao</code>: Atribui um valor (ou o resultado de um cálculo) a uma variável. A seta `&lt;-` significa "recebe".</li>
-</ul>
-        </div>
+    <!-- EditText -->
+    <div class="bg-white p-8 rounded-lg shadow-md">
+      <h4 class="font-bold text-2xl text-slate-800 mb-2">2. EditText</h4>
+      <p class="mb-4">
+        <strong>O que é e para que serve?</strong> É um campo de texto que
+        permite ao usuário inserir e editar informações. É a porta de entrada de
+        dados do seu aplicativo.
+      </p>
+      <img
+        src="https://placehold.co/600x100/e0e7ff/3730a3?text=Digite+seu+nome+aqui..."
+        alt="Exemplo de um EditText"
+        class="my-4 rounded-lg shadow-sm mx-auto"
+      />
+      <div class="code-block">
+        <h5 class="mono">&lt;-- Exemplo de EditText em XML --&gt;</h5>
+        <pre><code>&lt;EditText
+    android:id="@+id/editTextNome"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="Digite seu nome"
+    android:inputType="textPersonName" /&gt;</code></pre>
+      </div>
+      <div class="callout callout-info">
+        <h5 class="font-bold mb-2">Atributos Importantes</h5>
+        <ul class="list-disc list-inside">
+          <li>
+            <code>android:layout_width="match_parent"</code>: Faz o componente
+            ocupar toda a largura disponível do seu "container" pai.
+          </li>
+          <li>
+            <code>android:hint</code>: Mostra um texto de dica cinza claro que
+            desaparece quando o usuário começa a digitar. É uma ótima prática
+            para guiar o usuário.
+          </li>
+          <li>
+            <code>android:inputType</code>: Ajuda o sistema a otimizar o teclado
+            para o tipo de dado esperado (texto, número, email, senha, etc.),
+            melhorando a experiência do usuário.
+          </li>
+        </ul>
+        <p class="mt-4">
+          Veja todos os tipos de input na
+          <a
+            href="https://developer.android.com/reference/android/widget/EditText"
+            target="_blank"
+            class="font-semibold underline"
+            >documentação oficial do EditText</a
+          >.
+        </p>
+      </div>
     </div>
 
-    <div class="mb-16">
-        <h3 class="text-3xl font-bold text-slate-800 mb-6">Comparativo: Somar Dois Números</h3>
-        <p class="mb-4">A melhor forma de entender a transição é ver um exemplo prático. Vamos traduzir um algoritmo que soma dois números de Portugol para C.</p>
-        <div class="grid lg:grid-cols-2 gap-8">
-<!-- Coluna do Pseudocódigo -->
-<div class="bg-white p-6 rounded-lg shadow-md">
-    <h4 class="font-bold text-xl text-slate-800 mb-4 text-center">1. O Plano (Portugol)</h4>
-    <div class="bg-slate-800 text-white p-4 rounded-md mono text-sm h-full">
-<pre><code>ALGORITMO "SomaDoisNumeros"
-VAR
-  num1, num2, soma: INTEIRO
-
-INICIO
-  ESCREVA("Digite o primeiro número: ")
-  LEIA(num1)
-  
-  ESCREVA("Digite o segundo número: ")
-  LEIA(num2)
-  
-  soma &lt;- num1 + num2
-  
-  ESCREVA("A soma é: ", soma)
-FIM_ALGORITMO</code></pre>
-    </div>
-</div>
-<!-- Coluna do Código C -->
-<div class="bg-white p-6 rounded-lg shadow-md">
-    <h4 class="font-bold text-xl text-slate-800 mb-4 text-center">2. A Execução (Linguagem C)</h4>
-    <div class="bg-slate-800 text-white p-4 rounded-md mono text-sm h-full">
-<pre><code>#include <stdio.h>
-
-int main() {
-  int num1, num2, soma;
-
-  printf("Digite o primeiro número: ");
-  scanf("%d", &num1);
-  
-  printf("Digite o segundo número: ");
-  scanf("%d", &num2);
-  
-  soma = num1 + num2;
-  
-  printf("A soma é: %d\n", soma);
-  
-  return 0;
-}</code></pre>
-    </div>
-</div>
-        </div>
-        <div class="bg-white p-6 rounded-lg shadow-md mt-8">
-<h4 class="font-bold text-xl text-slate-800 mb-4">Análise da Tradução</h4>
-<ul class="list-disc list-inside space-y-2">
-    <li>A seção <code>VAR</code> em Portugol corresponde à declaração de variáveis em C (ex: <code>int num1;</code>).</li>
-    <li>O comando <code>ESCREVA</code> é traduzido para a função <code>printf()</code> em C.</li>
-    <li>O comando <code>LEIA</code> é traduzido para a função <code>scanf()</code> em C. Note os detalhes técnicos como <code>%d</code> e o <code>&</code>.</li>
-    <li>A atribuição <code>&lt;-</code> torna-se o sinal de igual <code>=</code> em C.</li>
-    <li>Todo programa em C precisa da estrutura <code>#include <stdio.h></code> e da função principal <code>int main() { ... }</code>.</li>
-</ul>
-        </div>
+    <!-- Button -->
+    <div class="bg-white p-8 rounded-lg shadow-md">
+      <h4 class="font-bold text-2xl text-slate-800 mb-2">3. Button</h4>
+      <p class="mb-4">
+        <strong>O que é e para que serve?</strong> É um componente que o usuário
+        pode pressionar para acionar uma ação. É o principal meio de interação
+        para executar comandos no app.
+      </p>
+      <img
+        src="https://placehold.co/600x100/e0e7ff/3730a3?text=CLIQUE+AQUI"
+        alt="Exemplo de um Button"
+        class="my-4 rounded-lg shadow-sm mx-auto"
+      />
+      <div class="code-block">
+        <h5 class="mono">&lt;-- Exemplo de Button em XML --&gt;</h5>
+        <pre><code>&lt;Button
+    android:id="@+id/buttonConfirmar"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Confirmar" /&gt;</code></pre>
+      </div>
+      <div class="callout callout-info">
+        <h5 class="font-bold mb-2">Atributos Importantes</h5>
+        <ul class="list-disc list-inside">
+          <li>
+            <code>android:text</code>: O texto que aparece dentro do botão.
+          </li>
+          <li>
+            A principal função do botão é responder a cliques, o que faremos na
+            próxima aula usando um <code-text>setOnClickListener</code-text> no nosso código Kotlin.
+          </li>
+        </ul>
+        <p class="mt-4">
+          Saiba mais na
+          <a
+            href="https://developer.android.com/reference/android/widget/Button"
+            target="_blank"
+            class="font-semibold underline"
+            >documentação oficial do Button</a
+          >.
+        </p>
+      </div>
     </div>
 
-    <div class="mb-16">
-        <h3 class="text-3xl font-bold text-slate-800 mb-6">Atividade Prática em Duplas</h3>
-        <div class="bg-white p-8 rounded-lg shadow-md">
-<p class="mb-4">Agora, em duplas, escolham um dos problemas abaixo. Primeiro, criem a solução em <strong>Portugol</strong> no papel. Depois, abram um editor de texto e tentem traduzir o vosso algoritmo para a <strong>Linguagem C</strong>, usando o exemplo da soma como guia.</p>
-<div class="grid md:grid-cols-2 gap-6 mt-4">
-    <div class="bg-indigo-50 p-6 rounded-lg">
-        <h5 class="font-bold text-indigo-800 mb-2">Problema A: Área do Retângulo</h5>
-        <p>Crie um algoritmo que leia a base e a altura de um retângulo, calcule a sua área (Área = Base * Altura) e mostre o resultado.</p>
-    </div>
-    <div class="bg-indigo-50 p-6 rounded-lg">
-        <h5 class="font-bold text-indigo-800 mb-2">Problema B: Antecessor e Sucessor</h5>
-        <p>Crie um algoritmo que leia um número inteiro e mostre na tela o seu antecessor e o seu sucessor.</p>
-    </div>
-</div>
-        </div>
+    <!-- ImageView -->
+    <div class="bg-white p-8 rounded-lg shadow-md">
+      <h4 class="font-bold text-2xl text-slate-800 mb-2">4. ImageView</h4>
+      <p class="mb-4">
+        <strong>O que é e para que serve?</strong> É o componente utilizado para
+        exibir imagens, como fotos, ícones e outras mídias visuais. As imagens
+        devem ser colocadas na pasta <code-text>res/drawable</code-text>.
+      </p>
+      <img
+        src="https://placehold.co/200x200/e0e7ff/3730a3?text=ImageView"
+        alt="Exemplo de um ImageView"
+        class="my-4 rounded-lg shadow-sm mx-auto"
+      />
+      <div class="code-block">
+        <h5 class="mono">&lt;-- Exemplo de ImageView em XML --&gt;</h5>
+        <pre><code>&lt;ImageView
+    android:id="@+id/imageViewLogo"
+    android:layout_width="100dp"
+    android:layout_height="100dp"
+    android:src="@drawable/ic_logo"
+    android:contentDescription="@string/descricao_logo" /&gt;</code></pre>
+      </div>
+      <div class="callout callout-info">
+        <h5 class="font-bold mb-2">Atributos Importantes</h5>
+        <ul class="list-disc list-inside">
+          <li>
+            <code>android:src</code>: Especifica a imagem a ser exibida,
+            geralmente referenciando um arquivo na pasta <code-text>drawable</code-text>.
+          </li>
+          <li>
+            <code>android:contentDescription</code>: Texto descritivo para
+            acessibilidade. É lido por leitores de tela para usuários com
+            deficiência visual. <strong>É uma prática essencial!</strong>
+          </li>
+          <li>
+            <code>android:scaleType</code>: Controla como a imagem é
+            redimensionada para caber no espaço do <code-text>ImageView</code-text> (ex:
+            <code-text>centerCrop</code-text>, <code-text>fitCenter</code-text>).
+          </li>
+        </ul>
+        <p class="mt-4">
+          Explore mais na
+          <a
+            href="https://developer.android.com/reference/android/widget/ImageView"
+            target="_blank"
+            class="font-semibold underline"
+            >documentação oficial do ImageView</a
+          >.
+        </p>
+      </div>
     </div>
 
-    <!-- Tarefa da Aula 4 -->
-    <div id="proximos-passos-aula4">
-        <h3 class="text-3xl font-bold text-slate-800 mb-6">Próximos Passos e Tarefa (TED)</h3>
-         <div class="bg-indigo-100 border-l-4 border-indigo-500 text-indigo-800 p-6 rounded-r-lg">
-<h4 class="font-bold text-xl mb-4">Tarefa para a próxima aula</h4>
-<p class="mb-4">O objetivo é praticar o ciclo completo: planear em Portugol e implementar em C.</p>
-<ol class="list-decimal list-inside space-y-2 font-semibold">
-    <li>Acesse o Moodle da disciplina.</li>
-    <li>Encontre o fórum da "Aula 4".</li>
-    <li>Poste o algoritmo em <strong>Portugol</strong> e também o código em <strong>Linguagem C</strong> que leia dois números e mostre a soma deles.</li>
-</ol>
-<div class="mt-6">
-    <a href="https://eadsp.unichristus.edu.br" target="_blank" class="inline-block bg-slate-800 text-white font-bold py-2 px-4 rounded hover:bg-slate-700 transition-colors mr-2">Acessar Moodle</a>
-</div>
-        </div>
+    <!-- CheckBox -->
+    <div class="bg-white p-8 rounded-lg shadow-md">
+      <h4 class="font-bold text-2xl text-slate-800 mb-2">5. CheckBox</h4>
+      <p class="mb-4">
+        <strong>O que é e para que serve?</strong> É um tipo de botão de duas
+        opções que pode ser marcado ou desmarcado. Ideal para situações onde o
+        usuário pode selecionar múltiplas opções de uma lista.
+      </p>
+      <img
+        src="https://placehold.co/600x100/e0e7ff/3730a3?text=☐+Aceito+os+termos"
+        alt="Exemplo de um CheckBox"
+        class="my-4 rounded-lg shadow-sm mx-auto"
+      />
+      <div class="code-block">
+        <h5 class="mono">&lt;-- Exemplo de CheckBox em XML --&gt;</h5>
+        <pre><code>&lt;CheckBox
+    android:id="@+id/checkboxTermos"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Aceito os termos e condições" /&gt;</code></pre>
+      </div>
+      <div class="callout callout-info">
+        <h5 class="font-bold mb-2">Atributos Importantes</h5>
+        <ul class="list-disc list-inside">
+          <li>
+            <code>android:checked</code>: Pode ser definido como <code-text>true</code-text> ou
+            <code-text>false</code-text> para determinar se a caixa já começa marcada.
+          </li>
+          <li>
+            No código Kotlin, podemos verificar se um <code-text>CheckBox</code-text> está marcado
+            usando a propriedade <code-text>isChecked</code-text>.
+          </li>
+        </ul>
+        <p class="mt-4">
+          Veja mais detalhes na
+          <a
+            href="https://developer.android.com/reference/android/widget/CheckBox"
+            target="_blank"
+            class="font-semibold underline"
+            >documentação oficial do CheckBox</a
+          >.
+        </p>
+      </div>
     </div>
+
+    <!-- RadioButton e RadioGroup -->
+    <div class="bg-white p-8 rounded-lg shadow-md">
+      <h4 class="font-bold text-2xl text-slate-800 mb-2">
+        6. RadioButton e RadioGroup
+      </h4>
+      <p class="mb-4">
+        <strong>O que é e para que serve?</strong> <code-text>RadioButton</code-text> é um botão de
+        duas opções (marcado ou desmarcado). A sua principal característica é
+        que, quando usado dentro de um <code-text>RadioGroup</code-text>, apenas uma opção pode ser
+        selecionada por vez. Perfeito para perguntas de escolha única.
+      </p>
+      <img
+        src="https://placehold.co/600x150/e0e7ff/3730a3?text=Qual+o+seu+gênero?%0A(•)+Masc+O+Fem"
+        alt="Exemplo de RadioButtons"
+        class="my-4 rounded-lg shadow-sm mx-auto"
+      />
+      <div class="code-block">
+        <h5 class="mono">&lt;-- Exemplo de RadioGroup em XML --&gt;</h5>
+        <pre><code>&lt;RadioGroup
+    android:id="@+id/radioGroupGenero"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"&gt;
+
+    &lt;RadioButton
+        android:id="@+id/radioButtonMasc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Masculino" /&gt;
+
+    &lt;RadioButton
+        android:id="@+id/radioButtonFem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Feminino" /&gt;
+
+&lt;/RadioGroup&gt;</code></pre>
+      </div>
+      <div class="callout callout-info">
+        <h5 class="font-bold mb-2">Atributos Importantes</h5>
+        <ul class="list-disc list-inside">
+          <li>
+            <code>RadioGroup</code>: É o "container" invisível que agrupa os
+            <code-text>RadioButton</code-text> e garante que apenas um deles possa ser selecionado.
+          </li>
+          <li>
+            <code>android:orientation</code>: Pode ser definido no <code-text>RadioGroup</code-text>
+            como <code-text>vertical</code-text> (padrão) ou <code-text>horizontal</code-text> para alinhar os botões.
+          </li>
+        </ul>
+        <p class="mt-4">
+          Leia mais na
+          <a
+            href="https://developer.android.com/guide/topics/ui/controls/radiobutton"
+            target="_blank"
+            class="font-semibold underline"
+            >documentação oficial sobre Radio Buttons</a
+          >.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div id="atividade-pratica" class="mb-16">
+    <h3 class="text-3xl font-bold text-slate-800 mb-6">
+      Atividade Prática: Construindo a Primeira Interface
+    </h3>
+    <div class="bg-white p-8 rounded-lg shadow-md">
+      <p class="mb-4">
+        Vamos aplicar o que aprendemos! Abra o projeto "Olá, Mundo!" da aula
+        anterior e siga os passos para construir a interface da nossa tarefa
+        (TED).
+      </p>
+      <ol class="list-decimal list-inside space-y-4 mt-6">
+        <li>
+          Abra o arquivo <code>res/layout/activity_main.xml</code>. Se ele abrir
+          no modo "Design", mude para a visão "Code" ou "Split" no canto
+          superior direito.
+        </li>
+        <li>
+          Apague o <code>&lt;TextView&gt;</code> existente que mostra "Hello
+          World!".
+        </li>
+        <li>
+          Dentro do
+          <code>&lt;androidx.constraintlayout.widget.ConstraintLayout&gt;</code>
+          (ou outro layout que estiver lá), adicione um <code>TextView</code>,
+          um <code>EditText</code> e um <code>Button</code>.
+        </li>
+        <li>
+          Configure os atributos de cada um conforme o código abaixo. Preste
+          atenção especial aos IDs e às constraints
+          (<code>app:layout_...</code>), que posicionam os elementos na tela.
+        </li>
+      </ol>
+      <div class="code-block mt-6">
+        <h5 class="mono">&lt;-- Código Final para activity_main.xml --&gt;</h5>
+        <pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"&gt;
+
+    &lt;TextView
+        android:id="@+id/textViewLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="128dp"
+        android:text="Por favor, digite seu nome abaixo:"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" /&gt;
+
+    &lt;EditText
+        android:id="@+id/editTextNome"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:hint="Seu nome"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewLabel" /&gt;
+
+    &lt;Button
+        android:id="@+id/buttonSaudacao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Exibir Mensagem"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNome" /&gt;
+
+&lt;/androidx.constraintlayout.widget.ConstraintLayout&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <div id="tarefa-aula4" class="mb-16">
+    <h3 class="text-3xl font-bold text-slate-800 mb-6">
+      Encerramento e Próximos Passos
+    </h3>
+    <div class="callout callout-info">
+      <h5 class="font-bold mb-2">Ponte para a Aula 5</h5>
+      <p>
+        Parabéns! Vocês construíram a primeira interface de usuário. Se executar
+        o app agora, verá os componentes na tela, mas o botão não faz nada. A
+        nossa interface está "sem vida". Na próxima aula sobre
+        <strong>Manipulação de Eventos</strong>, vamos entrar no arquivo
+        <code>MainActivity.kt</code> e escrever o código Kotlin para "ouvir" o
+        clique do botão e fazer a mágica acontecer!
+      </p>
+    </div>
+    <div class="callout callout-task">
+      <h5 class="font-bold mb-2">Tarefa para a próxima aula (TED)</h5>
+      <p class="mb-4">
+        O desafio é replicar e consolidar o que fizemos hoje. Esta tarefa é a
+        base para a nossa próxima aula prática.
+      </p>
+      <ol class="list-decimal list-inside space-y-2">
+        <li>
+          No seu projeto do Android Studio, crie a interface com
+          <code>TextView</code>, <code>EditText</code> e <code>Button</code>,
+          exatamente como fizemos na atividade prática.
+        </li>
+        <li>
+          Execute o aplicativo no emulador ou no seu dispositivo físico para
+          garantir que a interface aparece corretamente.
+        </li>
+        <li>
+          Tire um print (captura de tela) da sua aplicação em execução e submeta
+          no Moodle.
+        </li>
+      </ol>
+    </div>
+    <div class="bg-white p-6 rounded-lg shadow-md mt-8">
+      <h4 class="font-bold text-xl text-slate-800 mb-4">
+        Bibliografia Recomendada
+      </h4>
+      <ul class="list-disc list-inside space-y-2">
+        <li>
+          SIMAS, V. L. et al.
+          <strong>Desenvolvimento para Dispositivos Móveis – Volume 2</strong>.
+          Grupo A, 2019.
+        </li>
+        <li>
+          OLIVEIRA, Diego Bittencourt de et al.
+          <strong>Desenvolvimento para Dispositivos Móveis</strong>. SAGAH,
+          2019. v. 1.
+        </li>
+      </ul>
+    </div>
+  </div>
 </section>

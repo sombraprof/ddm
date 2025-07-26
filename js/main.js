@@ -49,6 +49,9 @@ function loadAula(file) {
       requestAnimationFrame(() => {
         conteudo.scrollIntoView({ behavior: "smooth", block: "start" });
       });
+       requestAnimationFrame(() => {
+         initCopyButtons();
+      });
     })
     .catch((err) => console.error("Erro ao carregar aula:", err));
 }
@@ -187,6 +190,35 @@ function initMarketShareChart() {
         },
       },
     },
+  });
+}
+
+function initCopyButtons() {
+  document.querySelectorAll(".code-block-wrapper").forEach((wrapper) => {
+    if (wrapper.querySelector(".copy-button")) return; // evita duplicar
+
+    const codeBlock = wrapper.querySelector("pre");
+    if (codeBlock) {
+      const copyButton = document.createElement("button");
+      copyButton.textContent = "Copiar";
+      copyButton.className = "copy-button";
+
+      copyButton.addEventListener("click", () => {
+        const codeToCopy = codeBlock.innerText;
+        navigator.clipboard
+          .writeText(codeToCopy)
+          .then(() => {
+            copyButton.textContent = "Copiado!";
+            setTimeout(() => (copyButton.textContent = "Copiar"), 2000);
+          })
+          .catch((err) => {
+            console.error("Erro ao copiar código:", err);
+            copyButton.textContent = "Erro!";
+          });
+      });
+
+      wrapper.appendChild(copyButton);
+    }
   });
 }
 

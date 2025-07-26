@@ -1,245 +1,407 @@
 <!-- Seção da Aula 5 -->
 <section id="aula5" class="mb-16 pt-16">
-  <header class="mb-12">
+  <header class="mb-12 border-b pb-8">
     <h2 class="text-4xl font-bold text-slate-900">
-      Aula 5: Representação Gráfica com Fluxogramas
+      Aula 5: Unidade I – Manipulação de Eventos e Uso de Logcat
     </h2>
     <p class="text-lg text-slate-600 mt-2">
-      Aprendendo a "desenhar" a lógica de um algoritmo.
+      Associar ações da interface gráfica (como cliques) a funções em Kotlin e
+      usar o Logcat para depuração.
     </p>
   </header>
 
-  <div class="bg-white p-8 rounded-lg shadow-md mb-12">
-    <h3 class="font-bold text-2xl text-slate-800 mb-4">
-      Plano de Voo da Aula de Hoje
-    </h3>
+  <div class="bg-white p-6 rounded-lg shadow-md mb-12">
+    <h3 class="font-bold text-2xl text-slate-800 mb-4">Plano de Voo da Aula</h3>
     <ul class="list-disc list-inside space-y-2 text-slate-700">
-      <li>Por que usar uma representação visual para algoritmos?</li>
-      <li>Apresentação da simbologia padrão dos fluxogramas.</li>
       <li>
-        Construção de um fluxograma passo a passo, incluindo um ponto de
-        decisão.
+        <strong>Recapitulação e Contexto:</strong> Da interface estática da Aula
+        4 para a interatividade.
       </li>
       <li>
-        Atividade prática em duplas: desenhando fluxogramas para problemas
-        simples.
+        <strong>Conceitos Fundamentais:</strong> O que são Listeners e
+        Callbacks?
       </li>
-      <li>Ferramentas úteis para criar fluxogramas digitais.</li>
-      <li>Apresentação da tarefa (TED) da Aula 5.</li>
+      <li>
+        <strong>Conectando Mundos:</strong> Acessando Views do XML no código
+        Kotlin.
+      </li>
+      <li>
+        <strong>Ouvindo o Usuário:</strong> Explorando
+        <code>setOnClickListener</code> e outros tipos de eventos.
+      </li>
+      <li>
+        <strong>O Melhor Amigo do Desenvolvedor:</strong> Um mergulho profundo
+        no Logcat e suas boas práticas.
+      </li>
+      <li>
+        <strong>Atividade Prática:</strong> Dando vida ao nosso app "Olá,
+        [Nome]!" de forma incremental.
+      </li>
+      <li>
+        <strong>Relevância Profissional:</strong> Por que estas ferramentas são
+        cruciais no mercado de trabalho.
+      </li>
+      <li>
+        <strong>Quiz Rápido e Tarefa (TED):</strong> Consolidando o
+        conhecimento.
+      </li>
     </ul>
   </div>
 
-  <div class="mb-16">
+  <div id="contexto" class="mb-16">
     <h3 class="text-3xl font-bold text-slate-800 mb-6">
-      Simbologia Essencial dos Fluxogramas
+      Contextualizando: Onde a Interação Acontece?
     </h3>
     <div class="bg-white p-8 rounded-lg shadow-md">
-      <p class="text-lg mb-6">
-        Um fluxograma utiliza símbolos padronizados para representar diferentes
-        tipos de ações ou passos num algoritmo. Conhecer estes símbolos é como
-        aprender o vocabulário básico de uma nova língua.
+      <p class="text-lg mb-4">
+        Na <strong>Aula 4</strong>, construímos nossa primeira interface com
+        <code>TextView</code>, <code>EditText</code> e <code>Button</code>.
+        Criamos uma tela estática, uma "planta baixa" visual. Agora, precisamos
+        fazer com que essa tela "sem vida" se torne interativa. A lógica para
+        isso vive no nosso arquivo <strong><code>MainActivity.kt</code></strong
+        >, especificamente dentro do método
+        <strong><code>onCreate()</code></strong
+        >.
       </p>
-      <div class="space-y-6">
-        <!-- Terminal -->
-        <div class="flex items-center gap-6">
-          <div class="flowchart-shape flowchart-terminal w-48 flex-shrink-0">
-            Início / Fim
-          </div>
-          <div>
-            <h4 class="font-bold text-lg">Terminal</h4>
-            <p>
-              Representado por uma elipse, marca o ponto de início e de fim do
-              algoritmo. Todo fluxograma deve ter um início e pelo menos um fim.
-            </p>
-          </div>
-        </div>
-        <!-- Processamento -->
-        <div class="flex items-center gap-6">
-          <div class="flowchart-shape flowchart-process w-48 flex-shrink-0">
-            Processamento
-          </div>
-          <div>
-            <h4 class="font-bold text-lg">Processamento</h4>
-            <p>
-              Representado por um retângulo, indica qualquer tipo de operação,
-              cálculo ou atribuição de valor. Ex:
-              <code>soma = num1 + num2</code>.
-            </p>
-          </div>
-        </div>
-        <!-- Entrada/Saída -->
-        <div class="flex items-center gap-6">
-          <div class="flowchart-shape flowchart-io w-48 flex-shrink-0">
-            <span>Entrada / Saída</span>
-          </div>
-          <div>
-            <h4 class="font-bold text-lg">Entrada e Saída</h4>
-            <p>
-              Representado por um paralelogramo, é usado para indicar a entrada
-              de dados (ex: `Leia nota1`) ou a saída de informações (ex:
-              `Escreva media`).
-            </p>
-          </div>
-        </div>
-        <!-- Decisão -->
-        <div class="flex items-center gap-6">
-          <div class="flowchart-shape flowchart-decision w-48 flex-shrink-0">
-            Decisão?
-          </div>
-          <div>
-            <h4 class="font-bold text-lg">Decisão</h4>
-            <p>
-              Representado por um losango, indica um ponto onde o fluxo se
-              divide com base numa condição (ex: `media >= 7?`). Terá sempre
-              duas saídas: "Sim" e "Não".
-            </p>
-          </div>
-        </div>
-        <!-- Seta de Fluxo -->
-        <div class="flex items-center gap-6">
-          <div class="w-48 flex-shrink-0 flex justify-center">
-            <div class="flowchart-arrow"></div>
-          </div>
-          <div>
-            <h4 class="font-bold text-lg">Seta de Fluxo</h4>
-            <p>
-              Indica a direção e a sequência do algoritmo, conectando os
-              símbolos.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="mb-16">
-    <h3 class="text-3xl font-bold text-slate-800 mb-6">
-      Construindo um Fluxograma: Passo a Passo
-    </h3>
-    <div class="bg-white p-8 rounded-lg shadow-md">
-      <h4 class="font-semibold text-xl text-indigo-700 mb-3">
-        Problema: Verificar se um aluno foi aprovado.
-      </h4>
-      <p class="mb-6">
-        Regra: Um aluno é aprovado se a sua média for maior ou igual a 7.0. O
-        algoritmo deve ler a média e exibir "Aprovado" ou "Reprovado".
+      <p>
+        O <code>onCreate()</code> é o local ideal para configurar nossos
+        <code>listeners</code> porque ele é chamado apenas uma vez quando a tela
+        é criada. Isso garante que nossos "vigias" de eventos sejam posicionados
+        assim que os componentes visuais existem, prontos para responder às
+        ações do usuário.
       </p>
-      <div class="bg-slate-50 p-6 rounded-md border overflow-x-auto">
-        <div class="flowchart-container">
-          <div class="flowchart-shape flowchart-terminal">Início</div>
-          <div class="flowchart-arrow"></div>
-          <div class="flowchart-shape flowchart-io">
-            <span>Leia Média</span>
-          </div>
-          <div class="flowchart-arrow"></div>
-          <div class="flowchart-shape flowchart-decision">Média >= 7.0 ?</div>
-
-          <!-- Bifurcação -->
-          <div class="flowchart-bifurcation">
-            <!-- Ramo Sim -->
-            <div class="flowchart-branch">
-              <div class="flowchart-branch-label">Sim</div>
-              <div class="flowchart-shape flowchart-io">
-                <span>Escreva "Aprovado"</span>
-              </div>
-            </div>
-            <!-- Ramo Não -->
-            <div class="flowchart-branch">
-              <div class="flowchart-branch-label">Não</div>
-              <div class="flowchart-shape flowchart-io">
-                <span>Escreva "Reprovado"</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Junção -->
-          <div class="flowchart-junction-point"></div>
-
-          <div class="flowchart-arrow"></div>
-          <div class="flowchart-shape flowchart-terminal">Fim</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="mb-16">
-    <h3 class="text-3xl font-bold text-slate-800 mb-6">
-      Atividade Prática em Duplas
-    </h3>
-    <div class="bg-white p-8 rounded-lg shadow-md">
-      <p class="mb-4">
-        Agora é a vossa vez! Em duplas, usem uma folha A4 ou um software online
-        para desenhar os fluxogramas para os seguintes problemas:
-      </p>
-      <div class="grid md:grid-cols-2 gap-6 mt-4">
-        <div class="bg-indigo-50 p-6 rounded-lg">
-          <h5 class="font-bold text-indigo-800 mb-2">
-            Problema A: Verificação de Idade
-          </h5>
-          <p>
-            Crie um fluxograma que leia a idade de uma pessoa e exiba "Maior de
-            idade" se a idade for 18 ou mais, ou "Menor de idade" caso
-            contrário.
-          </p>
-        </div>
-        <div class="bg-indigo-50 p-6 rounded-lg">
-          <h5 class="font-bold text-indigo-800 mb-2">
-            Problema B: Par ou Ímpar
-          </h5>
-          <p>
-            Crie um fluxograma que leia um número inteiro e verifique se ele é
-            par ou ímpar. (Dica: um número é par se o resto da sua divisão por 2
-            for igual a 0).
-          </p>
-        </div>
-      </div>
-      <div class="mt-6 callout callout-good-practice">
-        <h5 class="font-bold mb-2">Ferramenta Recomendada</h5>
+      <div class="callout callout-info">
+        <h5 class="font-bold mb-2">O que são Listeners e Callbacks?</h5>
         <p>
-          Para criar fluxogramas digitais de forma fácil e gratuita,
-          recomendamos o
-          <a
-            href="https://app.diagrams.net/"
-            target="_blank"
-            class="font-bold underline"
-            >draw.io</a
-          >
-          (agora diagrams.net).
+          Esses são padrões de programação fundamentais. Um
+          <strong>Listener</strong> ("ouvinte") é um objeto que "escuta" por um
+          evento específico (como um clique). Um
+          <strong>Callback</strong> ("chamada de volta") é a função que o
+          listener executa quando o evento ocorre. Em resumo: nós registramos um
+          listener em um botão e fornecemos uma função de callback para ser
+          chamada de volta quando o clique acontecer.
         </p>
       </div>
     </div>
   </div>
 
-  <!-- Tarefa da Aula 5 -->
-  <div id="proximos-passos-aula5">
+  <div id="conectando-mundos" class="mb-16">
     <h3 class="text-3xl font-bold text-slate-800 mb-6">
-      Próximos Passos e Tarefa (TED)
+      Conectando o Visual (XML) à Lógica (Kotlin)
     </h3>
-    <div
-      class="bg-indigo-100 border-l-4 border-indigo-500 text-indigo-800 p-6 rounded-r-lg"
-    >
-      <h4 class="font-bold text-xl mb-4">Tarefa para a próxima aula</h4>
-      <p class="mb-4">
-        O desafio agora é criar um fluxograma que envolva múltiplas decisões.
+    <div class="bg-white p-8 rounded-lg shadow-md">
+      <p class="text-lg mb-4">
+        Para manipular uma View no Kotlin, primeiro precisamos obter uma
+        referência a ela. A forma tradicional é usando o método
+        <strong><code>findViewById()</code></strong
+        >.
       </p>
-      <ol class="list-decimal list-inside space-y-2 font-semibold">
-        <li>
-          Crie um fluxograma (em papel ou no draw.io) para um algoritmo que leia
-          três números diferentes e exiba qual deles é o maior.
-        </li>
-        <li>
-          Acesse o Moodle da disciplina e submeta uma foto ou o arquivo do seu
-          fluxograma na "Aula 5 - TED: Fluxograma com Múltiplas Decisões".
-        </li>
-      </ol>
-      <div class="mt-6">
-        <a
-          href="https://eadsp.unichristus.edu.br"
-          target="_blank"
-          class="inline-block bg-slate-800 text-white font-bold py-2 px-4 rounded hover:bg-slate-700 transition-colors mr-2"
-          >Acessar Moodle</a
-        >
+      <div class="code-block-wrapper">
+        <button class="copy-button">Copiar</button>
+        <div class="code-block">
+          <h5 class="mono">
+            // Encontrando as Views pelo ID e atribuindo a variáveis
+          </h5>
+          <pre>
+val meuButton: Button = findViewById(R.id.buttonSaudacao)
+val meuEditText: EditText = findViewById(R.id.editTextNome)</pre
+          >
+        </div>
       </div>
+      <div class="callout callout-info">
+        <h5 class="font-bold mb-2">Tópico Avançado: View Binding</h5>
+        <p>
+          Embora <code>findViewById()</code> funcione, a abordagem moderna e
+          recomendada pela Google é o <strong>View Binding</strong>. Ele gera
+          uma classe de vinculação que permite acessar as Views diretamente, com
+          segurança de nulos e de tipos, eliminando a necessidade do
+          <code>findViewById()</code>. Veremos isso em detalhes mais à frente,
+          mas é importante saber que existe uma forma mais segura e eficiente!
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div id="event-listeners" class="mb-16">
+    <h3 class="text-3xl font-bold text-slate-800 mb-6">
+      Ouvindo o Usuário: Manipulação de Eventos
+    </h3>
+    <div class="bg-white p-8 rounded-lg shadow-md">
+      <p class="text-lg mb-4">
+        Com a referência ao botão em mãos, podemos configurar seu
+        <code>OnClickListener</code>. Esta é a forma mais comum de responder a
+        cliques.
+      </p>
+      <div class="bg-slate-50 p-6 rounded-lg border my-6">
+        <h4 class="font-bold text-xl text-center mb-4">
+          Fluxo de um Evento de Clique
+        </h4>
+        <img
+          src="https://placehold.co/800x200/e0e7ff/3730a3?text=Usuário+Toca+na+Tela+->+Sistema+Android+Detecta+o+Toque+->+Chama+o+Listener+do+Botão+->+Seu+Código+Kotlin+é+Executado"
+          alt="Diagrama de fluxo de evento"
+          class="rounded-lg shadow-sm mx-auto"
+        />
+      </div>
+      <h4 class="font-bold text-xl text-slate-800 mt-8 mb-4">
+        Sintaxe Lambda (Preferencial)
+      </h4>
+      <p>
+        O Kotlin torna a definição de listeners extremamente concisa com a
+        sintaxe de lambda (o bloco de código entre <code-text>{}</code-text>).
+      </p>
+      <div class="code-block-wrapper">
+        <button class="copy-button">Copiar</button>
+        <div class="code-block">
+          <h5 class="mono">// Sintaxe moderna e limpa com Lambda</h5>
+          <pre>
+meuButton.setOnClickListener {
+    // Ação a ser executada
+    Log.d(TAG, "Botão foi clicado!")
+}</pre
+          >
+        </div>
+      </div>
+
+      <h4 class="font-bold text-xl text-slate-800 mt-8 mb-4">
+        Sintaxe com Classe Anônima (Legado)
+      </h4>
+      <p>
+        É útil conhecer a sintaxe mais antiga, que você encontrará em projetos
+        Java ou em código mais antigo. Ela é mais verbosa, mas faz exatamente a
+        mesma coisa.
+      </p>
+      <div class="code-block-wrapper">
+        <button class="copy-button">Copiar</button>
+        <div class="code-block">
+          <h5 class="mono">// Sintaxe mais antiga com classe anônima</h5>
+          <pre>
+meuButton.setOnClickListener(object : View.OnClickListener {
+    override fun onClick(v: View?) {
+        // Ação a ser executada
+        Log.d(TAG, "Botão foi clicado!")
+    }
+})</pre
+          >
+        </div>
+      </div>
+
+      <h4 class="font-bold text-xl text-slate-800 mt-8 mb-4">
+        Além do Clique Simples
+      </h4>
+      <p>
+        Existem muitos outros tipos de eventos. Por exemplo, para detectar um
+        clique longo, usamos o <code>setOnLongClickListener</code>.
+      </p>
+      <div class="code-block-wrapper">
+        <button class="copy-button">Copiar</button>
+        <div class="code-block">
+          <h5 class="mono">// Exemplo de clique longo</h5>
+          <pre>
+meuButton.setOnLongClickListener {
+    Log.d(TAG, "O botão foi pressionado por um tempo!")
+    true // Retornar 'true' indica que o evento foi consumido
+}</pre
+          >
+        </div>
+      </div>
+      <p class="mt-4">
+        Para saber mais, explore a
+        <a
+          href="https://developer.android.com/guide/topics/ui/ui-events"
+          target="_blank"
+          class="text-indigo-600 hover:underline font-semibold"
+          >documentação oficial sobre Eventos de Interface</a
+        >.
+      </p>
+    </div>
+  </div>
+
+  <div id="logcat" class="mb-16">
+    <h3 class="text-3xl font-bold text-slate-800 mb-6">
+      O Melhor Amigo do Dev: Usando o Logcat
+    </h3>
+    <div class="bg-white p-8 rounded-lg shadow-md">
+      <p class="text-lg mb-4">
+        O Logcat é a sua janela para a alma do seu aplicativo. É a ferramenta
+        mais fundamental para depurar e entender o que está acontecendo "por
+        baixo dos panos".
+      </p>
+      <img
+        src="https://placehold.co/800x250/1e293b/94a3b8?text=Janela+do+Logcat+no+Android+Studio"
+        alt="Janela do Logcat no Android Studio"
+        class="my-4 rounded-lg shadow-sm mx-auto"
+      />
+      <p class="mb-4">
+        Para enviar mensagens para o Logcat, usamos a classe <code-text>Log</code-text>. Cada nível
+        de prioridade tem uma cor associada no Android Studio para fácil
+        identificação:
+      </p>
+      <ul class="list-none space-y-2 mono text-lg">
+        <li>
+          <span class="log-v">Log.v("TAG", "Verbose")</span>: Para logs
+          detalhados.
+        </li>
+        <li>
+          <span class="log-d">Log.d("TAG", "Debug")</span>: O que mais usaremos
+          para depuração.
+        </li>
+        <li>
+          <span class="log-i">Log.i("TAG", "Info")</span>: Para informações de
+          execução normal.
+        </li>
+        <li>
+          <span class="log-w">Log.w("TAG", "Warning")</span>: Para alertar sobre
+          algo inesperado.
+        </li>
+        <li>
+          <span class="log-e">Log.e("TAG", "Error")</span>: Para registrar erros
+          e exceções.
+        </li>
+      </ul>
+      <div class="callout callout-info">
+        <h5 class="font-bold mb-2">Boas Práticas de Logging</h5>
+        <ul class="list-disc list-inside">
+          <li>
+            <strong>Use TAGs Consistentes:</strong> Defina uma <code-text>TAG</code-text> constante
+            no início de cada classe para filtrar facilmente seus logs.
+          </li>
+          <li>
+            <strong>Escolha o Nível Certo:</strong> Use <code-text>Log.d</code-text> para depuração
+            durante o desenvolvimento e <code-text>Log.i</code-text> para eventos importantes.
+            <code-text>Log.e</code-text> deve ser reservado para erros reais.
+          </li>
+          <li>
+            <strong>Não Exponha Dados Sensíveis:</strong> Nunca, jamais, imprima
+            senhas, tokens de API ou informações pessoais do usuário nos logs.
+            Em um app publicado, esses logs podem ser lidos.
+          </li>
+        </ul>
+        <p class="mt-4">
+          Aprenda a usar esta ferramenta de forma eficaz na
+          <a
+            href="https://developer.android.com/studio/debug/logcat"
+            target="_blank"
+            class="font-semibold underline"
+            >documentação oficial do Logcat</a
+          >.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div id="atividade-pratica-aula5" class="mb-16">
+    <h3 class="text-3xl font-bold text-slate-800 mb-6">
+      Atividade Prática: Dando Vida ao App
+    </h3>
+    <div class="bg-white p-8 rounded-lg shadow-md">
+      <p class="mb-4">
+        Vamos juntar tudo! O objetivo agora é fazer com que, ao clicar no botão,
+        o nome digitado no <code-text>EditText</code-text> seja exibido no <code-text>Logcat</code-text>.
+      </p>
+      <ol class="list-decimal list-inside space-y-4 mt-6">
+        <li>Abra o seu projeto "Olá, Mundo!" no Android Studio.</li>
+        <li>Navegue até o arquivo <strong><code-text>MainActivity.kt</code-text></strong>.</li>
+        <li>Substitua o conteúdo do arquivo pelo código completo abaixo.</li>
+      </ol>
+      <div class="code-block-wrapper">
+        <button class="copy-button">Copiar</button>
+        <div class="code-block">
+          <h5 class="mono">// Código Final para MainActivity.kt</h5>
+          <pre>
+package br.com.unichristus.ads.olamundoandroid
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.util.Log
+import android.widget.Button
+import android.widget.EditText
+
+class MainActivity : AppCompatActivity() {
+
+    // Boa prática: Definir uma TAG constante para os logs desta classe
+    private val TAG = "MainActivity"
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        // Encontrar o botão pelo ID que definimos no XML
+        val meuButton: Button = findViewById(R.id.buttonSaudacao)
+        val meuEditText: EditText = findViewById(R.id.editTextNome)
+
+        // Configurar o listener de clique para o botão
+        meuButton.setOnClickListener {
+            // Este bloco de código é executado quando o botão é clicado
+            
+            // 1. Pegar o texto que o usuário digitou no EditText
+            val nomeDigitado = meuEditText.text.toString()
+
+            // 2. Exibir o texto no Logcat com o nível de Debug
+            Log.d(TAG, "O nome digitado foi: $nomeDigitado")
+        }
+    }
+}</pre
+          >
+        </div>
+      </div>
+      <h4 class="font-semibold text-xl mt-6 mb-3">Como Testar:</h4>
+      <ul class="list-disc list-inside space-y-2">
+        <li>Execute o aplicativo no emulador ou no seu dispositivo.</li>
+        <li>
+          No Android Studio, abra a janela do Logcat (geralmente na parte
+          inferior da tela).
+        </li>
+        <li>
+          Na barra de busca do Logcat, digite a TAG que usamos: <code-text>MainActivity</code-text>.
+        </li>
+        <li>
+          No aplicativo, digite seu nome no campo de texto e clique no botão
+          "Exibir Mensagem".
+        </li>
+        <li>Observe a mensagem aparecer na janela do Logcat!</li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="tarefa-aula5" class="mb-16">
+    <h3 class="text-3xl font-bold text-slate-800 mb-6">
+      Encerramento e Próximos Passos
+    </h3>
+    <div class="callout callout-task">
+      <h5 class="font-bold mb-2">Tarefa para a próxima aula (TED)</h5>
+      <p class="mb-4">
+        O desafio é comprovar que você conseguiu executar os passos da aula de
+        hoje e sabe usar a ferramenta de depuração mais essencial.
+      </p>
+      <ol class="list-decimal list-inside space-y-2">
+        <li>
+          Siga os passos da atividade prática para fazer seu aplicativo exibir
+          uma mensagem no Logcat ao clicar no botão.
+        </li>
+        <li>Execute o app, digite seu nome e clique no botão.</li>
+        <li>
+          Tire um print (captura de tela) da janela do Logcat no Android Studio,
+          mostrando claramente a mensagem com seu nome.
+        </li>
+        <li>Submeta a imagem no Moodle.</li>
+      </ol>
+    </div>
+    <div class="bg-white p-6 rounded-lg shadow-md mt-8">
+      <h4 class="font-bold text-xl text-slate-800 mb-4">
+        Bibliografia Recomendada
+      </h4>
+      <ul class="list-disc list-inside space-y-2">
+        <li>
+          OLIVEIRA, Diego Bittencourt de et al.
+          <strong>Desenvolvimento para Dispositivos Móveis</strong>. Porto
+          Alegre: SAGAH, 2019. v. 1.
+        </li>
+        <li>
+          SIMAS, V. L. et al.
+          <strong>Desenvolvimento para Dispositivos Móveis – Volume 2</strong>.
+          Grupo A, 2019.
+        </li>
+      </ul>
     </div>
   </div>
 </section>

@@ -1,159 +1,202 @@
 <!-- Seção da Aula 3 -->
 <section id="aula3" class="mb-16 pt-16">
-  <header class="mb-12">
-    <h2 class="text-4xl font-bold text-slate-900">
-      Aula 3: Estruturando o Raciocínio em Passos
-    </h2>
-    <p class="text-lg text-slate-600 mt-2">
-      Aprendendo a organizar o pensamento como um computador.
-    </p>
-  </header>
+        <header class="mb-12 border-b pb-8">
+            <h2 class="text-4xl font-bold text-slate-900">
+                Aula 3: Unidade I – Estrutura Básica de um App Android
+            </h2>
+            <p class="text-lg text-slate-600 mt-2">
+                Compreender a organização de um projeto, identificando os arquivos essenciais como AndroidManifest.xml, MainActivity.kt e a pasta res.
+            </p>
+        </header>
 
-  <div class="bg-white p-8 rounded-lg shadow-md mb-12">
-    <h3 class="font-bold text-2xl text-slate-800 mb-4">
-      Plano de Voo da Aula de Hoje
-    </h3>
-    <ul class="list-disc list-inside space-y-2 text-slate-700">
-      <li>A importância crítica da ordem e do detalhe nos algoritmos.</li>
-      <li>
-        Como transformar uma ideia caótica numa sequência de instruções claras.
-      </li>
-      <li>
-        Atividade prática em grupo (Fishbowl) para construir algoritmos do
-        cotidiano.
-      </li>
-      <li>
-        Análise dos algoritmos criados: o que funciona e o que pode ser
-        melhorado.
-      </li>
-      <li>Apresentação da tarefa (TED) da Aula 3.</li>
-    </ul>
-  </div>
+        <div class="bg-white p-6 rounded-lg shadow-md mb-12">
+            <h3 class="font-bold text-2xl text-slate-800 mb-4">Plano de Voo da Aula</h3>
+            <ul class="list-disc list-inside space-y-2 text-slate-700">
+                <li><strong>Recapitulação:</strong> Revisão rápida da criação do projeto "Olá, Mundo!".</li>
+                <li><strong>O Mapa do Tesouro:</strong> Por que a estrutura de pastas é o nosso guia.</li>
+                <li><strong>Análise dos Arquivos Essenciais:</strong> Um mergulho profundo no que cada arquivo principal faz.</li>
+                <li><strong>Atividade Prática:</strong> Exploração orientada da estrutura do nosso projeto no Android Studio.</li>
+                <li><strong>Tarefa (TED):</strong> Preparação para a consolidação do conhecimento.</li>
+            </ul>
+        </div>
 
-  <div class="mb-16">
-    <h3 class="text-3xl font-bold text-slate-800 mb-6">
-      A Ordem dos Fatores Altera (e Muito) o Produto
-    </h3>
-    <div class="bg-white p-8 rounded-lg shadow-md">
-      <p class="text-lg mb-4">
-        Um computador não tem "bom senso". Ele executa as instruções na ordem
-        exata em que as recebe. Se a ordem estiver errada, o resultado será, na
-        melhor das hipóteses, incorreto e, na pior, um desastre.
-      </p>
-      <h4 class="font-semibold text-xl text-indigo-700 mt-6 mb-3">
-        Exemplo: Calçar Meias e Sapatos
-      </h4>
-      <div class="grid md:grid-cols-2 gap-8 mt-4">
-        <div class="bg-red-50 border-l-4 border-red-500 p-4 rounded-r-lg">
-          <h5 class="font-bold text-red-800 mb-2">Ordem Incorreta</h5>
-          <ol class="list-decimal list-inside text-red-700">
-            <li>Pegar o sapato.</li>
-            <li>Calçar o sapato.</li>
-            <li>Pegar a meia.</li>
-            <li>Calçar a meia. ⬅️ Impossível!</li>
-          </ol>
+        <div id="mapa-do-tesouro" class="mb-16">
+            <h3 class="text-3xl font-bold text-slate-800 mb-6">O Mapa do Tesouro: Entendendo a Estrutura do Projeto</h3>
+            <div class="bg-white p-8 rounded-lg shadow-md">
+                <p class="text-lg mb-4">Imagine que um projeto Android é como uma cidade. Existem diferentes bairros, cada um com uma função específica: um para as "casas" (layouts), um para as "leis" (manifest), e um para os "cérebros" que fazem tudo funcionar (código Kotlin). Antes de começar a construir novos prédios, precisamos aprender a ler o mapa da cidade.</p>
+                <p>Nesta aula, vamos aprender a ler este "mapa". Compreender a função de cada pasta e arquivo principal é fundamental para nos tornarmos desenvolvedores organizados e eficientes. Ignorar esta etapa é como tentar construir uma casa sem a planta: o resultado será o caos.</p>
+            </div>
         </div>
-        <div class="bg-green-50 border-l-4 border-green-500 p-4 rounded-r-lg">
-          <h5 class="font-bold text-green-800 mb-2">Ordem Correta</h5>
-          <ol class="list-decimal list-inside text-green-700">
-            <li>Pegar a meia.</li>
-            <li>Calçar a meia.</li>
-            <li>Pegar o sapato.</li>
-            <li>Calçar o sapato. ✔️ Sucesso!</li>
-          </ol>
-        </div>
-      </div>
-      <p class="mt-6">
-        Esta analogia simples ilustra um princípio fundamental: a
-        <strong>sequência de um algoritmo é sagrada</strong>. Mudar a ordem de
-        duas linhas de código pode mudar completamente o comportamento de um
-        programa.
-      </p>
-    </div>
-  </div>
 
-  <div class="mb-16">
-    <h3 class="text-3xl font-bold text-slate-800 mb-6">
-      Atividade Prática: O Desafio do "Fishbowl"
-    </h3>
-    <div class="bg-white p-8 rounded-lg shadow-md">
-      <p class="mb-4">
-        Agora, vamos praticar a criação de algoritmos em grupo. A metodologia
-        "Fishbowl" (aquário) funciona da seguinte forma:
-      </p>
-      <ul class="list-disc list-inside space-y-2 bg-slate-50 p-4 rounded-md">
-        <li>
-          Um pequeno grupo de alunos senta-se no centro da sala (o "aquário").
-        </li>
-        <li>
-          Este grupo recebe um problema e deve discuti-lo e criar um algoritmo
-          no quadro para o resolver.
-        </li>
-        <li>Os restantes alunos observam de fora, sem intervir.</li>
-        <li>
-          Após um tempo, os grupos trocam. Os observadores entram no "aquário"
-          para refinar, corrigir ou criar uma nova solução para o mesmo problema
-          (ou um novo).
-        </li>
-      </ul>
-      <h4 class="font-semibold text-xl text-indigo-700 mt-8 mb-3">
-        Problemas para a Atividade:
-      </h4>
-      <div class="grid md:grid-cols-2 gap-6 mt-4">
-        <div class="bg-indigo-50 p-6 rounded-lg">
-          <h5 class="font-bold text-indigo-800 mb-2">
-            Problema A: Trocar uma Lâmpada
-          </h5>
-          <p>
-            Crie um algoritmo detalhado para trocar uma lâmpada queimada num
-            candeeiro de teto. Pense em segurança, ferramentas necessárias e
-            possíveis problemas.
-          </p>
-        </div>
-        <div class="bg-indigo-50 p-6 rounded-lg">
-          <h5 class="font-bold text-indigo-800 mb-2">
-            Problema B: Fazer Matrícula
-          </h5>
-          <p>
-            Crie um algoritmo com os passos que um aluno deve seguir para se
-            matricular numa nova disciplina da faculdade, desde a consulta de
-            horários até à confirmação.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
+        <div id="estrutura-visual" class="mb-16">
+            <h3 class="text-3xl font-bold text-slate-800 mb-6">A Estrutura de Pastas Desmistificada</h3>
+            <div class="bg-white p-8 rounded-lg shadow-md">
+                <p class="mb-6">Quando abrimos nosso projeto na visão "Android" do Android Studio, vemos uma estrutura simplificada e lógica. Vamos analisar os componentes mais importantes:</p>
+                
+                <div class="file-tree mono text-sm">
+                    <p>📁 app</p>
+                    
+                    <div class="file-tree-item mt-2">
+                        <p class="font-bold">📁 manifests</p>
+                        <div class="file-tree-item">
+                            <p>📄 AndroidManifest.xml</p>
+                        </div>
+                    </div>
 
-  <!-- Tarefa da Aula 3 -->
-  <div id="proximos-passos-aula3">
-    <h3 class="text-3xl font-bold text-slate-800 mb-6">
-      Próximos Passos e Tarefa (TED)
-    </h3>
-    <div
-      class="bg-indigo-100 border-l-4 border-indigo-500 text-indigo-800 p-6 rounded-r-lg"
-    >
-      <h4 class="font-bold text-xl mb-4">Tarefa para a próxima aula</h4>
-      <p class="mb-4">
-        O objetivo é praticar a criação de sequências lógicas, como fizemos na
-        atividade de hoje.
-      </p>
-      <ol class="list-decimal list-inside space-y-2 font-semibold">
-        <li>Acesse o Moodle da disciplina.</li>
-        <li>Encontre o fórum da "Aula 3".</li>
-        <li>
-          Crie uma lista numerada com pelo menos 5 passos para resolver um
-          problema simples do seu cotidiano (ex: abastecer o carro, fazer
-          pipocas no micro-ondas, etc.).
-        </li>
-      </ol>
-      <div class="mt-6">
-        <a
-          href="https://eadsp.unichristus.edu.br"
-          target="_blank"
-          class="inline-block bg-slate-800 text-white font-bold py-2 px-4 rounded hover:bg-slate-700 transition-colors mr-2"
-          >Acessar Moodle</a
-        >
-      </div>
-    </div>
-  </div>
-</section>
+                    <div class="file-tree-item mt-2">
+                        <p class="font-bold">📁 java</p>
+                        <div class="file-tree-item">
+                            <p>📄 br.com.unichristus.ads.olamundoandroid</p>
+                            <div class="file-tree-item">
+                                <p class="text-green-600 font-bold">📄 MainActivity.kt</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="file-tree-item mt-2">
+                        <p class="font-bold">📁 res (Recursos)</p>
+                        <div class="file-tree-item">
+                            <p>📁 drawable (Imagens, formas, ícones)</p>
+                            <p class="font-bold text-blue-600">📁 layout (Telas do App)</p>
+                            <div class="file-tree-item">
+                                <p class="text-blue-600 font-bold">📄 activity_main.xml</p>
+                            </div>
+                            <p>📁 mipmap (Ícones do App para diferentes densidades)</p>
+                            <p>📁 values (Textos, Cores, Temas)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="space-y-8 mb-16">
+            <h3 class="text-3xl font-bold text-slate-800 mb-6">Análise Detalhada dos Arquivos Principais</h3>
+
+            <!-- AndroidManifest.xml -->
+            <div class="bg-white p-8 rounded-lg shadow-md">
+                <h4 class="font-bold text-2xl text-slate-800 mb-2 mono">📄 AndroidManifest.xml</h4>
+                <p class="mb-4"><strong>Função:</strong> É o "RG" do seu aplicativo. Este arquivo contém metadados essenciais que o sistema Android precisa para poder executar seu código.</p>
+                <p class="mb-4"><strong>Analogia:</strong> Pense nele como a capa de um livro, que informa o título, o autor e um resumo do que se trata, antes mesmo de você começar a ler.</p>
+                <div class="code-block">
+                    <h5 class="mono">&lt;-- Exemplo Simplificado do Manifest --&gt;</h5>
+                    <pre><code>&lt;manifest ...&gt;
+    &lt;!-- Futuramente, permissões como a de internet serão declaradas aqui --&gt;
+    &lt;!-- &lt;uses-permission android:name="android.permission.INTERNET" /&gt; --&gt;
+
+    &lt;application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.OlaMundoAndroid"&gt;
+        
+        &lt;activity
+            android:name=".MainActivity"
+            android:exported="true"&gt;
+            &lt;intent-filter&gt;
+                &lt;action android:name="android.intent.action.MAIN" /&gt;
+                &lt;category android:name="android.intent.category.LAUNCHER" /&gt;
+            &lt;/intent-filter&gt;
+        &lt;/activity&gt;
+        
+    &lt;/application&gt;
+&lt;/manifest&gt;</code></pre>
+                </div>
+                <div class="callout callout-info">
+                    <h5 class="font-bold mb-2">Pontos-Chave a Observar</h5>
+                    <ul class="list-disc list-inside">
+                        <li><code>android:icon</code> e <code>android:label</code>: Definem o ícone e o nome do aplicativo que aparecem na tela inicial do celular.</li>
+                        <li><code>&lt;activity&gt;</code>: Cada tela (Activity) do seu app deve ser declarada aqui. Por enquanto, só temos uma: a <code-text>MainActivity</code-text>.</li>
+                        <li><code>&lt;intent-filter&gt;</code>: Este bloco dentro da activity, com as tags <code>MAIN</code> e <code>LAUNCHER</code>, é especial. Ele diz ao sistema Android: "Esta é a tela principal, a primeira a ser aberta quando o usuário clicar no ícone do app".</li>
+                        <li><strong>Permissões:</strong> Futuramente, quando nosso app precisar acessar recursos como a internet, a câmera ou a localização, teremos que solicitar permissões aqui.</li>
+                    </ul>
+                    <p class="mt-4">Para um mergulho mais fundo, consulte a <a href="https://developer.android.com/guide/topics/manifest/manifest-intro" target="_blank" class="font-semibold underline">documentação oficial do AndroidManifest.xml</a>.</p>
+                </div>
+            </div>
+
+            <!-- MainActivity.kt -->
+            <div class="bg-white p-8 rounded-lg shadow-md">
+                <h4 class="font-bold text-2xl text-slate-800 mb-2 mono text-green-600">📄 MainActivity.kt</h4>
+                <p class="mb-4"><strong>Função:</strong> É o "cérebro" da sua tela principal. Este arquivo Kotlin contém a lógica que controla o comportamento da interface.</p>
+                <p class="mb-4"><strong>Analogia:</strong> Se o arquivo de layout é a planta da casa, o arquivo Kotlin é o eletricista e o encanador que fazem as luzes acenderem e a água correr.</p>
+                <div class="code-block">
+                    <h5 class="mono">// Código Padrão da MainActivity</h5>
+                    <pre><code>package br.com.unichristus.ads.olamundoandroid
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+    }
+}</code></pre>
+                </div>
+                 <div class="callout callout-info">
+                    <h5 class="font-bold mb-2">Analisando o Código</h5>
+                    <ul class="list-disc list-inside">
+                        <li><code>class MainActivity : AppCompatActivity()</code>: Estamos a criar uma classe chamada <code-text>MainActivity</code-text> que "herda" comportamentos e características de <code-text>AppCompatActivity</code-text>, uma classe base do Android que nos dá funcionalidades essenciais.</li>
+                        <li><code>override fun onCreate(...)</code>: Este é um método do ciclo de vida da Activity. O código dentro dele é executado assim que a tela é criada. É aqui que configuramos o nosso layout.</li>
+                        <li><code>setContentView(R.layout.activity_main)</code>: Esta é a linha que conecta a lógica (Kotlin) ao visual (XML). Ela diz: "Para esta tela, use o design definido no arquivo <code-text>activity_main.xml</code-text> que está na pasta <code-text>layout</code-text>".</li>
+                    </ul>
+                     <p class="mt-4">Aprenda mais sobre o ciclo de vida na <a href="https://developer.android.com/guide/components/activities/activity-lifecycle" target="_blank" class="font-semibold underline">documentação oficial sobre Activities</a>.</p>
+                </div>
+            </div>
+
+            <!-- Pasta res -->
+            <div class="bg-white p-8 rounded-lg shadow-md">
+                <h4 class="font-bold text-2xl text-slate-800 mb-2 mono">📁 res (Recursos)</h4>
+                <p class="mb-4"><strong>Função:</strong> Esta é a pasta mais importante para a parte visual e estática do seu app. Ela contém todos os recursos que não são código, como layouts, imagens, textos e cores.</p>
+                <p class="mb-4"><strong>Boa Prática:</strong> A principal vantagem de usar a pasta <code-text>res</code-text> é a separação de responsabilidades. Manter o design (XML), textos (strings) e lógica (Kotlin) em arquivos separados torna o projeto muito mais organizado e fácil de manter.</p>
+                <div class="space-y-4 mt-6">
+                    <p><strong>📁 drawable:</strong> Contém imagens (PNG, JPG), vetores (XML) e outros recursos gráficos.</p>
+                    <p><strong>📁 layout:</strong> Contém os arquivos XML que definem a estrutura visual de cada tela do seu app. O nosso <code-text>activity_main.xml</code-text> vive aqui.</p>
+                    <p><strong>📁 mipmap:</strong> Similar ao <code-text>drawable</code-text>, mas é usado especificamente para os ícones do aplicativo. O Android usa esta pasta para fornecer a versão do ícone com a melhor qualidade dependendo da densidade da tela do dispositivo.</p>
+                    <p><strong>📁 values:</strong> Uma pasta crucial para a organização e boas práticas.
+                        <ul class="list-disc list-inside mt-2 pl-6">
+                            <li><code>strings.xml</code>: Onde você deve definir TODOS os textos do seu app. Em vez de escrever "Olá, Mundo!" diretamente no layout, você cria uma string com um nome (ex: <code-text>app_name</code-text>) e a referencia no layout (<code-text>@string/app_name</code-text>). Isso facilita a tradução do app para outros idiomas.</li>
+                            <li><code>colors.xml</code>: Onde você define a paleta de cores do seu app.</li>
+                            <li><code>themes.xml</code>: Onde você define o estilo visual geral do seu app (cores primárias, fontes, etc.).</li>
+                        </ul>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div id="atividade-pratica" class="mb-16">
+            <h3 class="text-3xl font-bold text-slate-800 mb-6">Atividade Prática: Exploração Guiada</h3>
+            <div class="bg-white p-8 rounded-lg shadow-md">
+                <p class="mb-4">Agora, vamos abrir o projeto "Olá, Mundo!" no Android Studio e explorar juntos. Tente encontrar as respostas para as seguintes perguntas:</p>
+                <ol class="list-decimal list-inside space-y-4 mt-6">
+                    <li>Abra o arquivo <code>AndroidManifest.xml</code>. Qual é o nome do tema (theme) do seu aplicativo?</li>
+                    <li>Navegue até a pasta <code>res/values</code> e abra o arquivo <code>strings.xml</code>. Altere o valor da string <code-text>app_name</code-text> para "Meu Primeiro App". Execute o aplicativo novamente. O que mudou?</li>
+                    <li>Abra o arquivo <code>activity_main.xml</code>. Mude o valor do atributo <code>android:text</code> no <code-text>TextView</code-text> de "Hello World!" para o seu nome. Execute o aplicativo e veja o resultado.</li>
+                    <li>Abra a <code>MainActivity.kt</code>. Encontre a linha que carrega o layout. Tente comentá-la (adicionando <code-text>//</code-text> no início da linha) e execute o app. O que acontece? (Não se esqueça de descomentar depois!).</li>
+                </ol>
+            </div>
+        </div>
+
+        <div id="tarefa-aula3" class="mb-16">
+            <h3 class="text-3xl font-bold text-slate-800 mb-6">Encerramento e Próximos Passos</h3>
+            <div class="callout callout-task">
+                <h5 class="font-bold mb-2">Tarefa para a próxima aula (TED)</h5>
+                <p class="mb-4">Para consolidar o que aprendemos hoje, a tarefa é criar um mapa mental ou um diagrama que represente a estrutura de um projeto Android.</p>
+                <ol class="list-decimal list-inside space-y-2">
+                    <li>Utilize uma ferramenta de sua preferência (como <a href="https://app.diagrams.net/" target="_blank" class="font-semibold underline">draw.io</a>, um software de mapa mental, ou até mesmo papel e caneta).</li>
+                    <li>Elabore um diagrama que mostre as principais pastas (<code-text>manifests</code-text>, <code-text>java</code-text>, <code-text>res</code-text>) e arquivos (<code-text>AndroidManifest.xml</code-text>, <code-text>MainActivity.kt</code-text>, <code-text>activity_main.xml</code-text>).</li>
+                    <li>Para cada item, escreva uma breve descrição da sua função, com base no que discutimos em aula.</li>
+                    <li>Submeta uma imagem ou PDF do seu diagrama no Moodle.</li>
+                </ol>
+            </div>
+             <div class="bg-white p-6 rounded-lg shadow-md mt-8">
+                <h4 class="font-bold text-xl text-slate-800 mb-4">Bibliografia Recomendada</h4>
+                <ul class="list-disc list-inside space-y-2">
+                   <li>OLIVEIRA, Diego Bittencourt de et al. <strong>Desenvolvimento para Dispositivos Móveis</strong>. Porto Alegre: SAGAH, 2019. v. 1.</li>
+                   <li>URMA, Raoul-Gabriel; WARBURTON, Richard. <strong>Desenvolvimento Real de Software: Um Guia de Projetos para Fundamentos em Java</strong>. Alta Books, 2021.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    

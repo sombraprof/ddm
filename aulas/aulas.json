@@ -2,36 +2,36 @@
   {
     "id": "aula1",
     "titulo": "Aula 1: Introdução e Fundamentos do Android",
-    "descricao": "História, arquitetura e panorama do Android. Ambientação na disciplina e primeiros conceitos.",
+    "descricao": "Apresentação da disciplina, seus objetivos, métodos e a importância do Android no mercado.",
     "arquivo": "aula1.html",
     "ativo": true
   },
   {
     "id": "aula2",
     "titulo": "Aula 2: Configuração do Ambiente de Desenvolvimento",
-    "descricao": "Instalação e configuração do Android Studio, criação do primeiro projeto.",
+    "descricao": "Preparar o ambiente Android, instalando e configurando as ferramentas essenciais para a criação de aplicativos.",
     "arquivo": "aula2.html",
-    "ativo": false
+    "ativo": true
   },
   {
     "id": "aula3",
-    "titulo": "Aula 3: Layouts e Componentes de Interface",
-    "descricao": "Criação de layouts com XML, uso de Views e ViewGroups.",
+    "titulo": "Aula 3: Estrutura Básica de um App Android",
+    "descricao": "Compreender a organização de um projeto, identificando os arquivos essenciais como AndroidManifest.xml, MainActivity.kt e a pasta res.",
     "arquivo": "aula3.html",
-    "ativo": false
+    "ativo": true
   },
   {
     "id": "aula4",
-    "titulo": "Aula 4: Ciclo de Vida de Atividades",
-    "descricao": "Entendimento do ciclo de vida das atividades e como gerenciar estados.",
+    "titulo": "Aula 4: Componentes de UI",
+    "descricao": "Apresentar os principais componentes de interface gráfica no Android e demonstrar como utilizá-los na construção de telas simples.",
     "arquivo": "aula4.html",
-    "ativo": false
+    "ativo": true
   },
   {
     "id": "aula5",
-    "titulo": "Aula 5: Intents e Navegação entre Atividades",
-    "descricao": "Uso de intents para comunicação entre atividades e navegação.",
+    "titulo": "Aula 5: Manipulação de Eventos e Uso de Logcat",
+    "descricao": "Associar ações da interface gráfica (como cliques) a funções em Kotlin e usar o Logcat para depuração.",
     "arquivo": "aula5.html",
-    "ativo": false
+    "ativo": true
   }
 ]
