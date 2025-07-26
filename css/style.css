@@ -51,6 +51,12 @@ body {
   color: #713f12; /* yellow-900 */
 }
 
+.callout-warning {
+  background-color: #fee2e2;
+  border-color: #dc2626;
+  color: #991b1b;
+}
+
 /* === Timeline === */
 .timeline-item::before {
   content: "";

@@ -1,0 +1,413 @@
+<section id="aula7" class="mb-16 pt-16">
+  <header class="mb-12 border-b pb-8">
+    <h2 class="text-4xl font-bold text-slate-900">
+      Aula 7: Unidade II – O Ciclo de Vida das Activities
+    </h2>
+    <p class="text-lg text-slate-600 mt-2">
+      Compreender os principais estados de uma Activity, sua importância e
+      implicações no gerenciamento de recursos.
+    </p>
+  </header>
+
+  <div class="bg-white p-6 rounded-lg shadow-md mb-12">
+    <h3 class="font-bold text-2xl text-slate-800 mb-4">Plano de Voo da Aula</h3>
+    <ul class="list-disc list-inside space-y-2 text-slate-700">
+      <li>
+        <strong>Pergunta Inicial e Contexto Profissional:</strong> Por que o
+        ciclo de vida é um dos tópicos mais importantes para um dev Android?
+      </li>
+      <li>
+        <strong>O Diagrama Oficial do Ciclo de Vida:</strong> Uma visão geral
+        dos estados e transições.
+      </li>
+      <li>
+        <strong>Mergulho nos Métodos:</strong> Análise detalhada de cada método
+        de callback.
+      </li>
+      <li>
+        <strong>O Problema da Rotação:</strong> Salvando e restaurando o estado
+        com <code-text>onSaveInstanceState()</code-text>.
+      </li>
+      <li>Prevenindo Memory Leaks em Activities</li>
+      <li>Uso de LifecycleObserver para observar estados</li>
+      <li>
+        <strong>Atividade Prática:</strong> Observando o ciclo de vida e a perda
+        de estado em tempo real com o Logcat.
+      </li>
+      <li>
+        <strong>Integração com Ferramentas Modernas:</strong> Uma introdução ao
+        Jetpack Lifecycle e ViewModel.
+      </li>
+      <li>
+        <strong>Quiz Rápido e Tarefa (TED):</strong> Consolidando o
+        conhecimento.
+      </li>
+    </ul>
+  </div>
+
+  <div id="contexto" class="mb-16">
+    <h3 class="text-3xl font-bold text-slate-800 mb-6">
+      Contexto Profissional: Por que o Ciclo de Vida é Crucial?
+    </h3>
+    <div class="bg-white p-8 rounded-lg shadow-md">
+      <p class="text-lg mb-4">
+        Vamos começar com uma pergunta:
+        <strong
+          >"O que acontece com o texto que você estava digitando em um
+          formulário se você rotacionar o celular?"</strong
+        >. Na maioria dos apps mal construídos, o texto desaparece. Isso
+        acontece por causa do ciclo de vida.
+      </p>
+      <p class="mb-4">
+        Em um ambiente com recursos limitados como o mobile, o sistema Android
+        precisa constantemente gerenciar memória e bateria. Ele pode criar,
+        pausar, parar e destruir as telas (Activities) do seu app a qualquer
+        momento. Ignorar o ciclo de vida leva a:
+      </p>
+      <ul class="list-disc list-inside space-y-2">
+        <li>
+          <strong>Bugs e Crashes:</strong> Tentar usar um recurso (como a
+          câmera) quando a tela está em segundo plano.
+        </li>
+        <li>
+          <strong>Má Experiência do Usuário (UX):</strong> Perder o progresso do
+          usuário (como o texto de um formulário) quando ele rotaciona a tela ou
+          atende uma chamada.
+        </li>
+        <li>
+          <strong>Consumo Excessivo de Bateria:</strong> Manter sensores (como o
+          GPS) ativos quando não são necessários.
+        </li>
+      </ul>
+      <div class="callout callout-info">
+        <h5 class="font-bold mb-2">Relevância no Mercado</h5>
+        <p>
+          Dominar o ciclo de vida é um requisito não negociável para qualquer
+          vaga de desenvolvedor Android. É um dos primeiros tópicos abordados em
+          entrevistas técnicas e provas de certificação, pois demonstra que o
+          candidato entende como construir apps robustos e eficientes.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div id="diagrama" class="mb-16">
+    <h3 class="text-3xl font-bold text-slate-800 mb-6">
+      O Diagrama Oficial do Ciclo de Vida
+    </h3>
+    <div class="bg-white p-8 rounded-lg shadow-md">
+      <p class="mb-6">
+        Este é o diagrama oficial da Google. Ele ilustra os seis principais
+        callbacks que uma Activity pode receber ao longo de sua "vida". Nossa
+        missão é entender o que acontece em cada transição.
+      </p>
+      <img
+        src="https://developer.android.com/guide/components/images/activity_lifecycle.png"
+        alt="Diagrama oficial do ciclo de vida da Activity"
+        class="my-4 rounded-lg shadow-sm mx-auto border"
+      />
+    </div>
+  </div>
+
+  <div class="space-y-8 mb-16">
+    <h3 class="text-3xl font-bold text-slate-800 mb-6">
+      Mergulhando nos Métodos do Ciclo de Vida
+    </h3>
+    <p>
+      Cada um desses métodos nos dá uma oportunidade de executar um código
+      específico no momento certo.
+    </p>
+
+    <div class="bg-white p-6 rounded-lg shadow-md">
+      <h4 class="font-bold text-xl text-slate-800 mb-2">
+        <code-text>onCreate()</code-text>
+      </h4>
+      <p>
+        <strong>Quando é chamado?</strong> Uma única vez, quando a Activity é
+        criada pela primeira vez.
+      </p>
+      <p>
+        <strong>O que fazer aqui?</strong> Toda a configuração inicial que não
+        deve ser refeita: definir o layout com <code-text>setContentView()</code-text>,
+        inicializar variáveis, configurar listeners de clique, etc.
+      </p>
+    </div>
+
+    <div class="bg-white p-6 rounded-lg shadow-md">
+      <h4 class="font-bold text-xl text-slate-800 mb-2">
+        <code-text>onStart()</code-text> e <code-text>onStop()</code-text>
+      </h4>
+      <p>
+        <strong>Quando são chamados?</strong> <code-text>onStart()</code-text> é chamado
+        quando a Activity está prestes a se tornar visível.
+        <code-text>onStop()</code-text> é chamado quando ela não está mais visível.
+      </p>
+      <p>
+        <strong>O que fazer aqui?</strong> Gerenciar recursos que precisam estar
+        ativos apenas enquanto a UI está na tela, como registrar
+        <code-text>BroadcastReceivers</code-text> ou animações.
+      </p>
+    </div>
+
+    <div class="bg-white p-6 rounded-lg shadow-md">
+      <h4 class="font-bold text-xl text-slate-800 mb-2">
+        <code-text>onResume()</code-text> e <code-text>onPause()</code-text>
+      </h4>
+      <p>
+        <strong>Quando são chamados?</strong> <code-text>onResume()</code-text> é chamado
+        quando a Activity está em primeiro plano e o usuário pode interagir com
+        ela. <code-text>onPause()</code-text> é o primeiro indicativo de que o usuário
+        está deixando a Activity.
+      </p>
+      <p>
+        <strong>O que fazer aqui?</strong> É aqui que se gerenciam os recursos
+        mais exclusivos, como a câmera, o GPS ou um player de vídeo. Você os
+        "liga" no <code-text>onResume()</code-text> e os "desliga" imediatamente no
+        <code-text>onPause()</code-text> para não consumir recursos desnecessariamente.
+      </p>
+    </div>
+
+    <div class="bg-white p-6 rounded-lg shadow-md">
+      <h4 class="font-bold text-xl text-slate-800 mb-2">
+        <code-text>onDestroy()</code-text>
+      </h4>
+      <p>
+        <strong>Quando é chamado?</strong> Uma única vez, antes da Activity ser
+        destruída.
+      </p>
+      <p>
+        <strong>O que fazer aqui?</strong> É a última chance de limpar todos os
+        recursos restantes para evitar vazamentos de memória (memory leaks).
+      </p>
+    </div>
+  </div>
+
+  <div id="salvando-estado" class="mb-16">
+    <h3 class="text-3xl font-bold text-slate-800 mb-6">
+      O Problema da Rotação: Salvando o Estado
+    </h3>
+    <div class="bg-white p-8 rounded-lg shadow-md">
+      <p class="text-lg mb-4">
+        Quando você rotaciona a tela, o Android, por padrão,
+        <strong>destrói e recria</strong> a Activity. Isso é feito para que o
+        app possa carregar recursos alternativos para a nova configuração (ex:
+        um layout diferente para o modo paisagem). O problema é que todos os
+        dados temporários (como o texto em um <code-text>EditText</code-text>) são perdidos.
+      </p>
+      <p>
+        Para resolver isso, o ciclo de vida nos oferece dois métodos especiais:
+      </p>
+      <ul class="list-disc list-inside space-y-2">
+        <li>
+          <strong><code-text>onSaveInstanceState(outState: Bundle)</code-text></strong
+          >: Chamado pelo sistema antes da Activity ser destruída. É a sua
+          chance de salvar dados importantes em um objeto <code-text>Bundle</code-text>.
+        </li>
+        <li>
+          <strong><code-text>onCreate(savedInstanceState: Bundle?)</code-text></strong
+          >: O mesmo <code-text>Bundle</code-text> que você salvou é entregue de volta aqui quando a
+          Activity é recriada. Você pode então restaurar os dados.
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout callout-warning">
+    <h5 class="font-bold mb-2">Alerta Importante: Memory Leaks</h5>
+    <p>
+      Manter referências de contexto (como Activities) em singletons ou threads
+      pode causar vazamentos de memória. Sempre use
+      <code-text>applicationContext</code-text> quando o contexto da Activity não for
+      necessário.
+    </p>
+  </div>
+
+  <div class="bg-white p-6 rounded-lg shadow-md mb-12">
+    <h3 class="font-bold text-2xl text-slate-800 mb-4">
+      Usando LifecycleObserver
+    </h3>
+    <p>Permite desacoplar a lógica do ciclo de vida da Activity.</p>
+    <div class="code-block-wrapper">
+      <div class="code-block">
+        <pre><code class="mono">
+class MyObserver : DefaultLifecycleObserver {
+    override fun onStart(owner: LifecycleOwner) {
+        Log.d("Observer", "Activity iniciou")
+    }
+}
+
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        lifecycle.addObserver(MyObserver())
+    }
+}
+</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <div id="atividade-pratica-aula7" class="mb-16">
+    <h3 class="text-3xl font-bold text-slate-800 mb-6">
+      Atividade Prática: Observando o Ciclo de Vida
+    </h3>
+    <div class="bg-white p-8 rounded-lg shadow-md">
+      <p class="mb-4">
+        Vamos criar um novo projeto para registrar cada transição de estado e
+        ver como salvar o estado de um <code-text>EditText</code-text>.
+      </p>
+      <div class="code-block-wrapper">
+        <button class="copy-button">Copiar</button>
+        <div class="code-block">
+          <h5 class="mono">// Código Final para MainActivity.kt</h5>
+          <pre><code>package br.com.unichristus.ads.ciclodevida
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.util.Log
+import android.widget.EditText
+
+class MainActivity : AppCompatActivity() {
+
+    private val TAG = "CicloDeVida"
+    private var contadorOnCreate = 0
+    private lateinit var editTextNome: EditText
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        
+        contadorOnCreate++
+        Log.d(TAG, "onCreate() chamado. Vezes: $contadorOnCreate")
+
+        editTextNome = findViewById(R.id.editTextNome)
+
+        // Restaura o estado salvo, se houver
+        if (savedInstanceState != null) {
+            val textoSalvo = savedInstanceState.getString("TEXTO_DIGITADO")
+            editTextNome.setText(textoSalvo)
+            Log.i(TAG, "Texto restaurado: $textoSalvo")
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        val textoAtual = editTextNome.text.toString()
+        outState.putString("TEXTO_DIGITADO", textoAtual)
+        Log.i(TAG, "onSaveInstanceState: Salvando texto '$textoAtual'")
+    }
+
+    override fun onStart() { super.onStart(); Log.d(TAG, "onStart() chamado.") }
+    override fun onResume() { super.onResume(); Log.d(TAG, "onResume() chamado.") }
+    override fun onPause() { super.onPause(); Log.d(TAG, "onPause() chamado.") }
+    override fun onStop() { super.onStop(); Log.d(TAG, "onStop() chamado.") }
+    override fun onRestart() { super.onRestart(); Log.d(TAG, "onRestart() chamado.") }
+    override fun onDestroy() { super.onDestroy(); Log.d(TAG, "onDestroy() chamado.") }
+}</code></pre>
+        </div>
+      </div>
+      <h4 class="font-semibold text-xl mt-6 mb-3">Tabela de Análise:</h4>
+      <p>
+        Execute o app e preencha a tabela abaixo com a sequência de métodos
+        chamados no Logcat para cada ação:
+      </p>
+      <div class="overflow-x-auto mt-4">
+        <table class="w-full text-left border-collapse">
+          <thead class="bg-slate-200">
+            <tr>
+              <th class="p-2 border">Ação do Usuário</th>
+              <th class="p-2 border">
+                Métodos do Ciclo de Vida Chamados (em ordem)
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="p-2 border">Abrir o app pela primeira vez</td>
+              <td class="p-2 border"></td>
+            </tr>
+            <tr>
+              <td class="p-2 border">Pressionar o botão Home</td>
+              <td class="p-2 border"></td>
+            </tr>
+            <tr>
+              <td class="p-2 border">Voltar para o app</td>
+              <td class="p-2 border"></td>
+            </tr>
+            <tr>
+              <td class="p-2 border">Rotacionar a tela</td>
+              <td class="p-2 border"></td>
+            </tr>
+            <tr>
+              <td class="p-2 border">
+                Pressionar o botão Voltar (para fechar)
+              </td>
+              <td class="p-2 border"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div id="tarefa-aula7" class="mb-16">
+    <h3 class="text-3xl font-bold text-slate-800 mb-6">
+      Encerramento e Próximos Passos
+    </h3>
+    <div class="callout callout-task">
+      <h5 class="font-bold mb-2">Tarefa para a próxima aula (TED)</h5>
+      <p class="mb-4">
+        O desafio é criar um mini-relatório para consolidar o conhecimento sobre
+        o ciclo de vida.
+      </p>
+      <ol class="list-decimal list-inside space-y-2">
+        <li>Crie o projeto de teste da atividade prática e capture os logs.</li>
+        <li>
+          No Moodle, submeta um documento respondendo:
+          <ul class="list-disc list-inside ml-6 mt-2">
+            <li>
+              Qual a principal diferença prática entre <code-text>onPause()</code-text> e
+              <code-text>onStop()</code-text>?
+            </li>
+            <li>
+              Por que o Android destrói e recria a Activity durante a rotação de
+              tela?
+            </li>
+            <li>
+              Como o conhecimento do ciclo de vida pode influenciar a decisão de
+              onde colocar a lógica de inicialização de um player de vídeo em um
+              app como o YouTube?
+            </li>
+          </ul>
+        </li>
+      </ol>
+    </div>
+    <div class="bg-white p-6 rounded-lg shadow-md mt-8">
+      <h4 class="font-bold text-xl text-slate-800 mb-4">
+        Bibliografia Recomendada
+      </h4>
+      <ul class="list-disc list-inside space-y-2">
+        <li>
+          OLIVEIRA, Diego Bittencourt de et al.
+          <strong>Desenvolvimento para Dispositivos Móveis</strong>. Porto
+          Alegre: SAGAH, 2019. v. 1.
+        </li>
+        <li>
+          LECHETA, Ricardo R.
+          <strong
+            >Google Android: Aprenda a criar aplicações para dispositivos móveis
+            com o Android SDK</strong
+          >. Novatec, 2015.
+        </li>
+        <li>
+          <a
+            href="https://developer.android.com/guide/components/activities/activity-lifecycle"
+            target="_blank"
+            class="text-indigo-600 hover:underline font-semibold"
+            >Documentação Oficial do Ciclo de Vida da Activity</a
+          >.
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>

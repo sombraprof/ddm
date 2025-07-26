@@ -1,0 +1,303 @@
+<section id="aula8" class="mb-16 pt-16">
+  <header class="mb-12 border-b pb-8">
+    <h2 class="text-4xl font-bold text-slate-900">
+      Aula 8: Unidade II – Salvando Estado com Bundle
+    </h2>
+    <p class="text-lg text-slate-600 mt-2">
+      Preservar o estado da interface em mudanças de configuração, como rotação
+      de tela, utilizando o objeto Bundle.
+    </p>
+  </header>
+
+  <div class="bg-white p-6 rounded-lg shadow-md mb-12">
+    <h3 class="font-bold text-2xl text-slate-800 mb-4">Plano de Voo da Aula</h3>
+    <ul class="list-disc list-inside space-y-2 text-slate-700">
+      <li>
+        <strong>Recapitulação e Relevância Profissional:</strong> Conectando a
+        Aula 7 com o mercado de trabalho.
+      </li>
+      <li>
+        <strong>A Solução Clássica:</strong> O que é um
+        <code-text>Bundle</code-text> e como usar
+        <code-text>onSaveInstanceState</code-text>.
+      </li>
+      <li>
+        <strong>Abordagem Alternativa:</strong> Conhecendo o
+        <code-text>onRestoreInstanceState</code-text>.
+      </li>
+      <li>
+        <strong>Atividade Prática Guiada:</strong> Codificação passo a passo da
+        funcionalidade completa.
+      </li>
+      <li>
+        <strong>A Abordagem Moderna:</strong> Introdução ao ViewModel com
+        SavedStateHandle.
+      </li>
+      <li>
+        <strong>Tarefa (TED):</strong> Aplicar o conhecimento em um projeto
+        próprio.
+      </li>
+    </ul>
+  </div>
+
+  <div id="contexto" class="mb-16">
+    <h3 class="text-3xl font-bold text-slate-800 mb-6">
+      Recapitulando o Problema e a Relevância Profissional
+    </h3>
+    <div class="bg-white p-8 rounded-lg shadow-md">
+      <p class="text-lg mb-4">
+        Na <strong>Aula 7</strong>, vimos a recriação da Activity: ao rotacionar
+        a tela, o Android <strong>destrói e recria</strong> a nossa tela, e com
+        isso, qualquer dado inserido pelo usuário é perdido. Agora, vamos
+        resolver o problema salvando o estado.
+      </p>
+      <div class="callout callout-info">
+        <h5 class="font-bold mb-2">Relevância Profissional e UX</h5>
+        <p>
+          Saber gerenciar o estado da UI não é um detalhe, é um requisito
+          fundamental. Em aplicações reais, a perda de estado é inaceitável:
+        </p>
+        <ul class="list-disc list-inside mt-2">
+          <li>
+            <strong>Apps de Banco:</strong> Perder dados durante uma
+            transferência.
+          </li>
+          <li>
+            <strong>E-commerce:</strong> Esvaziar o carrinho de compras durante
+            o checkout.
+          </li>
+          <li>
+            <strong>Editores de Texto:</strong> Apagar o parágrafo que o usuário
+            acabou de escrever.
+          </li>
+        </ul>
+        <p class="mt-2">
+          Falhas como essas impactam negativamente as métricas de
+          <strong>retenção e satisfação do usuário</strong>. Por isso, este é um
+          dos tópicos mais cobrados em entrevistas para desenvolvedores Android.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div id="bundle" class="mb-16">
+    <h3 class="text-3xl font-bold text-slate-800 mb-6">
+      A Solução Clássica: <code-text>onSaveInstanceState</code-text> e o
+      <code-text>Bundle</code-text>
+    </h3>
+    <div class="bg-white p-8 rounded-lg shadow-md">
+      <p class="text-lg mb-4">
+        O Android nos oferece um mecanismo para salvar e restaurar o estado
+        temporário da nossa UI. A abordagem clássica envolve dois métodos do
+        ciclo de vida e um objeto chamado <code-text>Bundle</code-text>.
+      </p>
+      <img
+        src="/imagens/aula_8_imagen_1.png"
+        alt="Fluxo do Bundle"
+        class="mt-6 rounded-lg shadow-sm mx-auto"
+        width="600"
+        height="600"
+      />
+      <h4 class="font-bold text-xl text-slate-800 mt-8 mb-4">
+        Abordagem Alternativa: <code-text>onRestoreInstanceState</code-text>
+      </h4>
+      <p>
+        Além de restaurar o estado no <code-text>onCreate</code-text>, você pode
+        usar o método <code-text>onRestoreInstanceState()</code-text>. A
+        principal diferença é quando ele é chamado:
+      </p>
+      <ul class="list-disc list-inside space-y-2 mt-2">
+        <li>
+          <code-text>onCreate()</code-text>: É chamado sempre que a Activity é
+          criada. Você precisa verificar se
+          <code-text>savedInstanceState</code-text> não é nulo.
+        </li>
+        <li>
+          <code-text>onRestoreInstanceState()</code-text>: É chamado
+          <strong>apenas se houver um estado a ser restaurado</strong>, e sempre
+          <strong>após</strong> o <code-text>onStart()</code-text>. É um local
+          mais "limpo" para a lógica de restauração, pois você não precisa da
+          verificação de nulidade.
+        </li>
+      </ul>
+      <p class="mt-4">
+        Saiba mais na
+        <a
+          href="https://developer.android.com/reference/android/app/Activity.html#onRestoreInstanceState(android.os.Bundle)"
+          target="_blank"
+          class="text-indigo-600 hover:underline font-semibold"
+          >documentação oficial do onRestoreInstanceState</a
+        >.
+      </p>
+    </div>
+  </div>
+
+  <div id="atividade-pratica-aula8" class="mb-16">
+    <h3 class="text-3xl font-bold text-slate-800 mb-6">
+      Atividade Prática: Salvando um Formulário Simples
+    </h3>
+    <div class="bg-white p-8 rounded-lg shadow-md">
+      <p class="mb-4">
+        Vamos criar um app com dois campos de texto (Nome e Sobrenome) e
+        garantir que os dados não se percam na rotação.
+      </p>
+
+      <h4 class="font-bold text-2xl text-slate-800 mt-8 mb-4">
+        Passo 1: O Layout (<code-text>activity_main.xml</code-text>)
+      </h4>
+      <p class="mb-4">
+        Crie um novo projeto e substitua o conteúdo do seu arquivo de layout por
+        este código.
+      </p>
+      <div class="code-block-wrapper">
+        <button class="copy-button">Copiar</button>
+        <div class="code-block">
+          <h5 class="mono">
+            &lt;-- Código para res/layout/activity_main.xml --&gt;
+          </h5>
+          <pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".MainActivity"&gt;
+
+    &lt;EditText
+        android:id="@+id/editTextNome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Digite seu nome"
+        android:inputType="textPersonName" /&gt;
+
+    &lt;EditText
+        android:id="@+id/editTextSobrenome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:hint="Digite seu sobrenome"
+        android:inputType="textPersonName" /&gt;
+
+&lt;/LinearLayout&gt;</code></pre>
+        </div>
+      </div>
+
+      <h4 class="font-bold text-2xl text-slate-800 mt-12 mb-4">
+        Passo 2: A Lógica (<code-text>MainActivity.kt</code-text>)
+      </h4>
+      <p class="mb-4">
+        Agora, vamos implementar a lógica para salvar e restaurar o texto dos
+        dois campos.
+      </p>
+      <div class="code-block-wrapper">
+        <button class="copy-button">Copiar</button>
+        <div class="code-block">
+          <h5 class="mono">// Código Final para MainActivity.kt</h5>
+          <pre><code>package br.com.unichristus.ads.salvandoestado
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.util.Log
+import android.widget.EditText
+
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var editTextNome: EditText
+    private lateinit var editTextSobrenome: EditText
+
+    companion object {
+        private const val KEY_NOME = "KEY_NOME"
+        private const val KEY_SOBRENOME = "KEY_SOBRENOME"
+        private const val TAG = "EstadoApp"
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        Log.d(TAG, "onCreate")
+
+        editTextNome = findViewById(R.id.editTextNome)
+        editTextSobrenome = findViewById(R.id.editTextSobrenome)
+
+        if (savedInstanceState != null) {
+            val nomeSalvo = savedInstanceState.getString(KEY_NOME)
+            val sobrenomeSalvo = savedInstanceState.getString(KEY_SOBRENOME)
+            Log.i(TAG, "Restaurando estado... Nome: $nomeSalvo, Sobrenome: $sobrenomeSalvo")
+            editTextNome.setText(nomeSalvo)
+            editTextSobrenome.setText(sobrenomeSalvo)
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        Log.i(TAG, "onSaveInstanceState: Salvando dados...")
+
+        val nomeAtual = editTextNome.text.toString()
+        val sobrenomeAtual = editTextSobrenome.text.toString()
+
+        outState.putString(KEY_NOME, nomeAtual)
+        outState.putString(KEY_SOBRENOME, sobrenomeAtual)
+    }
+}</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="tarefa-aula8" class="mb-16">
+    <h3 class="text-3xl font-bold text-slate-800 mb-6">
+      Encerramento e Próximos Passos
+    </h3>
+    <div class="callout callout-task">
+      <h5 class="font-bold mb-2">Tarefa para a próxima aula (TED)</h5>
+      <p class="mb-4">
+        O desafio é replicar o que fizemos hoje, consolidando o entendimento
+        sobre o salvamento de estado.
+      </p>
+      <ol class="list-decimal list-inside space-y-2">
+        <li>
+          Crie um novo aplicativo com dois campos de entrada
+          (<code-text>EditText</code-text>) de sua escolha (ex: "Email" e
+          "Telefone").
+        </li>
+        <li>
+          Implemente a lógica com <code-text>onSaveInstanceState</code-text> e a
+          restauração no <code-text>onCreate</code-text> para garantir que os
+          dados digitados persistam durante a rotação da tela.
+        </li>
+        <li>
+          Tire prints (capturas de tela) do seu app funcionando: um antes de
+          rotacionar (com dados) e um depois de rotacionar (mostrando que os
+          dados foram mantidos).
+        </li>
+        <li>Submeta os prints no Moodle.</li>
+      </ol>
+    </div>
+    <div class="bg-white p-6 rounded-lg shadow-md mt-8">
+      <h4 class="font-bold text-xl text-slate-800 mb-4">
+        Bibliografia Recomendada
+      </h4>
+      <ul class="list-disc list-inside space-y-2">
+        <li>
+          SIMAS, V. L. et al.
+          <strong>Desenvolvimento para Dispositivos Móveis – Volume 2</strong>.
+          Grupo A, 2019.
+        </li>
+        <li>
+          OLIVEIRA, Diego Bittencourt de et al.
+          <strong>Desenvolvimento para Dispositivos Móveis</strong>. SAGAH,
+          2019. v. 1.
+        </li>
+        <li>
+          <a
+            href="https://developer.android.com/topic/libraries/architecture/saving-states"
+            target="_blank"
+            class="text-indigo-600 hover:underline font-semibold"
+            >Documentação Oficial sobre Como Salvar Estados da UI</a
+          >.
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>

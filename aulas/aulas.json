@@ -40,5 +40,19 @@
     "descricao": "Consolidar conhecimentos desenvolvendo um app funcional com interface interativa e mensagens personalizadas.",
     "arquivo": "aula6.html",
     "ativo": true
+  },
+  {
+    "id": "aula7",
+    "titulo": "Aula 7: O Ciclo de Vida das Activities",
+    "descricao": "Compreender os principais estados do ciclo de vida de uma Activity, sua importância e implicações no gerenciamento de recursos.",
+    "arquivo": "aula7.html",
+    "ativo": true
+  },
+  {
+    "id": "aula8",
+    "titulo": "Aula 8: Salvando Estado com Bundle",
+    "descricao": "Preservar o estado da interface em mudanças de configuração, como rotação de tela, utilizando o objeto Bundle.",
+    "arquivo": "aula8.html",
+    "ativo": true
   }
 ]
