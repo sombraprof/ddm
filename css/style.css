@@ -175,3 +175,13 @@ code-text {
   color: #1e293b; /* slate-800 */
   font-style: italic;
 }
+
+.code-text {
+  background-color: #e2e8f0; /* slate-200 */
+  padding: 0.125rem 0.375rem;
+  border-radius: 0.25rem;
+  font-family: "Roboto Mono", monospace;
+  font-size: 0.9em;
+  color: #1e293b; /* slate-800 */
+  font-style: italic;
+}

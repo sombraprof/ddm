@@ -33,5 +33,12 @@
     "descricao": "Associar ações da interface gráfica (como cliques) a funções em Kotlin e usar o Logcat para depuração.",
     "arquivo": "aula5.html",
     "ativo": true
+  },
+  {
+    "id": "aula6",
+    "titulo": "Aula 6: Projeto Prático - App de Boas-vindas",
+    "descricao": "Consolidar conhecimentos desenvolvendo um app funcional com interface interativa e mensagens personalizadas.",
+    "arquivo": "aula6.html",
+    "ativo": true
   }
 ]

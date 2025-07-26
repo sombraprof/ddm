@@ -195,30 +195,33 @@ function initMarketShareChart() {
 
 function initCopyButtons() {
   document.querySelectorAll(".code-block-wrapper").forEach((wrapper) => {
-    if (wrapper.querySelector(".copy-button")) return; // evita duplicar
+    // Seleciona apenas o <code> dentro de <pre> se existir
+    const codeElement = wrapper.querySelector("pre code") || wrapper.querySelector("pre");
+    if (!codeElement) return;
 
-    const codeBlock = wrapper.querySelector("pre");
-    if (codeBlock) {
-      const copyButton = document.createElement("button");
+    // Reaproveita o botão se já existir ou cria um novo
+    let copyButton = wrapper.querySelector(".copy-button");
+    if (!copyButton) {
+      copyButton = document.createElement("button");
       copyButton.textContent = "Copiar";
       copyButton.className = "copy-button";
-
-      copyButton.addEventListener("click", () => {
-        const codeToCopy = codeBlock.innerText;
-        navigator.clipboard
-          .writeText(codeToCopy)
-          .then(() => {
-            copyButton.textContent = "Copiado!";
-            setTimeout(() => (copyButton.textContent = "Copiar"), 2000);
-          })
-          .catch((err) => {
-            console.error("Erro ao copiar código:", err);
-            copyButton.textContent = "Erro!";
-          });
-      });
-
       wrapper.appendChild(copyButton);
     }
+
+    // Evento de clique para copiar
+    copyButton.addEventListener("click", () => {
+      const codeToCopy = codeElement.innerText.trim(); // remove espaços e quebras no início/fim
+      navigator.clipboard
+        .writeText(codeToCopy)
+        .then(() => {
+          copyButton.textContent = "Copiado!";
+          setTimeout(() => (copyButton.textContent = "Copiar"), 2000);
+        })
+        .catch((err) => {
+          console.error("Erro ao copiar código:", err);
+          copyButton.textContent = "Erro!";
+        });
+    });
   });
 }
 

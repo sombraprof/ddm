@@ -1,0 +1,190 @@
+ <section id="aula6" class="mb-16 pt-16">
+        <header class="mb-12 border-b pb-8">
+            <h2 class="text-4xl font-bold text-slate-900">
+                Aula 6: Unidade I – Projeto Prático: App de Boas-vindas
+            </h2>
+            <p class="text-lg text-slate-600 mt-2">
+                Consolidar os conhecimentos adquiridos, desenvolvendo um aplicativo funcional com interface interativa e
+                mensagens personalizadas.
+            </p>
+        </header>
+
+        <div class="bg-white p-6 rounded-lg shadow-md mb-12">
+            <h3 class="font-bold text-2xl text-slate-800 mb-4">Plano de Voo da Aula</h3>
+            <ul class="list-disc list-inside space-y-2 text-slate-700">
+                <li><strong>Recapitulação e Objetivo:</strong> Juntar as peças! Vamos conectar a UI (Aula 4) com a
+                    lógica de eventos (Aula 5).</li>
+                <li><strong>O Desafio:</strong> Transformar nosso app para que ele mostre uma saudação personalizada na
+                    tela.</li>
+                <li><strong>Atividade Prática Guiada:</strong> Codificação passo a passo da funcionalidade completa.
+                </li>
+                <li><strong>Resultado Final:</strong> Ter um aplicativo 100% funcional que responde à interação do
+                    usuário.</li>
+                <li><strong>Documentação e Boas Práticas:</strong> A importância de comentar o código.</li>
+                <li><strong>Tarefa (TED):</strong> Finalizar e documentar o projeto.</li>
+            </ul>
+        </div>
+
+        <div id="recapitulacao" class="mb-16">
+            <h3 class="text-3xl font-bold text-slate-800 mb-6">Recapitulação e Objetivo Final</h3>
+            <div class="bg-white p-8 rounded-lg shadow-md">
+                <p class="text-lg mb-4">Até agora, construímos um caminho sólido:</p>
+                <ul class="list-disc list-inside space-y-2">
+                    <li>Na <strong>Aula 4</strong>, montamos a interface visual (o "corpo") do nosso app com <span class="code-text">TextView</span>,
+                        <span class="code-text">EditText</span> e <span class="code-text">Button</span> no arquivo <span class="code-text">activity_main.xml</span>.</li>
+                    <li>Na <strong>Aula 5</strong>, demos ao nosso app a capacidade de "ouvir" o usuário, capturando o
+                        clique do botão e exibindo uma mensagem de depuração no Logcat.</li>
+                </ul>
+                <p class="text-lg mt-4">Hoje, vamos dar o passo final: <strong>conectar a lógica ao visual</strong>.
+                    Faremos com que o texto digitado pelo usuário apareça em um <span class="code-text">TextView</span> na própria tela, criando
+                    nossa primeira experiência interativa completa.</p>
+                <img src="https://placehold.co/800x450/e0e7ff/3730a3?text=App+de+Boas-vindas+Funcionando" alt="Mockup do aplicativo de boas-vindas" class="mt-6 rounded-lg shadow-sm mx-auto">
+            </div>
+        </div>
+
+        <div id="atividade-pratica-aula6" class="mb-16">
+            <h3 class="text-3xl font-bold text-slate-800 mb-6">Atividade Prática: Mãos à Obra!</h3>
+            <div class="bg-white p-8 rounded-lg shadow-md">
+                <p class="mb-4">Vamos modificar nosso projeto para alcançar o objetivo. Precisaremos ajustar tanto o
+                    layout (XML) quanto a lógica (Kotlin).</p>
+
+                <h4 class="font-bold text-2xl text-slate-800 mt-8 mb-4">Passo 1: Ajustar o Layout (XML)</h4>
+                <p class="mb-4">Primeiro, vamos adicionar um novo <span class="code-text">TextView</span> ao nosso layout, que servirá para exibir a
+                    mensagem de saudação. Ele começará invisível.</p>
+                <ol class="list-decimal list-inside space-y-2 my-4">
+                    <li>Abra o arquivo <span class="code-text">res/layout/activity_main.xml</span>.</li>
+                    <li>Adicione o novo <span class="code-text">TextView</span> conforme o código abaixo.</li>
+                </ol>
+                <div class="code-block-wrapper">
+                    <button class="copy-button">Copiar</button>
+                    <div class="code-block">
+                        <h5 class="mono">&lt;-- Código Final para activity_main.xml --&gt;</h5>
+                        <pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;androidx.constraintlayout.widget.ConstraintLayout ...&gt;
+
+    &lt;TextView
+        android:id="@+id/textViewLabel"
+        ... /&gt;
+
+    &lt;EditText
+        android:id="@+id/editTextNome"
+        ... /&gt;
+
+    &lt;Button
+        android:id="@+id/buttonSaudacao"
+        ... /&gt;
+
+    &lt;!-- NOVO COMPONENTE ADICIONADO ABAIXO --&gt;
+    &lt;TextView
+        android:id="@+id/textViewResultado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSaudacao"
+        tools:text="Olá, Mundo!"
+        tools:visibility="visible" /&gt;
+
+&lt;/androidx.constraintlayout.widget.ConstraintLayout&gt;</code></pre>
+                    </div>
+                </div>
+                <div class="callout callout-info">
+                    <h5 class="font-bold mb-2">Novos Atributos</h5>
+                    <ul class="list-disc list-inside">
+                        <li><span class="code-text">android:visibility="invisible"</span>: Faz com que o <code>TextView</code> exista e
+                            ocupe seu espaço, mas não seja visível para o usuário inicialmente.</li>
+                        <li><span class="code-text">tools:text</span> e <span class="code-text">tools:visibility</span>: Esses são
+                            atributos de tempo de design. Eles nos permitem ver como o componente ficará no editor do
+                            Android Studio, mas não têm efeito quando o app é executado.</li>
+                    </ul>
+                </div>
+
+                <h4 class="font-bold text-2xl text-slate-800 mt-12 mb-4">Passo 2: Atualizar a Lógica (Kotlin)</h4>
+                <p class="mb-4">Agora, vamos modificar a <code>MainActivity.kt</code> para encontrar o novo
+                    <code>TextView</code> e atualizar seu texto quando o botão for clicado.</p>
+                <div class="code-block-wrapper">
+                    <button class="copy-button">Copiar</button>
+                    <div class="code-block">
+                        <h5 class="mono">// Código Final para MainActivity.kt</h5>
+                        <pre><code>package br.com.unichristus.ads.olamundoandroid
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.view.View
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
+
+class MainActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        // 1. Encontrar todas as Views necessárias pelo ID
+        val buttonSaudacao: Button = findViewById(R.id.buttonSaudacao)
+        val editTextNome: EditText = findViewById(R.id.editTextNome)
+        val textViewResultado: TextView = findViewById(R.id.textViewResultado)
+
+        // 2. Configurar o listener de clique para o botão
+        buttonSaudacao.setOnClickListener {
+            // 3. Pegar o texto que o usuário digitou
+            val nomeDigitado = editTextNome.text.toString()
+
+            // 4. Criar a mensagem de saudação
+            val mensagem = "Olá, $nomeDigitado!"
+
+            // 5. Atualizar o texto do TextView de resultado
+            textViewResultado.text = mensagem
+            
+            // 6. Tornar o TextView de resultado visível
+            textViewResultado.visibility = View.VISIBLE
+        }
+    }
+}</code></pre>
+                    </div>
+                </div>
+                <h4 class="font-semibold text-xl mt-6 mb-3">Como Testar:</h4>
+                <ul class="list-disc list-inside space-y-2">
+                    <li>Execute o aplicativo.</li>
+                    <li>Digite seu nome no campo de texto.</li>
+                    <li>Clique no botão "Exibir Mensagem".</li>
+                    <li>A saudação personalizada deve aparecer na tela!</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="tarefa-aula6" class="mb-16">
+            <h3 class="text-3xl font-bold text-slate-800 mb-6">Encerramento e Próximos Passos</h3>
+            <div class="callout callout-task">
+                <h5 class="font-bold mb-2">Tarefa para a próxima aula (TED)</h5>
+                <p class="mb-4">Agora que temos um aplicativo funcional, a tarefa é focar na documentação e na
+                    apresentação do seu trabalho, uma habilidade crucial para qualquer desenvolvedor.</p>
+                <ol class="list-decimal list-inside space-y-2">
+                    <li><strong>Finalize o App:</strong> Garanta que seu aplicativo de boas-vindas está funcionando
+                        perfeitamente.</li>
+                    <li><strong>Documente o Código:</strong> Adicione comentários ao seu arquivo
+                        <code>MainActivity.kt</code> explicando o que cada parte do código faz (o que é o
+                        <code>onCreate</code>, para que serve o <code>findViewById</code>, o que o <code>setOnClickListener</code> faz, etc.).</li>
+                    <li><strong>Prepare a Apresentação:</strong> Tire prints (capturas de tela) da interface do seu app
+                        e do seu código comentado.</li>
+                    <li>Submeta os prints no Moodle e esteja preparado para apresentar informalmente o que você fez na
+                        próxima aula.</li>
+                </ol>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md mt-8">
+                <h4 class="font-bold text-xl text-slate-800 mb-4">Bibliografia Recomendada</h4>
+                <ul class="list-disc list-inside space-y-2">
+                    <li>OLIVEIRA, Diego Bittencourt de et al. <strong>Desenvolvimento para Dispositivos Móveis</strong>.
+                        Porto Alegre: SAGAH, 2019. v. 1.</li>
+                    <li>URMA, Raoul-Gabriel; WARBURTON, Richard.
+                        <strong>Desenvolvimento Real de Software: Um Guia de Projetos para Fundamentos em Java</strong>.
+                        Alta Books, 2021.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
