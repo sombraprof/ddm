@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aula 9: Intents Explícitas e Navegação entre Activities</title>
+  </head>
+  <body class="p-6 md:p-10">
+    <section id="aula9" class="max-w-7xl mx-auto">
+      <header class="mb-12 border-b pb-8">
+        <h2 class="text-4xl font-bold text-slate-900">
+          Aula 9: Unidade II – Intents Explícitas e Navegação
+        </h2>
+        <p class="text-lg text-slate-600 mt-2">
+          Compreender o conceito de Intent explícita, sua aplicação na navegação
+          e como enviar dados entre as telas de um app.
+        </p>
+      </header>
+
+      <div class="bg-white p-6 rounded-lg shadow-md mb-12">
+        <h3 class="font-bold text-2xl text-slate-800 mb-4">
+          Plano de Voo da Aula
+        </h3>
+        <ul class="list-disc list-inside space-y-2 text-slate-700">
+          <li>
+            <strong>Contextualização:</strong> Por que aplicativos precisam de
+            mais de uma tela?
+          </li>
+          <li>
+            <strong>O Mensageiro do Android:</strong> Apresentando o conceito de
+            <code>Intent</code>.
+          </li>
+          <li>
+            <strong>Intents Explícitas:</strong> Navegando com um destino certo.
+          </li>
+          <li>
+            <strong>Atividade Prática (Parte 1):</strong> Criando e iniciando
+            uma segunda <code>Activity</code>.
+          </li>
+          <li>
+            <strong>Levando uma "Encomenda":</strong> Passando dados entre
+            Activities com <code>putExtra()</code>.
+          </li>
+          <li>
+            <strong>Recebendo a "Encomenda":</strong> Lendo os dados na
+            <code>Activity</code> de destino.
+          </li>
+          <li>
+            <strong>Atividade Prática (Parte 2):</strong> Implementando o fluxo
+            completo de dados.
+          </li>
+          <li>
+            <strong>Tarefa (TED):</strong> Consolidando o aprendizado com um app
+            de duas telas.
+          </li>
+        </ul>
+      </div>
+
+      <div id="contexto" class="mb-16">
+        <h3 class="text-3xl font-bold text-slate-800 mb-6">
+          Por que uma Tela Apenas Não é Suficiente?
+        </h3>
+        <div class="bg-white p-8 rounded-lg shadow-md">
+          <p class="text-lg mb-4">
+            Até agora, todos os nossos aplicativos tinham uma única tela. Mas
+            pense nos apps que você usa todos os dias: eles têm uma tela de
+            login, uma tela principal, uma tela de perfil, uma tela de
+            detalhes... um aplicativo é uma coleção de telas que trabalham
+            juntas para criar um <strong>fluxo de usuário</strong>.
+          </p>
+          <p>
+            Navegar entre essas telas é uma das tarefas mais fundamentais no
+            desenvolvimento Android. Para fazer isso, precisamos de um mecanismo
+            para que uma tela possa "pedir" ao sistema para abrir outra. É aqui
+            que entram as <strong>Intents</strong>.
+          </p>
+        </div>
+      </div>
+
+      <div id="intents" class="mb-16">
+        <h3 class="text-3xl font-bold text-slate-800 mb-6">
+          O que é uma <code>Intent</code>? O Mensageiro do Android
+        </h3>
+        <div class="bg-white p-8 rounded-lg shadow-md">
+          <p class="text-lg mb-4">
+            Uma <code>Intent</code> é, em sua essência, um
+            <strong>objeto de mensagem</strong> que um componente do Android
+            (como uma <code>Activity</code>) pode usar para solicitar uma ação
+            de outro componente.
+          </p>
+          <p>
+            <strong>Analogia:</strong> Pense em uma <code>Intent</code> como se
+            fosse uma carta. Você escreve a carta (cria o objeto
+            <code>Intent</code>), define o destinatário e o conteúdo, e entrega
+            ao "correio" (o sistema Android), que se encarrega de entregá-la ao
+            destino correto.
+          </p>
+          <p class="mt-4">Existem dois tipos de Intents:</p>
+          <ul class="list-disc list-inside space-y-2 mt-2">
+            <li>
+              <strong>Intents Explícitas:</strong> Você especifica exatamente
+              qual componente deve receber a mensagem (ex: "Abra a
+              <code>DetalheActivity</code>"). É como enviar uma carta para um
+              endereço completo e específico.
+              <strong>Este é o nosso foco hoje.</strong>
+            </li>
+            <li>
+              <strong>Intents Implícitas:</strong> Você descreve a ação que
+              deseja realizar (ex: "Abra um mapa com esta localização"), e o
+              sistema Android decide qual app instalado no dispositivo é o
+              melhor para lidar com essa ação. Veremos isso em aulas futuras.
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div id="atividade-pratica-aula9" class="mb-16">
+        <h3 class="text-3xl font-bold text-slate-800 mb-6">
+          Atividade Prática: Criando e Navegando entre Telas
+        </h3>
+        <div class="bg-white p-8 rounded-lg shadow-md space-y-8">
+          <div>
+            <h4 class="font-bold text-2xl text-slate-800 mb-4">
+              Passo 1: Criar a Segunda <code>Activity</code>
+            </h4>
+            <p class="mb-4">
+              Primeiro, precisamos de uma tela de destino. Vamos criar uma nova
+              <code>Activity</code> chamada <code>DetalheActivity</code>.
+            </p>
+            <ol class="list-decimal list-inside space-y-2 my-4">
+              <li>
+                No Android Studio, clique com o botão direito na pasta do seu
+                pacote (ex: <code>br.com.unichristus.ads.navegacao</code>).
+              </li>
+              <li>
+                Vá em <strong>New > Activity > Empty Views Activity</strong>.
+              </li>
+              <li>
+                Nomeie a nova Activity como <code>DetalheActivity</code> e
+                clique em "Finish".
+              </li>
+            </ol>
+            <img
+              src="https://placehold.co/800x450/e0e7ff/3730a3?text=Criando+uma+nova+Activity+no+Android+Studio"
+              alt="Assistente de criação de Activity"
+              class="mt-4 rounded-lg shadow-sm"
+            />
+            <div class="callout callout-info">
+              <h5 class="font-bold mb-2">
+                O que o Android Studio Fez por Nós?
+              </h5>
+              <p>Ao criar a nova Activity, o Android Studio automaticamente:</p>
+              <ul class="list-disc list-inside mt-2">
+                <li>Criou o arquivo Kotlin <code>DetalheActivity.kt</code>.</li>
+                <li>
+                  Criou o arquivo de layout <code>activity_detalhe.xml</code> na
+                  pasta <code>res/layout</code>.
+                </li>
+                <li>
+                  Registrou a nova <code>&lt;activity&gt;</code> no seu arquivo
+                  <code>AndroidManifest.xml</code>. Isso é obrigatório!
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="font-bold text-2xl text-slate-800 mb-4">
+              Passo 2: Iniciar a Nova Tela com uma Intent Explícita
+            </h4>
+            <p class="mb-4">
+              Agora, vamos modificar a <code>MainActivity.kt</code> para que o
+              clique do botão inicie a nossa nova <code>DetalheActivity</code>.
+            </p>
+            <div class="code-block-wrapper">
+              <button class="copy-button">Copiar</button>
+              <div class="code-block">
+                <h5 class="mono">
+                  // Dentro do setOnClickListener na MainActivity.kt
+                </h5>
+                <pre><code>buttonSaudacao.setOnClickListener {
+    // 1. Criar a Intent explícita
+    // O primeiro parâmetro é o contexto (a tela atual, 'this')
+    // O segundo é a classe da Activity de destino
+    val intent = Intent(this, DetalheActivity::class.java)
+
+    // 2. Iniciar a nova Activity
+    startActivity(intent)
+}</code></pre>
+              </div>
+            </div>
+            <p class="mt-4">
+              Execute o app. Agora, ao clicar no botão, a segunda tela (ainda em
+              branco) deverá aparecer!
+            </p>
+          </div>
+
+          <div>
+            <h4 class="font-bold text-2xl text-slate-800 mb-4">
+              Passo 3: Passando Dados com <code>putExtra()</code>
+            </h4>
+            <p class="mb-4">
+              Para enviar dados, usamos o método <code>putExtra()</code> na
+              nossa Intent. Ele funciona com um sistema de chave-valor.
+            </p>
+            <div class="code-block-wrapper">
+              <button class="copy-button">Copiar</button>
+              <div class="code-block">
+                <h5 class="mono">
+                  // Modificando o setOnClickListener na MainActivity.kt
+                </h5>
+                <pre><code>buttonSaudacao.setOnClickListener {
+    val nomeDigitado = editTextNome.text.toString()
+
+    val intent = Intent(this, DetalheActivity::class.java)
+    
+    // Adicionando um "extra" à nossa Intent
+    // O primeiro parâmetro é a CHAVE (um nome único para o dado)
+    // O segundo é o VALOR (o dado que queremos enviar)
+    intent.putExtra("CHAVE_NOME", nomeDigitado)
+    
+    startActivity(intent)
+}</code></pre>
+              </div>
+            </div>
+            <div class="callout callout-info">
+              <h5 class="font-bold mb-2">
+                Boa Prática: Use Constantes para as Chaves
+              </h5>
+              <p>
+                Para evitar erros de digitação, é uma excelente prática declarar
+                as chaves das Intents como constantes. Veremos isso no código
+                final.
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="font-bold text-2xl text-slate-800 mb-4">
+              Passo 4: Recebendo os Dados na <code>DetalheActivity</code>
+            </h4>
+            <p class="mb-4">
+              Na tela de destino, precisamos de um <code>TextView</code> para
+              exibir a mensagem e do código Kotlin para receber e mostrar o
+              dado.
+            </p>
+            <p class="mb-2">
+              <strong>No <code>activity_detalhe.xml</code>:</strong>
+            </p>
+            <div class="code-block-wrapper">
+              <button class="copy-button">Copiar</button>
+              <div class="code-block">
+                <h5 class="mono">
+                  &lt;-- Adicione este TextView em
+                  res/layout/activity_detalhe.xml --&gt;
+                </h5>
+                <pre><code>&lt;TextView
+    android:id="@+id/textViewMensagem"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textSize="24sp"
+    android:textStyle="bold"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    tools:text="Olá, Visitante!" /&gt;</code></pre>
+              </div>
+            </div>
+
+            <p class="mt-6 mb-2">
+              <strong>No <code>DetalheActivity.kt</code>:</strong>
+            </p>
+            <div class="code-block-wrapper">
+              <button class="copy-button">Copiar</button>
+              <div class="code-block">
+                <h5 class="mono">
+                  // Dentro do onCreate da DetalheActivity.kt
+                </h5>
+                <pre><code>override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    setContentView(R.layout.activity_detalhe)
+
+    val textViewMensagem: TextView = findViewById(R.id.textViewMensagem)
+
+    // 1. Receber o dado da Intent usando a mesma chave
+    val nomeRecebido = intent.getStringExtra("CHAVE_NOME")
+
+    // 2. Criar a mensagem final
+    val mensagem = "Olá, $nomeRecebido!"
+
+    // 3. Exibir a mensagem no TextView
+    textViewMensagem.text = mensagem
+}</code></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="tarefa-aula9" class="mb-16">
+        <h3 class="text-3xl font-bold text-slate-800 mb-6">
+          Encerramento e Próximos Passos
+        </h3>
+        <div class="callout callout-task">
+          <h5 class="font-bold mb-2">Tarefa para a próxima aula (TED)</h5>
+          <p class="mb-4">
+            O desafio é aplicar exatamente o que fizemos hoje: criar um
+            aplicativo funcional com duas telas que trocam informações.
+          </p>
+          <ol class="list-decimal list-inside space-y-2">
+            <li>Crie um novo projeto Android.</li>
+            <li>
+              Na tela principal, adicione um <code>EditText</code> para o
+              usuário digitar uma informação e um <code>Button</code>.
+            </li>
+            <li>Crie uma segunda <code>Activity</code>.</li>
+            <li>
+              Implemente a lógica para que, ao clicar no botão, a informação do
+              <code>EditText</code> seja enviada e exibida na segunda tela.
+            </li>
+            <li>
+              Tire prints das duas telas do seu app em funcionamento e submeta
+              no Moodle.
+            </li>
+          </ol>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-md mt-8">
+          <h4 class="font-bold text-xl text-slate-800 mb-4">
+            Bibliografia Recomendada
+          </h4>
+          <ul class="list-disc list-inside space-y-2">
+            <li>
+              SIMAS, V. L. et al.
+              <strong
+                >Desenvolvimento para Dispositivos Móveis – Volume 2</strong
+              >. Grupo A, 2019.
+            </li>
+            <li>
+              LECHETA, Ricardo R.
+              <strong
+                >Google Android: Aprenda a criar aplicações para dispositivos
+                móveis com o Android SDK</strong
+              >. Novatec, 2015.
+            </li>
+            <li>
+              <a
+                href="https://developer.android.com/guide/components/intents-filters"
+                target="_blank"
+                class="text-indigo-600 hover:underline font-semibold"
+                >Documentação Oficial sobre Intents</a
+              >.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,260 @@
+<section id="aula10" class="max-w-7xl mx-auto">
+    <header class="mb-12 border-b pb-8">
+        <h2 class="text-4xl font-bold text-slate-900">
+            Aula 10: Unidade II – Passagem de Dados com <code>Intent.putExtra</code>
+        </h2>
+        <p class="text-lg text-slate-600 mt-2">
+            Demonstrar como enviar diferentes tipos de dados de uma Activity para outra e recebê-los de forma segura.
+        </p>
+    </header>
+
+    <div class="bg-white p-6 rounded-lg shadow-md mb-12">
+        <h3 class="font-bold text-2xl text-slate-800 mb-4">Plano de Voo da Aula</h3>
+        <ul class="list-disc list-inside space-y-2 text-slate-700">
+            <li><strong>Recapitulação da Aula 9:</strong> O que é uma <code>Intent</code> explícita e como iniciar uma nova tela.</li>
+            <li><strong>Anexando Dados à "Carta":</strong> Aprofundando no método <code>putExtra()</code>.</li>
+            <li><strong>Tipos de Dados:</strong> Como enviar não apenas Strings, mas também números, booleanos e outros tipos primitivos.</li>
+            <li><strong>Recebendo os Dados com Segurança:</strong> A importância dos valores padrão ao usar <code>getIntExtra()</code>, <code>getBooleanExtra()</code>, etc.</li>
+            <li><strong>Atividade Prática Guiada:</strong> Construindo uma tela de cadastro e uma tela de confirmação de dados.</li>
+            <li><strong>Tópico Avançado:</strong> Uma introdução sobre como passar objetos complexos com a interface <code>Parcelable</code>.</li>
+            <li><strong>Tarefa (TED):</strong> Aplicar todo o conhecimento construindo um app de cadastro funcional.</li>
+        </ul>
+    </div>
+
+    <div id="recapitulacao" class="mb-16">
+        <h3 class="text-3xl font-bold text-slate-800 mb-6">Recapitulando: A "Carta" e o "Anexo"</h3>
+        <div class="bg-white p-8 rounded-lg shadow-md">
+            <p class="text-lg mb-4">Na <strong>Aula 9</strong>, aprendemos que uma <code>Intent</code> funciona como uma carta que uma <code>Activity</code> envia para outra. Usamos <code>putExtra()</code> para anexar uma única informação (o nome do usuário) a essa carta.</p>
+            <p>Hoje, vamos expandir esse conceito. Uma carta pode ter vários anexos, e cada anexo pode ser de um tipo diferente. Vamos aprender a enviar um formulário completo de dados de uma tela para outra, lidando com diferentes tipos de informação, como textos, números e valores lógicos.</p>
+        </div>
+    </div>
+
+    <div id="putExtra-detalhes" class="mb-16">
+        <h3 class="text-3xl font-bold text-slate-800 mb-6">Aprofundando no <code>Intent.putExtra()</code></h3>
+        <div class="bg-white p-8 rounded-lg shadow-md">
+            <p class="text-lg mb-4">O método <code>putExtra()</code> é sobrecarregado, o que significa que existem várias versões dele, cada uma projetada para um tipo de dado específico. A estrutura é sempre a mesma: um par de <strong>chave-valor</strong>.</p>
+            
+            <div class="code-block-wrapper">
+                <button class="copy-button">Copiar</button>
+                <div class="code-block">
+                    <h5 class="mono">// Sintaxe do putExtra</h5>
+                    <pre><code>intent.putExtra("CHAVE_DO_DADO", valor)</code></pre>
+                </div>
+            </div>
+
+            <h4 class="font-bold text-xl text-slate-800 mt-8 mb-4">Enviando e Recebendo Diferentes Tipos</h4>
+            <p>Abaixo está uma tabela com os tipos de dados mais comuns que você pode passar e os métodos correspondentes para enviar e receber:</p>
+            <div class="overflow-x-auto mt-4">
+                <table class="w-full text-left border-collapse">
+                    <thead class="bg-slate-200">
+                        <tr>
+                            <th class="p-3 border">Tipo de Dado</th>
+                            <th class="p-3 border">Método para Enviar</th>
+                            <th class="p-3 border">Método para Receber</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="p-3 border mono">String</td>
+                            <td class="p-3 border mono"><code>.putExtra("KEY", "Texto")</code></td>
+                            <td class="p-3 border mono"><code>.getStringExtra("KEY")</code></td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 border mono">Int</td>
+                            <td class="p-3 border mono"><code>.putExtra("KEY", 10)</code></td>
+                            <td class="p-3 border mono"><code>.getIntExtra("KEY", 0)</code></td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 border mono">Boolean</td>
+                            <td class="p-3 border mono"><code>.putExtra("KEY", true)</code></td>
+                            <td class="p-3 border mono"><code>.getBooleanExtra("KEY", false)</code></td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 border mono">Float</td>
+                            <td class="p-3 border mono"><code>.putExtra("KEY", 19.99f)</code></td>
+                            <td class="p-3 border mono"><code>.getFloatExtra("KEY", 0.0f)</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="callout callout-info">
+                <h5 class="font-bold mb-2">A Importância do Valor Padrão</h5>
+                <p>Note que, ao receber tipos primitivos como <code>Int</code>, <code>Boolean</code> ou <code>Float</code>, o método <code>get...Extra()</code> exige um <strong>segundo parâmetro</strong>: um valor padrão. Isso é uma medida de segurança. Se a <code>Intent</code> chegar sem a chave esperada (por exemplo, por um erro de programação), o app não irá travar; ele simplesmente usará o valor padrão que você forneceu.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="atividade-pratica-aula10" class="mb-16">
+        <h3 class="text-3xl font-bold text-slate-800 mb-6">Atividade Prática: Tela de Cadastro</h3>
+        <div class="bg-white p-8 rounded-lg shadow-md">
+            <p class="mb-4">Vamos construir um app com uma tela de cadastro (<code>MainActivity</code>) que envia os dados para uma tela de confirmação (<code>ConfirmacaoActivity</code>).</p>
+
+            <h4 class="font-bold text-2xl text-slate-800 mt-8 mb-4">Passo 1: Layout do Cadastro (<code>activity_main.xml</code>)</h4>
+            <div class="code-block-wrapper">
+                <button class="copy-button">Copiar</button>
+                <div class="code-block">
+                    <h5 class="mono">&lt;-- Código para res/layout/activity_main.xml --&gt;</h5>
+                    <pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;LinearLayout ... android:orientation="vertical" android:padding="16dp"&gt;
+
+    &lt;EditText
+        android:id="@+id/editTextNomeCompleto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nome Completo"
+        android:inputType="textPersonName" /&gt;
+
+    &lt;EditText
+        android:id="@+id/editTextEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:hint="E-mail"
+        android:inputType="textEmailAddress" /&gt;
+
+    &lt;EditText
+        android:id="@+id/editTextIdade"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:hint="Idade"
+        android:inputType="number" /&gt;
+    
+    &lt;Button
+        android:id="@+id/buttonCadastrar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Cadastrar" /&gt;
+
+&lt;/LinearLayout&gt;</code></pre>
+                </div>
+            </div>
+
+            <h4 class="font-bold text-2xl text-slate-800 mt-12 mb-4">Passo 2: Layout da Confirmação (<code>activity_confirmacao.xml</code>)</h4>
+             <div class="code-block-wrapper">
+                <button class="copy-button">Copiar</button>
+                <div class="code-block">
+                    <h5 class="mono">&lt;-- Código para res/layout/activity_confirmacao.xml --&gt;</h5>
+                    <pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;LinearLayout ... android:orientation="vertical" android:padding="16dp"&gt;
+
+    &lt;TextView
+        android:id="@+id/textViewConfirmacaoNome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        tools:text="Nome: Tiago Sombra" /&gt;
+
+    &lt;TextView
+        android:id="@+id/textViewConfirmacaoEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textSize="18sp"
+        tools:text="Email: email@teste.com" /&gt;
+
+    &lt;TextView
+        android:id="@+id/textViewConfirmacaoIdade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textSize="18sp"
+        tools:text="Idade: 30" /&gt;
+
+&lt;/LinearLayout&gt;</code></pre>
+                </div>
+            </div>
+
+            <h4 class="font-bold text-2xl text-slate-800 mt-12 mb-4">Passo 3: Lógica da <code>MainActivity.kt</code> (Enviar Dados)</h4>
+            <div class="code-block-wrapper">
+                <button class="copy-button">Copiar</button>
+                <div class="code-block">
+                    <h5 class="mono">// Código atualizado para MainActivity.kt</h5>
+                    <pre><code>// ... imports
+import android.content.Intent
+
+class MainActivity : AppCompatActivity() {
+
+    companion object {
+        const val EXTRA_NOME = "EXTRA_NOME"
+        const val EXTRA_EMAIL = "EXTRA_EMAIL"
+        const val EXTRA_IDADE = "EXTRA_IDADE"
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        // ...
+        val buttonCadastrar: Button = findViewById(R.id.buttonCadastrar)
+        val editTextNome: EditText = findViewById(R.id.editTextNomeCompleto)
+        val editTextEmail: EditText = findViewById(R.id.editTextEmail)
+        val editTextIdade: EditText = findViewById(R.id.editTextIdade)
+
+        buttonCadastrar.setOnClickListener {
+            val nome = editTextNome.text.toString()
+            val email = editTextEmail.text.toString()
+            val idade = editTextIdade.text.toString().toIntOrNull() ?: 0 // Converte para Int, com segurança
+
+            val intent = Intent(this, ConfirmacaoActivity::class.java)
+            intent.putExtra(EXTRA_NOME, nome)
+            intent.putExtra(EXTRA_EMAIL, email)
+            intent.putExtra(EXTRA_IDADE, idade)
+            
+            startActivity(intent)
+        }
+    }
+}</code></pre>
+                </div>
+            </div>
+
+            <h4 class="font-bold text-2xl text-slate-800 mt-12 mb-4">Passo 4: Lógica da <code>ConfirmacaoActivity.kt</code> (Receber Dados)</h4>
+            <div class="code-block-wrapper">
+                <button class="copy-button">Copiar</button>
+                <div class="code-block">
+                    <h5 class="mono">// Código para ConfirmacaoActivity.kt</h5>
+                    <pre><code>// ... imports
+import android.widget.TextView
+
+class ConfirmacaoActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_confirmacao)
+
+        val nome = intent.getStringExtra(MainActivity.EXTRA_NOME)
+        val email = intent.getStringExtra(MainActivity.EXTRA_EMAIL)
+        val idade = intent.getIntExtra(MainActivity.EXTRA_IDADE, 0) // 0 é o valor padrão
+
+        findViewById&lt;TextView&gt;(R.id.textViewConfirmacaoNome).text = "Nome: $nome"
+        findViewById&lt;TextView&gt;(R.id.textViewConfirmacaoEmail).text = "E-mail: $email"
+        findViewById&lt;TextView&gt;(R.id.textViewConfirmacaoIdade).text = "Idade: $idade anos"
+    }
+}</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <div id="tarefa-aula10" class="mb-16">
+            <h3 class="text-3xl font-bold text-slate-800 mb-6">Encerramento e Próximos Passos</h3>
+             <div class="callout callout-info">
+                <h5 class="font-bold mb-2">Tópico Avançado: Passando Objetos com <code>Parcelable</code></h5>
+                <p>Enviar vários "extras" funciona, mas quando temos muitos dados relacionados (como um objeto de `Usuário` com nome, email, idade, etc.), a prática profissional recomendada é agrupar esses dados em uma classe e fazê-la implementar a interface <code>Parcelable</code>. Isso permite que o objeto inteiro seja "empacotado", enviado com um único <code>putExtra()</code> e "desempacotado" na outra ponta. É um tópico mais avançado, mas você pode começar a explorá-lo na <a href="https://developer.android.com/reference/android/os/Parcelable" target="_blank" class="font-semibold underline">documentação oficial</a>.</p>
+            </div>
+            <div class="callout callout-task">
+                <h5 class="font-bold mb-2">Tarefa para a próxima aula (TED)</h5>
+                <p class="mb-4">O desafio é criar um app de cadastro, onde os dados inseridos são exibidos em uma segunda tela de confirmação utilizando <code>Intent.putExtra</code>.</p>
+                <ol class="list-decimal list-inside space-y-2">
+                    <li>Siga a atividade prática para construir a aplicação de cadastro e confirmação.</li>
+                    <li>Adicione mais um campo de sua escolha (ex: "Telefone" do tipo texto, ou "É estudante?" do tipo CheckBox/booleano).</li>
+                    <li>Passe este dado extra para a tela de confirmação e exiba-o.</li>
+                    <li>Tire prints das duas telas do seu app funcionando e submeta no Moodle.</li>
+                </ol>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md mt-8">
+                <h4 class="font-bold text-xl text-slate-800 mb-4">Bibliografia Recomendada</h4>
+                <ul class="list-disc list-inside space-y-2">
+                    <li>OLIVEIRA, Diego Bittencourt de et al. <strong>Desenvolvimento para Dispositivos Móveis</strong>. SAGAH, 2019. v. 1.</li>
+                    <li>LECHETA, Ricardo R. <strong>Google Android: Aprenda a criar aplicações para dispositivos móveis com o Android SDK</strong>. Novatec, 2015.</li>
+                </ul>
+            </div>
+        </div>
+    </section>

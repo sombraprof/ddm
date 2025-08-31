@@ -54,5 +54,19 @@
     "descricao": "Preservar o estado da interface em mudanças de configuração, como rotação de tela, utilizando o objeto Bundle.",
     "arquivo": "aula8.html",
     "ativo": true
+  },
+  {
+    "id": "aula9",
+    "titulo": "Aula 9: Intents Explícitas e Navegação",
+    "descricao": "Compreender o conceito de Intent explícita para navegação e envio de dados entre as telas de um app.",
+    "arquivo": "aula9.html",
+    "ativo": true
+  },
+  {
+    "id": "aula10",
+    "titulo": "Aula 10: Passagem de Dados com Intent.putExtra",
+    "descricao": "Demonstrar como enviar diferentes tipos de dados (Strings, Ints, Booleans) entre Activities.",
+    "arquivo": "aula10.html",
+    "ativo": true
   }
 ]
