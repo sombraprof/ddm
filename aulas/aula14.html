@@ -1,0 +1,295 @@
+<section id="aula14" class="max-w-7xl mx-auto">
+  <header class="mb-12 border-b pb-8">
+    <h2 class="text-4xl font-bold text-slate-900">
+      Aula 14: Unidade III – Introdução ao Room: Entities e DAO
+    </h2>
+    <p class="text-lg text-slate-600 mt-2">
+      Apresentar os conceitos fundamentais do Jetpack Room como alternativa
+      moderna ao SQLiteOpenHelper.
+    </p>
+  </header>
+
+  <div class="bg-white p-6 rounded-lg shadow-md mb-12">
+    <h3 class="font-bold text-2xl text-slate-800 mb-4">Plano de Voo da Aula</h3>
+    <ul class="list-disc list-inside space-y-2 text-slate-700">
+      <li>
+        <strong>Recapitulação:</strong> As limitações do
+        <code>SharedPreferences</code> para dados estruturados.
+      </li>
+      <li>
+        <strong>Introdução ao Room:</strong> O que é, por que usar e seus três
+        componentes principais.
+      </li>
+      <li>
+        <strong>Componente 1: A Entidade (<code>@Entity</code>):</strong>
+        Mapeando nossos dados para uma tabela de banco de dados.
+      </li>
+      <li>
+        <strong>Componente 2: O DAO (<code>@Dao</code>):</strong> Criando a
+        interface de acesso aos dados com consultas SQL.
+      </li>
+      <li>
+        <strong>Atividade Prática:</strong> Configurar as dependências do Room e
+        criar nossa primeira Entidade e DAO.
+      </li>
+      <li>
+        <strong>Ponte para a Próxima Aula:</strong> O que falta para termos um
+        banco de dados funcional?
+      </li>
+      <li>
+        <strong>Tarefa (TED):</strong> Consolidar o aprendizado criando a
+        estrutura base de persistência.
+      </li>
+    </ul>
+  </div>
+
+  <div id="contexto" class="mb-16">
+    <h3 class="text-3xl font-bold text-slate-800 mb-6">
+      Do Simples ao Estruturado: Por que o Room?
+    </h3>
+    <div class="bg-white p-8 rounded-lg shadow-md">
+      <p class="text-lg mb-4">
+        Na <strong>Aula 13</strong>, vimos como o
+        <code>SharedPreferences</code> é ótimo para salvar dados simples. Mas e
+        se quisermos salvar uma lista de notas, onde cada nota tem um título, um
+        conteúdo e uma data? Ou uma lista de contatos? Usar chave-valor para
+        isso seria complexo e ineficiente.
+      </p>
+      <p>
+        Historicamente, a solução para isso no Android era usar o
+        <code>SQLiteOpenHelper</code> diretamente. Embora poderoso, ele exigia
+        muito código repetitivo (boilerplate) e não havia verificação de erros
+        nas consultas SQL em tempo de compilação, o que tornava o processo
+        propenso a falhas.
+      </p>
+      <div class="callout callout-info">
+        <h5 class="font-bold mb-2">A Solução Moderna: Jetpack Room</h5>
+        <p>
+          O <strong>Room</strong> é uma biblioteca de persistência que faz parte
+          do Android Jetpack. Ele fornece uma camada de abstração sobre o SQLite
+          para permitir um acesso mais robusto ao banco de dados, aproveitando
+          todo o poder do SQLite. Em outras palavras, ele nos dá o melhor dos
+          dois mundos: a simplicidade de uma API moderna com a performance de um
+          banco de dados SQLite nativo.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div id="componentes-room" class="mb-16">
+    <h3 class="text-3xl font-bold text-slate-800 mb-6">
+      Os 3 Componentes Principais do Room
+    </h3>
+    <div class="bg-white p-8 rounded-lg shadow-md">
+      <p class="text-lg mb-6">
+        O Room tem três componentes principais que trabalham juntos. Hoje, vamos
+        focar nos dois primeiros.
+      </p>
+      <div class="space-y-4">
+        <div class="bg-blue-100 p-4 rounded-lg">
+          <h4 class="font-bold text-xl text-blue-800">1. Entidade (Entity)</h4>
+          <p class="mt-1">
+            Uma classe que representa uma tabela no banco de dados. É um "molde"
+            para os nossos dados.
+          </p>
+        </div>
+        <div class="bg-green-100 p-4 rounded-lg">
+          <h4 class="font-bold text-xl text-green-800">
+            2. DAO (Data Access Object)
+          </h4>
+          <p class="mt-1">
+            Uma interface que contém os métodos para acessar o banco de dados. É
+            aqui que definimos nossas consultas SQL.
+          </p>
+        </div>
+        <div class="bg-purple-100 p-4 rounded-lg">
+          <h4 class="font-bold text-xl text-purple-800">
+            3. Banco de Dados (Database)
+          </h4>
+          <p class="mt-1">
+            Uma classe abstrata que herda de <code>RoomDatabase</code> e serve
+            como o ponto de acesso principal ao banco de dados, unindo as
+            Entidades e os DAOs.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="entity" class="mb-16">
+    <h3 class="text-3xl font-bold text-slate-800 mb-6">
+      Componente 1: A Entidade (<code>@Entity</code>)
+    </h3>
+    <div class="bg-white p-8 rounded-lg shadow-md">
+      <p class="mb-4">
+        Uma entidade é uma <code>data class</code> do Kotlin que anotamos com
+        <code>@Entity</code>. Cada instância desta classe representa uma linha
+        na tabela, e cada propriedade representa uma coluna.
+      </p>
+      <div class="code-block-wrapper">
+        <button class="copy-button">Copiar</button>
+        <div class="code-block">
+          <h5 class="mono">// Exemplo: Nota.kt</h5>
+          <pre><code>import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "tabela_de_notas")
+data class Nota(
+    @PrimaryKey(autoGenerate = true)
+    val id: Int = 0,
+
+    @ColumnInfo(name = "titulo_da_nota")
+    val titulo: String,
+
+    @ColumnInfo(name = "conteudo_da_nota")
+    val conteudo: String
+)</code></pre>
+        </div>
+      </div>
+      <div class="callout callout-info">
+        <h5 class="font-bold mb-2">Anatomia de uma Entidade</h5>
+        <ul class="list-disc list-inside">
+          <li>
+            <strong><code>@Entity(tableName = "...")</code></strong
+            >: Marca a classe como uma tabela do banco de dados e define seu
+            nome.
+          </li>
+          <li>
+            <strong><code>@PrimaryKey(autoGenerate = true)</code></strong
+            >: Designa uma propriedade como a chave primária da tabela.
+            <code>autoGenerate = true</code> faz com que o Room gere um ID único
+            para cada nova nota.
+          </li>
+          <li>
+            <strong><code>@ColumnInfo(name = "...")</code></strong
+            >: Permite especificar um nome diferente para a coluna na tabela do
+            banco de dados. É uma boa prática para evitar conflitos com
+            palavras-chave do SQL.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div id="dao" class="mb-16">
+    <h3 class="text-3xl font-bold text-slate-800 mb-6">
+      Componente 2: O DAO (<code>@Dao</code>)
+    </h3>
+    <div class="bg-white p-8 rounded-lg shadow-md">
+      <p class="mb-4">
+        O DAO é uma <code>interface</code> que define como acessamos nossos
+        dados. Nós declaramos os métodos e o Room gera a implementação para nós
+        em tempo de compilação.
+      </p>
+      <div class="code-block-wrapper">
+        <button class="copy-button">Copiar</button>
+        <div class="code-block">
+          <h5 class="mono">// Exemplo: NotaDao.kt</h5>
+          <pre><code>import androidx.room.Dao
+import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.Query
+
+@Dao
+interface NotaDao {
+
+    @Insert
+    suspend fun insert(nota: Nota)
+
+    @Query("SELECT * FROM tabela_de_notas ORDER BY id DESC")
+    suspend fun getAll(): List&lt;Nota&gt;
+
+    @Query("DELETE FROM tabela_de_notas")
+    suspend fun deleteAll()
+    
+    // O método abaixo não é parte do TED, mas é um exemplo útil
+    @Delete
+    suspend fun delete(nota: Nota)
+}</code></pre>
+        </div>
+      </div>
+      <div class="callout callout-info">
+        <h5 class="font-bold mb-2">Anotações do DAO</h5>
+        <ul class="list-disc list-inside">
+          <li>
+            <strong><code>@Dao</code></strong
+            >: Marca a interface como um Data Access Object.
+          </li>
+          <li>
+            <strong
+              ><code>@Insert</code>, <code>@Update</code>,
+              <code>@Delete</code></strong
+            >: Anotações de conveniência para operações comuns. O Room gera o
+            SQL necessário automaticamente.
+          </li>
+          <li>
+            <strong><code>@Query</code></strong
+            >: A anotação mais poderosa. Permite que você escreva qualquer
+            consulta SQL. O Room valida a sua consulta em tempo de compilação!
+            Se você escrever o nome de uma tabela ou coluna errado, seu código
+            não compilará.
+          </li>
+          <li>
+            <strong><code>suspend</code></strong
+            >: Marcamos as funções como <code>suspend</code> para indicar que
+            elas são operações de longa duração e devem ser chamadas a partir de
+            uma corrotina, para não bloquear a thread principal.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div id="tarefa-aula14" class="mb-16">
+    <h3 class="text-3xl font-bold text-slate-800 mb-6">
+      Encerramento e Próximos Passos
+    </h3>
+    <div class="callout callout-task">
+      <h5 class="font-bold mb-2">Tarefa para a próxima aula (TED)</h5>
+      <p class="mb-4">
+        O desafio é criar a estrutura inicial de persistência para um aplicativo
+        de notas.
+      </p>
+      <ol class="list-decimal list-inside space-y-2">
+        <li>
+          Em um novo projeto, configure as dependências do Room no seu arquivo
+          <code>build.gradle.kts</code>.
+        </li>
+        <li>
+          Crie o arquivo <code>Nota.kt</code> e implemente a classe de entidade
+          conforme o exemplo da aula.
+        </li>
+        <li>
+          Crie o arquivo <code>NotaDao.kt</code> e implemente a interface DAO
+          com os métodos <code>insert</code>, <code>getAll</code> e
+          <code>deleteAll</code>.
+        </li>
+        <li>
+          Submeta os dois arquivos (<code>Nota.kt</code> e
+          <code>NotaDao.kt</code>) no Moodle.
+        </li>
+      </ol>
+    </div>
+    <div class="bg-white p-6 rounded-lg shadow-md mt-8">
+      <h4 class="font-bold text-xl text-slate-800 mb-4">
+        Bibliografia Recomendada
+      </h4>
+      <ul class="list-disc list-inside space-y-2">
+        <li>
+          SIMAS, V. L. et al.
+          <strong>Desenvolvimento para Dispositivos Móveis – Volume 2</strong>.
+          Grupo A, 2019.
+        </li>
+        <li>
+          <a
+            href="https://developer.android.com/training/data-storage/room"
+            target="_blank"
+            class="text-indigo-600 hover:underline font-semibold"
+            >Documentação Oficial do Jetpack Room</a
+          >.
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>

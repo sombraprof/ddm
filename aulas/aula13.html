@@ -1,0 +1,356 @@
+<section id="aula13" class="max-w-7xl mx-auto">
+  <header class="mb-12 border-b pb-8">
+    <h2 class="text-4xl font-bold text-slate-900">
+      Aula 13: Unidade III – Persistência com SharedPreferences
+    </h2>
+    <p class="text-lg text-slate-600 mt-2">
+      Revisar os conceitos de persistência de dados simples para armazenar
+      preferências e valores de forma local e permanente.
+    </p>
+  </header>
+
+  <div class="bg-white p-6 rounded-lg shadow-md mb-12">
+    <h3 class="font-bold text-2xl text-slate-800 mb-4">Plano de Voo da Aula</h3>
+    <ul class="list-disc list-inside space-y-2 text-slate-700">
+      <li>
+        <strong>Contextualização:</strong> Diferença entre Estado Temporário
+        (<code>Bundle</code>) e Persistência de Dados.
+      </li>
+      <li>
+        <strong>O que são SharedPreferences:</strong> A "gaveta de
+        configurações" do seu app.
+      </li>
+      <li>
+        <strong>Como Usar:</strong> Um guia passo a passo para ler e escrever
+        dados.
+      </li>
+      <li>
+        <strong>Atividade Prática Guiada:</strong> Construir um app que "lembra"
+        o nome do usuário.
+      </li>
+      <li>
+        <strong>Relevância Profissional:</strong> Onde e por que usamos
+        <code>SharedPreferences</code> no mercado.
+      </li>
+      <li>
+        <strong>Tarefa (TED):</strong> Consolidar o aprendizado com um projeto
+        prático.
+      </li>
+    </ul>
+  </div>
+
+  <div id="contexto" class="mb-16">
+    <h3 class="text-3xl font-bold text-slate-800 mb-6">
+      Estado Temporário vs. Persistência de Dados
+    </h3>
+    <div class="bg-white p-8 rounded-lg shadow-md">
+      <p class="text-lg mb-4">
+        Na <strong>Aula 8</strong>, aprendemos a usar o <code>Bundle</code> para
+        salvar o estado da UI durante mudanças de configuração, como a rotação
+        da tela. No entanto, esses dados são <strong>temporários</strong>. Se o
+        usuário fechar o aplicativo e abri-lo novamente, as informações do
+        <code>Bundle</code> se perdem.
+      </p>
+      <p>
+        Hoje, entramos na
+        <strong>Unidade III: Persistência Local Moderna</strong>. Persistência
+        significa salvar dados de forma que eles
+        <strong>sobrevivam</strong> mesmo que o aplicativo seja completamente
+        fechado e reaberto. Nossa primeira ferramenta para isso é o
+        <code>SharedPreferences</code>.
+      </p>
+      <div class="callout callout-info">
+        <h5 class="font-bold mb-2">
+          Analogia: Lembrete vs. Caderno de Anotações
+        </h5>
+        <p>
+          Pense no <code>Bundle</code> como um <strong>post-it</strong> que você
+          cola na tela: útil para lembretes rápidos, mas fácil de perder. Já o
+          <code>SharedPreferences</code> é como um
+          <strong>pequeno caderno de anotações</strong> que você guarda na
+          gaveta: seguro, confiável e sempre lá quando você precisar.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div id="o-que-e" class="mb-16">
+    <h3 class="text-3xl font-bold text-slate-800 mb-6">
+      O que são SharedPreferences?
+    </h3>
+    <div class="bg-white p-8 rounded-lg shadow-md">
+      <p class="text-lg mb-4">
+        <code>SharedPreferences</code> é uma API do Android para salvar pequenas
+        coleções de dados no formato <strong>chave-valor</strong>. Ele armazena
+        os dados em um arquivo XML privado dentro do armazenamento interno do
+        aplicativo.
+      </p>
+      <h4 class="font-bold text-xl text-slate-800 mt-6 mb-2">
+        Quando Usar SharedPreferences?
+      </h4>
+      <ul class="list-disc list-inside space-y-2">
+        <li>
+          <strong>Configurações do Usuário:</strong> Salvar se o modo noturno
+          está ativo, o idioma preferido, ou se as notificações estão
+          habilitadas.
+        </li>
+        <li>
+          <strong>Pequenos Dados:</strong> Lembrar o nome ou e-mail do último
+          usuário que fez login.
+        </li>
+        <li>
+          <strong>Estados Simples de Jogo:</strong> Salvar a pontuação máxima
+          (high score) de um jogo casual.
+        </li>
+      </ul>
+      <div class="callout callout-warning">
+        <h5 class="font-bold mb-2">Quando NÃO Usar</h5>
+        <p>
+          <code>SharedPreferences</code> não é ideal para dados complexos ou
+          grandes, como uma lista de contatos ou fotos. Para isso, usaremos o
+          <strong>Room</strong> nas próximas aulas. Além disso, ele
+          <strong>não é seguro</strong> para armazenar dados sensíveis como
+          senhas ou tokens de API.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div id="como-usar" class="mb-16">
+    <h3 class="text-3xl font-bold text-slate-800 mb-6">
+      Como Usar SharedPreferences: Leitura e Escrita
+    </h3>
+    <div class="bg-white p-8 rounded-lg shadow-md">
+      <p class="mb-6">O processo é simples e envolve três etapas principais:</p>
+      <ol class="list-decimal list-inside space-y-8">
+        <li>
+          <h4 class="font-bold text-xl text-slate-800 inline">
+            Obter uma instância de SharedPreferences
+          </h4>
+          <p>
+            Você precisa de uma referência ao arquivo onde os dados serão
+            salvos. Usamos o método <code>getSharedPreferences()</code>.
+          </p>
+          <div class="code-block-wrapper">
+            <button class="copy-button">Copiar</button>
+            <div class="code-block">
+              <pre><code>val sharedPreferences = getSharedPreferences("PREFS_DO_MEU_APP", MODE_PRIVATE)</code></pre>
+            </div>
+          </div>
+        </li>
+        <li>
+          <h4 class="font-bold text-xl text-slate-800 inline">
+            Escrever Dados
+          </h4>
+          <p>
+            Para escrever, usamos o editor de <code>SharedPreferences</code>. O
+            processo é: <strong>chamar <code>.edit()</code></strong
+            >, usar os métodos <code>put...()</code> e, por fim,
+            <strong>chamar <code>.apply()</code></strong> para salvar.
+          </p>
+          <div class="code-block-wrapper">
+            <button class="copy-button">Copiar</button>
+            <div class="code-block">
+              <pre><code>val editor = sharedPreferences.edit()
+editor.putString("CHAVE_NOME_USUARIO", "Tiago Sombra")
+editor.putBoolean("CHAVE_MODO_NOTURNO", true)
+editor.apply() // Salva os dados de forma assíncrona</code></pre>
+            </div>
+          </div>
+          <div class="callout callout-info">
+            <h5 class="font-bold mb-2">
+              <code>apply()</code> vs. <code>commit()</code>
+            </h5>
+            <p>
+              Sempre prefira <code>apply()</code>. Ele salva os dados em segundo
+              plano sem bloquear a thread principal, garantindo que seu app
+              continue responsivo. <code>commit()</code> é síncrono e deve ser
+              evitado.
+            </p>
+          </div>
+        </li>
+        <li>
+          <h4 class="font-bold text-xl text-slate-800 inline">Ler Dados</h4>
+          <p>
+            Para ler, basta usar os métodos <code>get...()</code>, passando a
+            chave e um valor padrão, que será retornado caso a chave não exista.
+          </p>
+          <div class="code-block-wrapper">
+            <button class="copy-button">Copiar</button>
+            <div class="code-block">
+              <pre><code>val nomeSalvo = sharedPreferences.getString("CHAVE_NOME_USUARIO", "Usuário")
+val modoNoturnoAtivo = sharedPreferences.getBoolean("CHAVE_MODO_NOTURNO", false)</code></pre>
+            </div>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </div>
+
+  <div id="atividade-pratica-aula13" class="mb-16">
+    <h3 class="text-3xl font-bold text-slate-800 mb-6">
+      Atividade Prática: App "Lembrar de Mim"
+    </h3>
+    <div class="bg-white p-8 rounded-lg shadow-md">
+      <p class="mb-4">
+        Vamos construir o app do TED. Ele terá um campo para o nome, um botão
+        para salvar e, ao ser aberto, exibirá uma saudação se um nome já tiver
+        sido salvo.
+      </p>
+      <h4 class="font-bold text-2xl text-slate-800 mt-8 mb-4">
+        Passo 1: O Layout (<code>activity_main.xml</code>)
+      </h4>
+      <div class="code-block-wrapper">
+        <button class="copy-button">Copiar</button>
+        <div class="code-block">
+          <pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;LinearLayout ... android:orientation="vertical" android:padding="16dp"&gt;
+    &lt;TextView
+        android:id="@+id/textViewSaudacao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        tools:text="Olá, Visitante!" /&gt;
+    &lt;EditText
+        android:id="@+id/editTextNome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:hint="Qual o seu nome?" /&gt;
+    &lt;Button
+        android:id="@+id/buttonSalvar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Salvar Nome" /&gt;
+&lt;/LinearLayout&gt;</code></pre>
+        </div>
+      </div>
+
+      <h4 class="font-bold text-2xl text-slate-800 mt-12 mb-4">
+        Passo 2: A Lógica (<code>MainActivity.kt</code>)
+      </h4>
+      <div class="code-block-wrapper">
+        <button class="copy-button">Copiar</button>
+        <div class="code-block">
+          <pre><code>package br.com.unichristus.ads.sharedprefs
+
+import android.content.SharedPreferences
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
+
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var textViewSaudacao: TextView
+    private lateinit var editTextNome: EditText
+    private lateinit var buttonSalvar: Button
+    private lateinit var sharedPreferences: SharedPreferences
+
+    companion object {
+        private const val ARQUIVO_PREFS = "AppPrefs"
+        private const val CHAVE_NOME = "NOME_USUARIO"
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        // Inicializa as Views
+        textViewSaudacao = findViewById(R.id.textViewSaudacao)
+        editTextNome = findViewById(R.id.editTextNome)
+        buttonSalvar = findViewById(R.id.buttonSalvar)
+        
+        // Inicializa o SharedPreferences
+        sharedPreferences = getSharedPreferences(ARQUIVO_PREFS, MODE_PRIVATE)
+
+        carregarSaudacao()
+
+        buttonSalvar.setOnClickListener {
+            salvarNome()
+        }
+    }
+
+    private fun carregarSaudacao() {
+        val nomeSalvo = sharedPreferences.getString(CHAVE_NOME, null)
+        if (nomeSalvo != null && nomeSalvo.isNotBlank()) {
+            textViewSaudacao.text = "Olá, $nomeSalvo!"
+        } else {
+            textViewSaudacao.text = "Olá, Visitante!"
+        }
+    }
+
+    private fun salvarNome() {
+        val nomeDigitado = editTextNome.text.toString()
+        if (nomeDigitado.isNotBlank()) {
+            val editor = sharedPreferences.edit()
+            editor.putString(CHAVE_NOME, nomeDigitado)
+            editor.apply()
+            
+            // Atualiza a saudação na tela imediatamente
+            textViewSaudacao.text = "Olá, $nomeDigitado!"
+            editTextNome.text.clear()
+        }
+    }
+}</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="tarefa-aula13" class="mb-16">
+    <h3 class="text-3xl font-bold text-slate-800 mb-6">
+      Encerramento e Próximos Passos
+    </h3>
+    <div class="callout callout-task">
+      <h5 class="font-bold mb-2">Tarefa para a próxima aula (TED)</h5>
+      <p class="mb-4">
+        O desafio é criar um app simples que utilize
+        <code>SharedPreferences</code> para lembrar o nome do usuário entre
+        sessões, exibindo uma mensagem personalizada ao abrir o app novamente.
+      </p>
+      <ol class="list-decimal list-inside space-y-2">
+        <li>
+          Siga a atividade prática para construir e entender o app "Lembrar de
+          Mim".
+        </li>
+        <li>
+          Execute o app, salve um nome, feche completamente o aplicativo (pelo
+          gerenciador de apps recentes) e abra-o novamente para confirmar que a
+          saudação personalizada foi carregada.
+        </li>
+        <li>
+          Tire um print da tela mostrando a saudação personalizada após reabrir
+          o app e submeta no Moodle.
+        </li>
+      </ol>
+    </div>
+    <div class="bg-white p-6 rounded-lg shadow-md mt-8">
+      <h4 class="font-bold text-xl text-slate-800 mb-4">
+        Bibliografia Recomendada
+      </h4>
+      <ul class="list-disc list-inside space-y-2">
+        <li>
+          OLIVEIRA, Diego Bittencourt de et al.
+          <strong>Desenvolvimento para Dispositivos Móveis</strong>. Porto
+          Alegre: SAGAH, 2019. v. 1.
+        </li>
+        <li>
+          SIMAS, V. L. et al.
+          <strong>Desenvolvimento para Dispositivos Móveis – Volume 2</strong>.
+          Grupo A, 2019.
+        </li>
+        <li>
+          <a
+            href="https://developer.android.com/training/data-storage/shared-preferences"
+            target="_blank"
+            class="text-indigo-600 hover:underline font-semibold"
+            >Documentação Oficial sobre SharedPreferences</a
+          >.
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,230 @@
+<section id="aula12" class="max-w-7xl mx-auto">
+    <header class="mb-12 border-b pb-8">
+        <h2 class="text-4xl font-bold text-slate-900">
+            Aula 12: Unidade II – Projeto Prático: Navegação Multi-Tela com Dados
+        </h2>
+        <p class="text-lg text-slate-600 mt-2">
+            Consolidar os conceitos de Intents explícitas e implícitas, com envio e recebimento de dados, por meio de um app funcional.
+        </p>
+    </header>
+
+    <div class="bg-white p-6 rounded-lg shadow-md mb-12">
+        <h3 class="font-bold text-2xl text-slate-800 mb-4">Plano de Voo da Aula</h3>
+        <ul class="list-disc list-inside space-y-2 text-slate-700">
+            <li><strong>Recapitulação e Objetivo:</strong> Unificar todo o conhecimento da Unidade II (Ciclo de Vida, Bundle, Intents Explícitas e Implícitas).</li>
+            <li><strong>Definição do Projeto:</strong> Construir um "Mini App de Contatos" com duas telas e múltiplas ações.</li>
+            <li><strong>Atividade Prática Guiada:</strong> Roteiro de desenvolvimento em laboratório.
+                <ul>
+                    <li>- Criação da estrutura do projeto e das duas Activities.</li>
+                    <li>- Implementação dos layouts XML.</li>
+                    <li>- Codificação da lógica para navegação explícita com passagem de dados.</li>
+                    <li>- Codificação da lógica para ações implícitas (Ligar e Enviar E-mail).</li>
+                </ul>
+            </li>
+            <li><strong>Desafios Extras:</strong> Como aprimorar o projeto com conceitos das aulas anteriores.</li>
+            <li><strong>Tarefa (TED):</strong> Finalizar o projeto e preparar uma apresentação informal.</li>
+        </ul>
+    </div>
+
+    <div id="contexto" class="mb-16">
+        <h3 class="text-3xl font-bold text-slate-800 mb-6">Unificando o Conhecimento da Unidade II</h3>
+        <div class="bg-white p-8 rounded-lg shadow-md">
+            <p class="text-lg mb-4">Chegamos ao final da Unidade II! Ao longo das últimas aulas, aprendemos os pilares da navegação e interação no Android:</p>
+            <ul class="list-disc list-inside space-y-2">
+                <li><strong>Aula 7 e 8:</strong> Entendemos como o <strong>Ciclo de Vida</strong> e o <strong>Bundle</strong> são essenciais para criar apps robustos que não perdem o estado do usuário.</li>
+                <li><strong>Aula 9 e 10:</strong> Aprendemos a usar <strong>Intents Explícitas</strong> para navegar entre as telas da nossa própria aplicação e a passar dados entre elas.</li>
+                <li><strong>Aula 11:</strong> Exploramos as <strong>Intents Implícitas</strong> para interagir com o ecossistema de aplicativos do Android.</li>
+            </ul>
+            <p class="mt-4">Hoje, vamos conectar todos esses pontos em um único projeto prático, simulando o desenvolvimento de uma funcionalidade real de um aplicativo.</p>
+        </div>
+    </div>
+    
+    <div id="definicao-projeto" class="mb-16">
+        <h3 class="text-3xl font-bold text-slate-800 mb-6">Definição do Projeto: Mini App de Contatos</h3>
+        <div class="bg-white p-8 rounded-lg shadow-md">
+            <p class="text-lg mb-6">Nosso objetivo é criar um aplicativo simples de gerenciamento de contatos com duas telas e múltiplas funcionalidades.</p>
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div>
+                    <h4 class="font-bold text-xl text-slate-800 mb-2">Tela Principal (<code>MainActivity</code>)</h4>
+                    <ul class="list-disc list-inside">
+                        <li>Permite ao usuário inserir nome, telefone e e-mail.</li>
+                        <li>Possui um botão para ver os detalhes em uma segunda tela.</li>
+                        <li>Possui botões para ligar e enviar e-mail diretamente.</li>
+                    </ul>
+                </div>
+                <img src="https://placehold.co/300x500/e0e7ff/3730a3?text=Tela+de+Cadastro" alt="Tela de Cadastro" class="rounded-lg shadow-sm mx-auto border" />
+            </div>
+            <hr class="my-8">
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                 <div>
+                    <h4 class="font-bold text-xl text-slate-800 mb-2">Tela de Detalhes (<code>DetalheActivity</code>)</h4>
+                    <ul class="list-disc list-inside">
+                        <li>Recebe os dados da tela principal.</li>
+                        <li>Exibe as informações do contato de forma organizada.</li>
+                    </ul>
+                </div>
+                <img src="https://placehold.co/300x500/e0e7ff/3730a3?text=Tela+de+Detalhes" alt="Tela de Detalhes" class="rounded-lg shadow-sm mx-auto border" />
+            </div>
+        </div>
+    </div>
+
+
+    <div id="atividade-pratica-aula12" class="mb-16">
+        <h3 class="text-3xl font-bold text-slate-800 mb-6">Atividade Prática Guiada</h3>
+        <div class="bg-white p-8 rounded-lg shadow-md space-y-12">
+            <div>
+                <h4 class="font-bold text-2xl text-slate-800 mb-4">Passo 1: Estrutura do Projeto</h4>
+                <ol class="list-decimal list-inside space-y-2">
+                    <li>Crie um novo projeto no Android Studio com o template "Empty Views Activity".</li>
+                    <li>No painel do projeto, clique com o botão direito sobre o seu pacote (ex: <code>br.com.unichristus.ads.minicontatos</code>) > New > Activity > Empty Views Activity. Dê o nome de <code>DetalheActivity</code>.</li>
+                    <li>O Android Studio irá criar automaticamente o <code>DetalheActivity.kt</code>, o layout <code>activity_detalhe.xml</code> e registrará a nova activity no <code>AndroidManifest.xml</code>.</li>
+                </ol>
+            </div>
+
+            <div>
+                <h4 class="font-bold text-2xl text-slate-800 mb-4">Passo 2: Implementação dos Layouts</h4>
+                <p>Copie e cole os códigos abaixo nos seus respectivos arquivos XML.</p>
+                <div class="code-block-wrapper">
+                    <button class="copy-button">Copiar</button>
+                    <div class="code-block">
+                        <h5 class="mono">&lt;-- Código para res/layout/activity_main.xml --&gt;</h5>
+                        <pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;LinearLayout ... android:orientation="vertical" android:padding="16dp"&gt;
+    &lt;EditText android:id="@+id/editTextNome" ... android:hint="Nome Completo" /&gt;
+    &lt;EditText android:id="@+id/editTextTelefone" ... android:hint="Telefone" android:inputType="phone" /&gt;
+    &lt;EditText android:id="@+id/editTextEmail" ... android:hint="E-mail" android:inputType="textEmailAddress" /&gt;
+    &lt;LinearLayout android:orientation="horizontal" ...&gt;
+        &lt;Button android:id="@+id/buttonLigar" ... android:text="Ligar" /&gt;
+        &lt;Button android:id="@+id/buttonEmail" ... android:text="Enviar E-mail" /&gt;
+    &lt;/LinearLayout&gt;
+    &lt;Button android:id="@+id/buttonVerDetalhes" ... android:text="Ver Detalhes" /&gt;
+&lt;/LinearLayout&gt;</code></pre>
+                    </div>
+                </div>
+                <div class="code-block-wrapper">
+                    <button class="copy-button">Copiar</button>
+                    <div class="code-block">
+                        <h5 class="mono">&lt;-- Código para res/layout/activity_detalhe.xml --&gt;</h5>
+                        <pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;LinearLayout ... android:orientation="vertical" android:padding="16dp"&gt;
+    &lt;TextView android:id="@+id/textViewNomeDetalhe" ... tools:text="Nome: ..." /&gt;
+    &lt;TextView android:id="@+id/textViewTelefoneDetalhe" ... tools:text="Telefone: ..." /&gt;
+    &lt;TextView android:id="@+id/textViewEmailDetalhe" ... tools:text="E-mail: ..." /&gt;
+&lt;/LinearLayout&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                 <h4 class="font-bold text-2xl text-slate-800 mb-4">Passo 3: Lógica da <code>MainActivity.kt</code></h4>
+                 <div class="code-block-wrapper">
+                    <button class="copy-button">Copiar</button>
+                    <div class="code-block">
+                        <h5 class="mono">// Código para MainActivity.kt</h5>
+                        <pre><code>// ... imports
+import android.content.Intent
+import android.net.Uri
+
+class MainActivity : AppCompatActivity() {
+    companion object {
+        const val EXTRA_NOME = "EXTRA_NOME"
+        const val EXTRA_TELEFONE = "EXTRA_TELEFONE"
+        const val EXTRA_EMAIL = "EXTRA_EMAIL"
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val editTextNome: EditText = findViewById(R.id.editTextNome)
+        val editTextTelefone: EditText = findViewById(R.id.editTextTelefone)
+        val editTextEmail: EditText = findViewById(R.id.editTextEmail)
+        val buttonVerDetalhes: Button = findViewById(R.id.buttonVerDetalhes)
+        val buttonLigar: Button = findViewById(R.id.buttonLigar)
+        val buttonEmail: Button = findViewById(R.id.buttonEmail)
+
+        // --- Intent Explícita ---
+        buttonVerDetalhes.setOnClickListener {
+            val intent = Intent(this, DetalheActivity::class.java)
+            intent.putExtra(EXTRA_NOME, editTextNome.text.toString())
+            intent.putExtra(EXTRA_TELEFONE, editTextTelefone.text.toString())
+            intent.putExtra(EXTRA_EMAIL, editTextEmail.text.toString())
+            startActivity(intent)
+        }
+
+        // --- Intent Implícita para Ligar ---
+        buttonLigar.setOnClickListener {
+            val uri = Uri.parse("tel:${editTextTelefone.text}")
+            val intent = Intent(Intent.ACTION_DIAL, uri)
+            startActivity(intent)
+        }
+
+        // --- Intent Implícita para Enviar E-mail ---
+        buttonEmail.setOnClickListener {
+            val uri = Uri.parse("mailto:${editTextEmail.text}")
+            val intent = Intent(Intent.ACTION_SENDTO, uri)
+            startActivity(intent)
+        }
+    }
+}</code></pre>
+                    </div>
+                 </div>
+            </div>
+
+             <div>
+                 <h4 class="font-bold text-2xl text-slate-800 mb-4">Passo 4: Lógica da <code>DetalheActivity.kt</code></h4>
+                 <div class="code-block-wrapper">
+                    <button class="copy-button">Copiar</button>
+                    <div class="code-block">
+                        <h5 class="mono">// Código para DetalheActivity.kt</h5>
+                        <pre><code>// ... imports
+import android.widget.TextView
+
+class DetalheActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_detalhe)
+
+        val nome = intent.getStringExtra(MainActivity.EXTRA_NOME)
+        val telefone = intent.getStringExtra(MainActivity.EXTRA_TELEFONE)
+        val email = intent.getStringExtra(MainActivity.EXTRA_EMAIL)
+
+        findViewById&lt;TextView&gt;(R.id.textViewNomeDetalhe).text = "Nome: $nome"
+        findViewById&lt;TextView&gt;(R.id.textViewTelefoneDetalhe).text = "Telefone: $telefone"
+        findViewById&lt;TextView&gt;(R.id.textViewEmailDetalhe).text = "E-mail: $email"
+    }
+}</code></pre>
+                    </div>
+                 </div>
+            </div>
+
+            <div class="callout callout-info">
+                <h5 class="font-bold mb-2">Desafios Extras (Para ir além)</h5>
+                 <ul class="list-disc list-inside">
+                    <li><strong>Integração com Aula 8:</strong> Implemente o <code>onSaveInstanceState</code> na <code>MainActivity</code> para que os dados digitados nos <code>EditTexts</code> não se percam durante a rotação da tela.</li>
+                    <li><strong>Validação:</strong> Adicione uma verificação simples para desabilitar os botões "Ligar" e "Enviar E-mail" se os campos correspondentes estiverem vazios.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="tarefa-aula12" class="mb-16">
+        <h3 class="text-3xl font-bold text-slate-800 mb-6">Encerramento e Próximos Passos</h3>
+        <div class="callout callout-task">
+            <h5 class="font-bold mb-2">Tarefa para a próxima aula (TED)</h5>
+            <p class="mb-4">O desafio é finalizar o projeto prático de navegação multi-tela iniciado em sala e se preparar para uma breve apresentação.</p>
+            <ol class="list-decimal list-inside space-y-2">
+                <li>Em dupla, finalize a implementação do "Mini App de Contatos", garantindo que todas as funcionalidades (navegação explícita, passagem de dados e ações implícitas) estão a funcionar corretamente.</li>
+                <li>Implemente pelo menos um dos "Desafios Extras" sugeridos na atividade.</li>
+                <li>Prepare uma apresentação informal (2-3 minutos) para a próxima aula, demonstrando o app a funcionar e explicando o código.</li>
+            </ol>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-md mt-8">
+            <h4 class="font-bold text-xl text-slate-800 mb-4">Bibliografia Recomendada</h4>
+            <ul class="list-disc list-inside space-y-2">
+                <li>OLIVEIRA, Diego Bittencourt de et al. <strong>Desenvolvimento para Dispositivos Móveis</strong>. Porto Alegre: SAGAH, 2019. v. 1.</li>
+                <li>SIMAS, V. L. et al. <strong>Desenvolvimento para Dispositivos Móveis – Volume 2</strong>. Grupo A, 2019.</li>
+            </ul>
+        </div>
+    </div>
+</section>

@@ -4,69 +4,449 @@
     "titulo": "Aula 1: Introdução e Fundamentos do Android",
     "descricao": "Apresentação da disciplina, seus objetivos, métodos e a importância do Android no mercado.",
     "arquivo": "aula1.html",
-    "ativo": true
+    "unidade": "Unidade I",
+    "ativo": true,
+    "styles": [],
+    "scripts": [],
+    "init": null
   },
   {
     "id": "aula2",
     "titulo": "Aula 2: Configuração do Ambiente de Desenvolvimento",
     "descricao": "Preparar o ambiente Android, instalando e configurando as ferramentas essenciais para a criação de aplicativos.",
     "arquivo": "aula2.html",
-    "ativo": true
+    "unidade": "Unidade I",
+    "ativo": true,
+    "styles": [],
+    "scripts": [],
+    "init": null
   },
   {
     "id": "aula3",
     "titulo": "Aula 3: Estrutura Básica de um App Android",
     "descricao": "Compreender a organização de um projeto, identificando os arquivos essenciais como AndroidManifest.xml, MainActivity.kt e a pasta res.",
     "arquivo": "aula3.html",
-    "ativo": true
+    "unidade": "Unidade I",
+    "ativo": true,
+    "styles": [],
+    "scripts": [],
+    "init": null
   },
   {
     "id": "aula4",
     "titulo": "Aula 4: Componentes de UI",
     "descricao": "Apresentar os principais componentes de interface gráfica no Android e demonstrar como utilizá-los na construção de telas simples.",
     "arquivo": "aula4.html",
-    "ativo": true
+    "unidade": "Unidade I",
+    "ativo": true,
+    "styles": [],
+    "scripts": [],
+    "init": null
   },
   {
     "id": "aula5",
     "titulo": "Aula 5: Manipulação de Eventos e Uso de Logcat",
     "descricao": "Associar ações da interface gráfica (como cliques) a funções em Kotlin e usar o Logcat para depuração.",
     "arquivo": "aula5.html",
-    "ativo": true
+    "unidade": "Unidade I",
+    "ativo": true,
+    "styles": [],
+    "scripts": [],
+    "init": null
   },
   {
     "id": "aula6",
     "titulo": "Aula 6: Projeto Prático - App de Boas-vindas",
     "descricao": "Consolidar conhecimentos desenvolvendo um app funcional com interface interativa e mensagens personalizadas.",
     "arquivo": "aula6.html",
-    "ativo": true
+    "unidade": "Unidade I",
+    "ativo": true,
+    "styles": [],
+    "scripts": [],
+    "init": null
   },
   {
     "id": "aula7",
     "titulo": "Aula 7: O Ciclo de Vida das Activities",
     "descricao": "Compreender os principais estados do ciclo de vida de uma Activity, sua importância e implicações no gerenciamento de recursos.",
     "arquivo": "aula7.html",
-    "ativo": true
+    "unidade": "Unidade II",
+    "ativo": true,
+    "styles": [],
+    "scripts": [],
+    "init": null
   },
   {
     "id": "aula8",
     "titulo": "Aula 8: Salvando Estado com Bundle",
     "descricao": "Preservar o estado da interface em mudanças de configuração, como rotação de tela, utilizando o objeto Bundle.",
     "arquivo": "aula8.html",
-    "ativo": true
+    "unidade": "Unidade II",
+    "ativo": true,
+    "styles": [],
+    "scripts": [],
+    "init": null
   },
   {
     "id": "aula9",
     "titulo": "Aula 9: Intents Explícitas e Navegação",
     "descricao": "Compreender o conceito de Intent explícita para navegação e envio de dados entre as telas de um app.",
     "arquivo": "aula9.html",
-    "ativo": true
+    "unidade": "Unidade II",
+    "ativo": true,
+    "styles": [],
+    "scripts": [],
+    "init": null
   },
   {
     "id": "aula10",
     "titulo": "Aula 10: Passagem de Dados com Intent.putExtra",
     "descricao": "Demonstrar como enviar diferentes tipos de dados (Strings, Ints, Booleans) entre Activities.",
     "arquivo": "aula10.html",
-    "ativo": true
+    "unidade": "Unidade II",
+    "ativo": true,
+    "styles": [],
+    "scripts": [],
+    "init": null
+  },
+  {
+    "id": "aula11",
+    "titulo": "Aula 11: Intents Implícitas (Chamar App Externo)",
+    "descricao": "Explorar o uso de Intents implícitas para acionar apps externos (navegador, chamadas, compartilhamento) e ações como ACTION_VIEW, ACTION_DIAL e ACTION_SEND.",
+    "arquivo": "aula11.html",
+    "unidade": "Unidade II",
+    "ativo": false,
+    "styles": [],
+    "scripts": [],
+    "init": null
+  },
+  {
+    "id": "aula12",
+    "titulo": "Aula 12: Projeto Prático – Navegação Multi-tela com Dados",
+    "descricao": "Consolidar navegação entre telas com Intents explícitas e implícitas e passagem/recepção de dados em um app funcional.",
+    "arquivo": "aula12.html",
+    "unidade": "Unidade II",
+    "ativo": false,
+    "styles": [],
+    "scripts": [],
+    "init": null
+  },
+
+  {
+    "id": "aula13",
+    "titulo": "Aula 13: Revisão de Persistência com SharedPreferences",
+    "descricao": "Salvar e recuperar dados simples e preferências do usuário com SharedPreferences, mantendo informação entre sessões.",
+    "arquivo": "aula13.html",
+    "unidade": "Unidade III",
+    "ativo": false,
+    "styles": [],
+    "scripts": [],
+    "init": null
+  },
+  {
+    "id": "aula14",
+    "titulo": "Aula 14: Introdução ao Room – Entities e DAO",
+    "descricao": "Criar modelo de persistência com Room, definindo entidades e DAOs como alternativa moderna ao SQLiteOpenHelper.",
+    "arquivo": "aula14.html",
+    "unidade": "Unidade III",
+    "ativo": false,
+    "styles": [],
+    "scripts": [],
+    "init": null
+  },
+
+  {
+    "id": "aula15",
+    "titulo": "Aula 15: NP1 – 1ª Avaliação Parcial",
+    "descricao": "Avaliação de ensino e aprendizagem referente ao conteúdo visto até aqui para composição da primeira nota parcial.",
+    "arquivo": "aula15.html",
+    "unidade": "Avaliação",
+    "ativo": false,
+    "styles": [],
+    "scripts": [],
+    "init": null
+  },
+
+  {
+    "id": "aula16",
+    "titulo": "Aula 16: Room – Database e Integrações Básicas",
+    "descricao": "Configurar a classe AppDatabase, utilizar Room.databaseBuilder() e integrar DAOs à aplicação.",
+    "arquivo": "aula16.html",
+    "unidade": "Unidade III",
+    "ativo": false,
+    "styles": [],
+    "scripts": [],
+    "init": null
+  },
+  {
+    "id": "aula17",
+    "titulo": "Aula 17: CRUD com Room – Parte 1 (Create + Read)",
+    "descricao": "Implementar inserção e leitura de dados com Room, exibindo informações persistidas na UI.",
+    "arquivo": "aula17.html",
+    "unidade": "Unidade III",
+    "ativo": false,
+    "styles": [],
+    "scripts": [],
+    "init": null
+  },
+  {
+    "id": "aula18",
+    "titulo": "Aula 18: CRUD com Room – Parte 2 (Update + Delete)",
+    "descricao": "Completar o ciclo CRUD atualizando e excluindo registros no banco local Room a partir da interface.",
+    "arquivo": "aula18.html",
+    "unidade": "Unidade III",
+    "ativo": false,
+    "styles": [],
+    "scripts": [],
+    "init": null
+  },
+  {
+    "id": "aula19",
+    "titulo": "Aula 19: Boas Práticas com ViewModel e LiveData",
+    "descricao": "Aplicar MVVM para separar lógica de dados da UI utilizando ViewModel e LiveData em integração com Room.",
+    "arquivo": "aula19.html",
+    "unidade": "Unidade III",
+    "ativo": false,
+    "styles": [],
+    "scripts": [],
+    "init": null
+  },
+
+  {
+    "id": "aula20",
+    "titulo": "Aula 20: APIs RESTful e Formatos JSON",
+    "descricao": "Entender o modelo REST, verbos HTTP e o formato JSON; exploração de requisições e respostas com Postman.",
+    "arquivo": "aula20.html",
+    "unidade": "Unidade IV",
+    "ativo": false,
+    "styles": [],
+    "scripts": [],
+    "init": null
+  },
+  {
+    "id": "aula21",
+    "titulo": "Aula 21: Retrofit e Chamadas Básicas",
+    "descricao": "Consumir dados remotos com Retrofit, definindo interfaces de serviço e modelos de resposta JSON.",
+    "arquivo": "aula21.html",
+    "unidade": "Unidade IV",
+    "ativo": false,
+    "styles": [],
+    "scripts": [],
+    "init": null
+  },
+  {
+    "id": "aula22",
+    "titulo": "Aula 22: Retrofit com Corrotinas (Kotlin)",
+    "descricao": "Refatorar chamadas para usar suspend functions, CoroutineScope e Dispatchers, com tratamento básico de exceções.",
+    "arquivo": "aula22.html",
+    "unidade": "Unidade IV",
+    "ativo": false,
+    "styles": [],
+    "scripts": [],
+    "init": null
+  },
+  {
+    "id": "aula23",
+    "titulo": "Aula 23: RecyclerView com Dados Remotos",
+    "descricao": "Integrar RecyclerView ao consumo de API, criando adapters e layouts de item para listas dinâmicas.",
+    "arquivo": "aula23.html",
+    "unidade": "Unidade IV",
+    "ativo": false,
+    "styles": [],
+    "scripts": [],
+    "init": null
+  },
+  {
+    "id": "aula24",
+    "titulo": "Aula 24: Firebase – Conceitos e Configuração Inicial",
+    "descricao": "Conhecer os serviços Firebase e integrar um projeto Android ao console e SDK do Firebase.",
+    "arquivo": "aula24.html",
+    "unidade": "Unidade IV",
+    "ativo": false,
+    "styles": [],
+    "scripts": [],
+    "init": null
+  },
+  {
+    "id": "aula25",
+    "titulo": "Aula 25: Firebase Firestore – Leitura e Escrita de Dados",
+    "descricao": "Modelar coleções/documentos NoSQL e implementar operações básicas de persistência em Firestore.",
+    "arquivo": "aula25.html",
+    "unidade": "Unidade IV",
+    "ativo": false,
+    "styles": [],
+    "scripts": [],
+    "init": null
+  },
+  {
+    "id": "aula26",
+    "titulo": "Aula 26: Firebase Authentication – Login com E-mail e Senha",
+    "descricao": "Configurar autenticação de usuários no app com Firebase Auth e implementar tela de login funcional.",
+    "arquivo": "aula26.html",
+    "unidade": "Unidade IV",
+    "ativo": false,
+    "styles": [],
+    "scripts": [],
+    "init": null
+  },
+  {
+    "id": "aula27",
+    "titulo": "Aula 27: Projeto Prático com Backend – App com Login + Dados",
+    "descricao": "Consolidar autenticação e Firestore em um app completo com navegação e exibição de dados remotos.",
+    "arquivo": "aula27.html",
+    "unidade": "Unidade IV",
+    "ativo": false,
+    "styles": [],
+    "scripts": [],
+    "init": null
+  },
+
+  {
+    "id": "aula28",
+    "titulo": "Aula 28: Apps Nativos x Híbridos x PWA – Conceitos e Diferenças",
+    "descricao": "Comparar abordagens de desenvolvimento mobile, prós e contras e cenários de aplicação.",
+    "arquivo": "aula28.html",
+    "unidade": "Unidade V",
+    "ativo": false,
+    "styles": [],
+    "scripts": [],
+    "init": null
+  },
+  {
+    "id": "aula29",
+    "titulo": "Aula 29: Ambiente React Native com Expo CLI",
+    "descricao": "Instalar e configurar Expo CLI, criar o primeiro projeto e executar em dispositivo/emulador.",
+    "arquivo": "aula29.html",
+    "unidade": "Unidade V",
+    "ativo": false,
+    "styles": [],
+    "scripts": [],
+    "init": null
+  },
+
+  {
+    "id": "aula30",
+    "titulo": "Aula 30: NP2 – 2ª Avaliação Parcial",
+    "descricao": "Avaliação parcial referente aos conteúdos trabalhados desde a NP1, podendo incluir prova prática/teórica.",
+    "arquivo": "aula30.html",
+    "unidade": "Avaliação",
+    "ativo": false,
+    "styles": [],
+    "scripts": [],
+    "init": null
+  },
+
+  {
+    "id": "aula31",
+    "titulo": "Aula 31: Navegação entre Telas com React Navigation",
+    "descricao": "Implementar navegação stack no React Native, criação de rotas, passagem de parâmetros e retorno.",
+    "arquivo": "aula31.html",
+    "unidade": "Unidade V",
+    "ativo": false,
+    "styles": [],
+    "scripts": [],
+    "init": null
+  },
+  {
+    "id": "aula32",
+    "titulo": "Aula 32: Consumo de API no React Native (Fetch/Axios)",
+    "descricao": "Consumir uma API REST, gerenciar estado (useState/useEffect) e exibir dados dinamicamente em componentes.",
+    "arquivo": "aula32.html",
+    "unidade": "Unidade V",
+    "ativo": false,
+    "styles": [],
+    "scripts": [],
+    "init": null
+  },
+  {
+    "id": "aula33",
+    "titulo": "Aula 33: Revisão Prática – Persistência Local + Consumo de API",
+    "descricao": "Integrar Room/Firestore e consumo de API em uma solução prática, refinando arquitetura e funcionalidades.",
+    "arquivo": "aula33.html",
+    "unidade": "Unidade V",
+    "ativo": false,
+    "styles": [],
+    "scripts": [],
+    "init": null
+  },
+  {
+    "id": "aula34",
+    "titulo": "Aula 34: Oficina – React Native + Firebase",
+    "descricao": "Implementar um app híbrido com login por e-mail/senha e persistência de dados no Firestore.",
+    "arquivo": "aula34.html",
+    "unidade": "Unidade V",
+    "ativo": false,
+    "styles": [],
+    "scripts": [],
+    "init": null
+  },
+
+  {
+    "id": "aula35",
+    "titulo": "Aula 35: Projeto Final – Planejamento e Início",
+    "descricao": "Planejar o projeto integrador: escopo, repositório, tecnologias e estrutura inicial do app.",
+    "arquivo": "aula35.html",
+    "unidade": "Unidade VI",
+    "ativo": false,
+    "styles": [],
+    "scripts": [],
+    "init": null
+  },
+  {
+    "id": "aula36",
+    "titulo": "Aula 36: Projeto Final – Desenvolvimento Contínuo",
+    "descricao": "Avançar no desenvolvimento do projeto com suporte técnico, priorizando o MVP e principais funcionalidades.",
+    "arquivo": "aula36.html",
+    "unidade": "Unidade VI",
+    "ativo": false,
+    "styles": [],
+    "scripts": [],
+    "init": null
+  },
+  {
+    "id": "aula37",
+    "titulo": "Aula 37: Projeto Final – Finalização e Preparação",
+    "descricao": "Finalizar funcionalidades, testar e preparar materiais para apresentação e entrega do projeto.",
+    "arquivo": "aula37.html",
+    "unidade": "Unidade VI",
+    "ativo": false,
+    "styles": [],
+    "scripts": [],
+    "init": null
+  },
+  {
+    "id": "aula38",
+    "titulo": "Aula 38: Apresentação dos Projetos Finais",
+    "descricao": "Apresentar as soluções desenvolvidas, justificando escolhas técnicas e demonstrando funcionalidades.",
+    "arquivo": "aula38.html",
+    "unidade": "Unidade VI",
+    "ativo": false,
+    "styles": [],
+    "scripts": [],
+    "init": null
+  },
+
+  {
+    "id": "aula39",
+    "titulo": "Aula 39: NP3 – 3ª Avaliação Parcial",
+    "descricao": "Avaliação final parcial, contemplando os conteúdos abordados após a NP2.",
+    "arquivo": "aula39.html",
+    "unidade": "Avaliação",
+    "ativo": false,
+    "styles": [],
+    "scripts": [],
+    "init": null
+  },
+
+  {
+    "id": "aula40",
+    "titulo": "Aula 40: Encerramento da Disciplina e Feedback",
+    "descricao": "Reflexão sobre aprendizados, devolutivas sobre os projetos e perspectivas futuras em desenvolvimento mobile.",
+    "arquivo": "aula40.html",
+    "unidade": "Unidade VI",
+    "ativo": false,
+    "styles": [],
+    "scripts": [],
+    "init": null
   }
 ]
